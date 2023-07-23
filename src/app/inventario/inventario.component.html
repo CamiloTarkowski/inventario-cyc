@@ -1,0 +1,31 @@
+<body>
+
+    
+
+    <div class="container"> 
+        <div class="row align-items-start">
+            <div class = "col">  
+                <div *ngFor = "let producto of productos; let i = index">
+                    <tr>
+                        <th *ngIf="i == 0">TALLAS</th>                
+                    </tr>
+                    <tr *ngFor = "let talla of producto.talla">
+                        <th *ngIf = "i == 0" class = ""> {{talla.n_talla}}</th>
+                    </tr>
+                </div>
+            </div>
+
+                <table *ngFor = "let producto of productos" class = "col">
+                    <tr>
+                        {{producto.nombre}}
+                    </tr>
+                    <tr *ngFor = "let talla of producto.talla">
+                        <td>{{talla.cantidad}}</td>     
+                    </tr>
+                </table>
+
+        </div> 
+    </div>
+
+
+</body>
