@@ -1,10 +1,26 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyD44QlFwGPYeryJX4v4XYvKG39WqHK1f4s',
+    authDomain: 'inventario-cyc.firebaseapp.com',
+    databaseURL: 'https://inventario-cyc-default-rtdb.firebaseio.com',
+    projectId: 'inventario-cyc',
+    storageBucket: 'inventario-cyc.appspot.com',
+    messagingSenderId: '1035954968064',
+    appId: '1:1035954968064:web:7d9d2c82cba92706e46ae5',
+    measurementId: 'G-PR4WPZF2D9'
+  }
 };
+
+// Initialize Firebase
+const app = initializeApp(environment.firebase);
+const analytics = getAnalytics(app);
 
 /*
  * For easier debugging in development mode, you can import the following file

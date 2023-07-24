@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../interfaces/producto.interface';
+import { FirebaseService } from '../services/firebase.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-inventario',
@@ -8,7 +10,9 @@ import { Producto } from '../interfaces/producto.interface';
 })
 export class InventarioComponent implements OnInit {
 
-  productos: Producto[] = [
+  productos$!: Observable<any[]>;
+
+  /*productos: Producto[] = [
     {id: 0, nombre: "Polera polo roja",descripcion: "Polera de algodón roja del colegio Alcántara", colegio: {id: 0, nombre : "Alcántara"},
     talla: [
       {id: 0, n_talla: "6", cantidad: 5, precio: 9999 },
@@ -35,12 +39,29 @@ export class InventarioComponent implements OnInit {
         {id: 8, n_talla: "L", cantidad: 4, precio: 9999 },
         {id: 9, n_talla: "XL", cantidad: 2, precio: 9999 },]},
 
+        {id: 5, nombre: "Buzo completo canguro",descripcion: "Buzo completo de algodón del colegio Alcántara", colegio: {id: 0, nombre : "Alcántara"},
+      talla: [
+        {id: 0, n_talla: "6", cantidad: 0, precio: 9999 },
+        {id: 1, n_talla: "8", cantidad: 7, precio: 9999 },
+        {id: 2, n_talla: "10", cantidad: 0, precio: 9999 },
+        {id: 3, n_talla: "12", cantidad: 0, precio: 9999 },
+        {id: 4, n_talla: "14", cantidad: 0, precio: 9999 },
+        {id: 5, n_talla: "16", cantidad: 0, precio: 9999 },
+        {id: 6, n_talla: "S", cantidad: 0, precio: 9999 },
+        {id: 7, n_talla: "M", cantidad: 3, precio: 9999 },
+        {id: 8, n_talla: "L", cantidad: 4, precio: 9999 },
+        {id: 9, n_talla: "XL", cantidad: 2, precio: 9999 },]},
 
-]
 
-  constructor() { }
+]*/
+
+  constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
+
+    
+    this.productos$ = this.firebaseService.getProductos();
+
   }
 
 }
