@@ -1,9 +1,43 @@
 <body>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Id Colegio</th>
+          <th>Tallas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of prodsFiltrados">
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ variable }}</td>
+          <td>
+            <table>
+              <tr *ngFor="let talla of producto.talla">
+                <td>Talla {{ talla.n_talla }}</td>
+                <td>{{ talla.cantidad }} unidades</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
 
-    <div *ngFor = "let producto of productos$ | async">
-        <p>producto.nombre</p>
 
-    </div>
+
+
+
+
+
+
+
+
+
+
+
 
     
 
@@ -31,6 +65,3 @@
 
         </div> 
     </div> -->
-
-
-</body>

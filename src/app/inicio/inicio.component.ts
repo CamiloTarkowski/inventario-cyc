@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Colegio } from '../interfaces/colegio.interface';
+import { FirebaseService } from '../services/firebase.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -9,14 +10,16 @@ import { Colegio } from '../interfaces/colegio.interface';
 })
 export class InicioComponent implements OnInit {
 
-  colegio: Colegio[] = [{id:0, nombre : "Alcántara"},
-  {id:1, nombre : "Alerces"},
-  {id:2, nombre : "Luis Undurraga"},
-  {id:3, nombre : "Niño Jesús"}];
+  colegios$! : Observable<any[]>;
 
-  constructor() { }
+
+  constructor(private db : FirebaseService) { }
 
   ngOnInit(): void {
+
+    this.colegios$ = this.db.getColegios();
+
+
   }
 
 }

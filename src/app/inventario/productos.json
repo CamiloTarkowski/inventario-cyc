@@ -1,0 +1,76 @@
+{
+    "productos": {
+      "0": {
+        "id": 0,
+        "nombre": "Polera polo roja",
+        "descripcion": "Polera de algodón roja del colegio Alcántara",
+        "colegio": { "id": 0, "nombre": "Alcántara" },
+        "talla": [
+          { "id": 0, "n_talla": "6", "cantidad": 5, "precio": 9999 },
+          { "id": 1, "n_talla": "8", "cantidad": 7, "precio": 9999 },
+          { "id": 2, "n_talla": "10", "cantidad": 8, "precio": 9999 },
+          { "id": 3, "n_talla": "12", "cantidad": 11, "precio": 9999 },
+          { "id": 4, "n_talla": "14", "cantidad": 9, "precio": 9999 },
+          { "id": 5, "n_talla": "16", "cantidad": 0, "precio": 9999 },
+          { "id": 6, "n_talla": "S", "cantidad": 11, "precio": 9999 },
+          { "id": 7, "n_talla": "M", "cantidad": 5, "precio": 9999 },
+          { "id": 8, "n_talla": "L", "cantidad": 2, "precio": 9999 },
+          { "id": 9, "n_talla": "XL", "cantidad": 0, "precio": 9999 }
+        ]
+      },
+      "1": {
+        "id": 6,
+        "nombre": "Polera Piqué",
+        "descripcion": "Polera de algodón blanca del colegio Alcántara",
+        "colegio": { "id": 0, "nombre": "Alcántara" },
+        "talla": [
+          { "id": 0, "n_talla": "6", "cantidad": 0, "precio": 9999 },
+          { "id": 1, "n_talla": "8", "cantidad": 7, "precio": 9999 },
+          { "id": 2, "n_talla": "10", "cantidad": 0, "precio": 9999 },
+          { "id": 3, "n_talla": "12", "cantidad": 0, "precio": 9999 },
+          { "id": 4, "n_talla": "14", "cantidad": 0, "precio": 9999 },
+          { "id": 5, "n_talla": "16", "cantidad": 0, "precio": 9999 },
+          { "id": 6, "n_talla": "S", "cantidad": 0, "precio": 9999 },
+          { "id": 7, "n_talla": "M", "cantidad": 3, "precio": 9999 },
+          { "id": 8, "n_talla": "L", "cantidad": 4, "precio": 9999 },
+          { "id": 9, "n_talla": "XL", "cantidad": 2, "precio": 9999 }
+        ]
+      },
+      "2": {
+        "id": 2,
+        "nombre": "Polera cuello redondo",
+        "descripcion": "Polera cuello redondo (polo) del colegio Luis Undurraga",
+        "colegio": { "id": 2, "nombre": "Luis Undurraga" },
+        "talla": [
+          { "id": 0, "n_talla": "6", "cantidad": 4, "precio": 9999 },
+          { "id": 1, "n_talla": "8", "cantidad": 10, "precio": 9999 },
+          { "id": 2, "n_talla": "10", "cantidad": 7, "precio": 9999 },
+          { "id": 3, "n_talla": "12", "cantidad": 2, "precio": 9999 },
+          { "id": 4, "n_talla": "14", "cantidad": 6, "precio": 9999 },
+          { "id": 5, "n_talla": "16", "cantidad": 9, "precio": 9999 },
+          { "id": 6, "n_talla": "S", "cantidad": 10, "precio": 9999 },
+          { "id": 7, "n_talla": "M", "cantidad": 10, "precio": 9999 },
+          { "id": 8, "n_talla": "L", "cantidad": 12, "precio": 9999 },
+          { "id": 9, "n_talla": "XL", "cantidad": 7, "precio": 9999 }
+        ]
+      },
+      "3": {
+        "id": 3,
+        "nombre": "Polera piqué",
+        "descripcion": "Polera piqué de algodón del colegio Luis Undurraga",
+        "colegio": { "id": 2, "nombre": "Luis Undurraga" },
+        "talla": [
+          { "id": 0, "n_talla": "6", "cantidad": 0, "precio": 9999 },
+          { "id": 1, "n_talla": "8", "cantidad": 0, "precio": 9999 },
+          { "id": 2, "n_talla": "10", "cantidad": 0, "precio": 9999 },
+          { "id": 3, "n_talla": "12", "cantidad": 0, "precio": 9999 },
+          { "id": 4, "n_talla": "14", "cantidad": 5, "precio": 9999 },
+          { "id": 5, "n_talla": "16", "cantidad": 1, "precio": 9999 },
+          { "id": 6, "n_talla": "S", "cantidad": 9, "precio": 9999 },
+          { "id": 7, "n_talla": "M", "cantidad": 11, "precio": 9999 },
+          { "id": 8, "n_talla": "L", "cantidad": 12, "precio": 9999 },
+          { "id": 9, "n_talla": "XL", "cantidad": 10, "precio": 9999 }
+        ]
+      }
+    }
+}

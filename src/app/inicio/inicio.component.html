@@ -1,1 +1,9 @@
-<p>inicio works!</p>
+<body>
+    <div class = "container">
+        <h2>INVENTARIO C&C CONFECCIONES</h2>
+        <div *ngFor = "let colegio of colegios$ | async">
+            <div class = "nom-colegio" routerLink="/inventario/{{ colegio.id }}">{{colegio.name}}</div>
+        </div>
+    </div>
+
+</body>
