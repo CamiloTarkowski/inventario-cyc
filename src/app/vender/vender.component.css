@@ -1,0 +1,29 @@
+/* Estilo para ocultar el select original */
+#custom-select {
+    display: none;
+  }
+  
+  /* Estilos para el custom select */
+  .custom-select-wrapper {
+    position: relative;
+    width: 200px;
+  }
+  
+  .custom-select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: not-allowed;
+  }
+  
+  .selected-option {
+    color: #999;
+  }
+  
+  /* Icono (puedes utilizar FontAwesome u otra librería de iconos) */
+  .fas.fa-chevron-down {
+    color: #999;
+  }

@@ -1,16 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cloudinary } from '@cloudinary/url-gen';
 
-
 @Component({
-  selector: 'app-inventario',
-  templateUrl: './inventario.component.html',
-  styleUrls: ['./inventario.component.css'],
+  selector: 'app-productos',
+  templateUrl: './productos.component.html',
+  styleUrls: ['./productos.component.css']
 })
-
-export class InventarioComponent implements OnInit {
+export class ProductosComponent {
 
   productos: any[] = [];
   prodsFiltrados : any[] = [];

@@ -1,29 +1,18 @@
+
+
 <body>
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Descripción</th>
-          <th>Id Colegio</th>
-          <th>Tallas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let producto of prodsFiltrados">
-          <td>{{ producto.nombre }}</td>
-          <td>{{ producto.descripcion }}</td>
-          <td>{{ variable }}</td>
-          <td>
-            <table>
-              <tr *ngFor="let talla of producto.talla">
-                <td>Talla {{ talla.n_talla }}</td>
-                <td>{{ talla.cantidad }} unidades</td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    
+    <h1>{{ colegio?.fullname }}</h1>
+        <div *ngFor="let producto of prodsFiltrados">
+            <div class="card" style="width: 18rem;"routerLink="/producto/{{ producto.id }}">
+                <img src="{{ producto?.img_url }}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">{{ producto?.nombre }}</p>
+                  <p class="card-text">{{ producto?.descripcion }}</p>
+                </div>
+              </div>
+        </div>
+
   </body>
 
 

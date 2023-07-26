@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseService } from '../services/firebase.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-producto',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductoComponent implements OnInit {
 
-  constructor() { }
+  producto: any;
+  id!: number;
+
+  constructor(private firebaseService: FirebaseService,
+    private route: ActivatedRoute) { }
+
+  getProducto(id: number){
+    this.firebaseService.getProductoPorId(id).subscribe((producto) =>{
+      this.producto = producto;
+    });
+
+  }
+  
+  getId(){
+    this.route.params.subscribe((params)=> {
+      this.id = params['id'];
+    });
+  }
 
   ngOnInit(): void {
+
+    this.getId();
+    this.getProducto(this.id);
+
   }
 
 }

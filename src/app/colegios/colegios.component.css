@@ -1,0 +1,21 @@
+body{
+    padding-top: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.container{
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+h2{
+    font-size: 100px;
+}
+
+.nom-colegio{
+    font-size: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
+}

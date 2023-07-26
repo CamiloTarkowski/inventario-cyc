@@ -19,6 +19,8 @@
     "@angular/platform-browser": "^16.1.6",
     "@angular/platform-browser-dynamic": "^16.1.6",
     "@angular/router": "^16.1.6",
+    "@cloudinary/ng": "^2.0.0",
+    "@cloudinary/url-gen": "^1.10.2",
     "firebase": "^10.1.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",

@@ -1,1 +1,23 @@
-<p>producto works!</p>
+<body>
+    <div>
+        <h1>
+            {{producto?.nombre}}
+        </h1>
+        <p>{{ producto?.descripcion}}</p>
+        <img src="{{ producto?.img_url}}" alt="" width="640">
+        <h1>Tallas</h1>
+        <table class = "table table-bordered border-success">
+            <thead>
+                <tr>
+                    <th *ngFor = "let talla of producto?.talla"> {{ talla?.n_talla }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td *ngFor = "let talla of producto?.talla">{{ talla?.cantidad}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
