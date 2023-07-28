@@ -10,9 +10,10 @@ export class VenderComponent {
 
   colegios!: any[];
   productos!: any[];
-  prodsFiltrados!: any[];
-  colegioSeleccionado: boolean = false;
-  selectedOption: string | undefined;
+  producto: any;
+  tallas: any[] | null = [] ;
+  prodsFiltrados: any[] | null = [];
+
   id!: number;
   
 
@@ -20,11 +21,30 @@ export class VenderComponent {
 constructor(private firebaseService: FirebaseService
    ) { }
 
-onOptionSelected(option: string): void {
-  this.selectedOption = option;
-  this.id = parseInt(option);
-  this.colegioSeleccionado = true;
-  this.filtrar(this.id);
+
+
+colegioSelected(option: string): void {
+  const id = parseInt(option);
+  this.prodsFiltrados = this.filtrar(id);
+  if(this.prodsFiltrados !== null){
+    this.tallas = this.getTallas(this.prodsFiltrados[0].id);
+  }
+  else{
+    this.tallas = null;
+  }
+  
+}
+
+productoSelected(option: string): void{
+  const id = parseInt(option);
+  this.tallas = this.getTallas(id);
+
+}
+
+tallaSelected(option: string): void{
+  const id = parseInt(option);
+
+
 }
 
 getColegios(){
@@ -39,13 +59,33 @@ getProductos(){
   })
 }
 
-filtrar(id: number){ //filtrar por colegio
-  for(let producto of this.productos){
-    if(producto.colegio.id == id){
-      this.prodsFiltrados.push(producto);
+getTallas(id: number){
+  let tallas : any [] | null = [];
+  if(this.prodsFiltrados === null){
+    return tallas = null;
+  }
+  else{
+    for(let producto of this.prodsFiltrados){
+      if (id == producto.id){
+        tallas = producto.talla;
+      }
     }
   }
+  
+  return tallas;
 }
+
+filtrar(id: number) { //filtrar por colegio
+  let prodsFiltrados: any[] = [];
+  for(let producto of this.productos){
+    if(producto.colegio.id == id){
+      prodsFiltrados.push(producto);
+    }
+  }
+  return prodsFiltrados;
+}
+
+
 
 
 ngOnInit(): void {

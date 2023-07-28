@@ -27,3 +27,13 @@
   .fas.fa-chevron-down {
     color: #999;
   }
+
+  .talla{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+  }
+
+  .unidades{
+    text-align: right;
+    justify-content: end;
+  }

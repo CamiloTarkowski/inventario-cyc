@@ -1,24 +1,48 @@
 
 <body>
+        <div>
+            Seleccione colegio:
+        </div>
+        <div class="custom-select-wrapper">
+            <select #colegioSelect (change)="colegioSelected(colegioSelect.value)">
+                <option value="" disabled selected>Sin seleccionar</option>
+                <option *ngFor="let colegio of colegios" class="custom-select" style="width:200px;" value="{{ colegio?.id }}">
+                    {{ colegio?.nombre }}
+                </option>
+            </select>
+        </div>
+    <br>
+
     <div>
-        Seleccione colegio:
+        Seleccione producto:
     </div>
     <div class="custom-select-wrapper">
-        <select #customSelect (change)="onOptionSelected(customSelect.value)">
+        <select #productoSelect (change)="productoSelected(productoSelect.value)">
             <option value="" disabled selected>Sin seleccionar</option>
-            <option *ngFor="let colegio of colegios" class="custom-select" style="width:200px;" value="{{ colegio.id }}">
-                {{ colegio.nombre }}
+            <option *ngFor="let producto of prodsFiltrados " class="custom-select" style="width:200px;" value="{{ producto?.id }}">
+                {{ producto?.nombre }}
             </option>
         </select>
     </div>
+    <br>
 
-    <div *ngIf="colegioSeleccionado == true" class="custom-select-wrapper">
-        <select #customSelect (change)="onOptionSelected(customSelect.value)">
+    <div>
+        Seleccione talla:
+    </div>
+    <div class="custom-select-wrapper">
+        <select #customSelect (change)="tallaSelected(customSelect.value)">
             <option value="" disabled selected>Sin seleccionar</option>
-            <option *ngFor="let producto of prodsFiltrados " class="custom-select" style="width:200px;" value="{{ producto.id }}">
-                {{ producto.nombre }}
+            <option *ngFor="let talla of tallas " class="custom-select" style="width:200px;" value="{{ talla.id }}">
+                <span class="talla">Talla {{ talla?.n_talla }}: </span> 
+                <span class="unidades">({{ talla?.cantidad}} u.)</span>
             </option>
         </select>
+        <br>
+    </div>
+
+    <div>
+        <span>Ingrese cantidad a vender:  </span>
+        <input type="number">
     </div>
 
 </body>
