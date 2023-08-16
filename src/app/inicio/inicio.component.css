@@ -1,17 +1,23 @@
 body{
-    padding-top: 100px;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-top: 20px;
 }
 
 .container{
-    max-width: 1000px;
+    max-width: 1324px;
     margin: auto;
     text-align: center;
 }
 
+.main{
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+
+}
+
 h2{
-    font-size: 100px;
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
 }
 
 .nom-colegio{

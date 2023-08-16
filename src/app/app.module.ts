@@ -14,6 +14,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { ColegiosComponent } from './colegios/colegios.component';
 import { VenderComponent } from './vender/vender.component';
 import { ColegioComponent } from './colegio/colegio.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ColegioComponent } from './colegio/colegio.component';
     AppRoutingModule,
     HttpClientModule,
     CloudinaryModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],

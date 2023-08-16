@@ -1,7 +1,6 @@
 body{
-    padding-top: 100px;
-    padding-left: 50px;
-    padding-right: 50px;
+    max-width: 1324;
+    margin: auto;
 }
 
 .container{

@@ -37,3 +37,12 @@
     text-align: right;
     justify-content: end;
   }
+
+  body{
+    max-width: 1324px;
+    margin: auto;
+    padding: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: black;
+    font-weight: 900;
+  }

@@ -14,7 +14,21 @@ export class VenderComponent {
   tallas: any[] | null = [] ;
   prodsFiltrados: any[] | null = [];
 
+  bool_colegio: boolean = false;
+  bool_producto: boolean = false;
+  bool_talla: boolean = false;
+
   id!: number;
+
+  agregando_prod = {
+    codigo: '0',
+    colegio:'colegioql',
+    nombre:'',
+    n_talla:'',
+    cantidad: '',
+  };
+  resumen: any[] = [];
+
   
 
 
@@ -26,11 +40,15 @@ constructor(private firebaseService: FirebaseService
 colegioSelected(option: string): void {
   const id = parseInt(option);
   this.prodsFiltrados = this.filtrar(id);
-  if(this.prodsFiltrados !== null){
+  if(this.prodsFiltrados.length !== 0){
     this.tallas = this.getTallas(this.prodsFiltrados[0].id);
+    this.bool_colegio = true;
   }
   else{
-    this.tallas = null;
+    this.tallas = [];
+    this.bool_colegio = false;
+    this.bool_producto = false;
+    this.bool_talla = false;
   }
   
 }
@@ -38,13 +56,13 @@ colegioSelected(option: string): void {
 productoSelected(option: string): void{
   const id = parseInt(option);
   this.tallas = this.getTallas(id);
+  this.bool_producto = true;
 
 }
 
 tallaSelected(option: string): void{
   const id = parseInt(option);
-
-
+  this.bool_talla = true;
 }
 
 getColegios(){
@@ -83,6 +101,17 @@ filtrar(id: number) { //filtrar por colegio
     }
   }
   return prodsFiltrados;
+}
+
+pushProduct(){
+  this.resumen.push(this.agregando_prod);
+  this.agregando_prod = {
+    codigo: '0',
+    colegio:'',
+    nombre:'',
+    n_talla:'',
+    cantidad: '',
+  };
 }
 
 

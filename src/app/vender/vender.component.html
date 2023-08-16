@@ -1,48 +1,76 @@
 
 <body>
+    <form>    
+            <label for="colegio">Colegio</label>
+            <div>
+                <select id="colegio" class="form-select" #colegioSelect (change)="colegioSelected(colegioSelect.value)" [(ngModel)]="agregando_prod.colegio">
+                    <option value="" disabled selected>Sin seleccionar</option>
+                    <option *ngFor="let colegio of colegios" class="custom-select" value="{{ colegio?.id }}">
+                        {{ colegio?.nombre }}
+                    </option>
+                </select>
+            </div>
+        <br>
+
+        <label for="producto">Producto</label>
         <div>
-            Seleccione colegio:
-        </div>
-        <div class="custom-select-wrapper">
-            <select #colegioSelect (change)="colegioSelected(colegioSelect.value)">
+            <select id="producto" class="form-select" #productoSelect (change)="productoSelected(productoSelect.value)" [(ngModel)]="agregando_prod.nombre">
                 <option value="" disabled selected>Sin seleccionar</option>
-                <option *ngFor="let colegio of colegios" class="custom-select" style="width:200px;" value="{{ colegio?.id }}">
-                    {{ colegio?.nombre }}
+                <option *ngFor="let producto of prodsFiltrados " class="custom-select"  value="{{ producto?.id }}">
+                    {{ producto?.nombre }}
                 </option>
             </select>
         </div>
-    <br>
-
-    <div>
-        Seleccione producto:
-    </div>
-    <div class="custom-select-wrapper">
-        <select #productoSelect (change)="productoSelected(productoSelect.value)">
-            <option value="" disabled selected>Sin seleccionar</option>
-            <option *ngFor="let producto of prodsFiltrados " class="custom-select" style="width:200px;" value="{{ producto?.id }}">
-                {{ producto?.nombre }}
-            </option>
-        </select>
-    </div>
-    <br>
-
-    <div>
-        Seleccione talla:
-    </div>
-    <div class="custom-select-wrapper">
-        <select #customSelect (change)="tallaSelected(customSelect.value)">
-            <option value="" disabled selected>Sin seleccionar</option>
-            <option *ngFor="let talla of tallas " class="custom-select" style="width:200px;" value="{{ talla.id }}">
-                <span class="talla">Talla {{ talla?.n_talla }}: </span> 
-                <span class="unidades">({{ talla?.cantidad}} u.)</span>
-            </option>
-        </select>
         <br>
-    </div>
 
-    <div>
-        <span>Ingrese cantidad a vender:  </span>
-        <input type="number">
-    </div>
+        <label for="talla">Talla</label>
+        <div>
+            <select class="form-select" #customSelect (change)="tallaSelected(customSelect.value)" [(ngModel)]="agregando_prod.n_talla">
+                <option value="" disabled selected>Sin seleccionar</option>
+                <option *ngFor="let talla of tallas " class="custom-select" value="{{ talla.id }}">
+                    <span class="talla">Talla {{ talla?.n_talla }}: </span> 
+                    <span class="unidades">{{ talla?.cantidad}} unidades</span>
+                </option>
+            </select>
+            <br>
+        </div>
+
+        <div>
+            <span>Ingrese cantidad a agregar:  </span>
+            <input type="number" value="1" min="1" [(ngModel)]="agregando_prod.cantidad">
+        </div>
+
+        <div *ngIf="bool_colegio == true && bool_producto == true && bool_talla == true">
+            <button type="submit" (click)="pushProduct()" class="btn btn-success">Agregar</button>
+        </div>
+
+    </form>
+    <br>
+    <h1>Resumen de venta: </h1>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nombre de producto</th>
+                <th>Colegio</th>
+                <th>Talla</th>
+                <th>Unidades</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of resumen">
+                <td>{{ item?.id }}</td>
+                <td>{{ item?.nombre }}</td>
+                <td>{{ item?.colegio }}</td>
+                <td>{{ item?.talla }}</td>
+                <td>{{ item?.unidades }}</td>
+                <td>
+                    <i class="fa-solid fa-trash"></i>
+                </td>
+            </tr>
+        </tbody>
+        
+    </table>
 
 </body>
