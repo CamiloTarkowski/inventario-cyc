@@ -1,11 +1,11 @@
 
 <body>
-    <form>    
+    <form (ngSubmit)="onSubmit()">    
             <label for="colegio">Colegio</label>
             <div>
-                <select id="colegio" class="form-select" #colegioSelect (change)="colegioSelected(colegioSelect.value)" [(ngModel)]="agregando_prod.colegio">
-                    <option value="" disabled selected>Sin seleccionar</option>
-                    <option *ngFor="let colegio of colegios" class="custom-select" value="{{ colegio?.id }}">
+                <select id="colegio" class="form-select" (change)="colegioSelected($event)" [(ngModel)]="agregando_prod.colegio" name="colegio">
+
+                    <option *ngFor="let colegio of colegios" value="{{colegio?.nombre}}" id="{{colegio?.id}}">
                         {{ colegio?.nombre }}
                     </option>
                 </select>
@@ -14,9 +14,8 @@
 
         <label for="producto">Producto</label>
         <div>
-            <select id="producto" class="form-select" #productoSelect (change)="productoSelected(productoSelect.value)" [(ngModel)]="agregando_prod.nombre">
-                <option value="" disabled selected>Sin seleccionar</option>
-                <option *ngFor="let producto of prodsFiltrados " class="custom-select"  value="{{ producto?.id }}">
+            <select id="producto" class="form-select" (change)="productoSelected($event)" [(ngModel)]="agregando_prod.nombre" name="nombre">
+                <option *ngFor="let producto of prodsFiltrados" value="{{producto?.nombre}}" id="{{ producto?.id }}">
                     {{ producto?.nombre }}
                 </option>
             </select>
@@ -25,11 +24,10 @@
 
         <label for="talla">Talla</label>
         <div>
-            <select class="form-select" #customSelect (change)="tallaSelected(customSelect.value)" [(ngModel)]="agregando_prod.n_talla">
-                <option value="" disabled selected>Sin seleccionar</option>
-                <option *ngFor="let talla of tallas " class="custom-select" value="{{ talla.id }}">
+            <select id="talla" class="form-select" (change)="tallaSelected($event)" [(ngModel)]="agregando_prod.n_talla" name="n_talla">
+                <option *ngFor="let talla of tallas" value="{{ talla?.n_talla }}">
                     <span class="talla">Talla {{ talla?.n_talla }}: </span> 
-                    <span class="unidades">{{ talla?.cantidad}} unidades</span>
+                    <span class="unidades">{{ talla?.cantidad }} unidades</span>
                 </option>
             </select>
             <br>
@@ -37,11 +35,11 @@
 
         <div>
             <span>Ingrese cantidad a agregar:  </span>
-            <input type="number" value="1" min="1" [(ngModel)]="agregando_prod.cantidad">
+            <input type="number" [(ngModel)]="agregando_prod.cantidad" value="1" min="1" name="cantidad">
         </div>
 
         <div *ngIf="bool_colegio == true && bool_producto == true && bool_talla == true">
-            <button type="submit" (click)="pushProduct()" class="btn btn-success">Agregar</button>
+            <button type="submit" class="btn btn-success">Agregar</button>
         </div>
 
     </form>
@@ -63,8 +61,8 @@
                 <td>{{ item?.id }}</td>
                 <td>{{ item?.nombre }}</td>
                 <td>{{ item?.colegio }}</td>
-                <td>{{ item?.talla }}</td>
-                <td>{{ item?.unidades }}</td>
+                <td>{{ item?.n_talla }}</td>
+                <td>{{ item?.cantidad }}</td>
                 <td>
                     <i class="fa-solid fa-trash"></i>
                 </td>
@@ -72,5 +70,4 @@
         </tbody>
         
     </table>
-
 </body>

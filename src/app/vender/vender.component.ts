@@ -20,12 +20,16 @@ export class VenderComponent {
 
   id!: number;
 
+  product = {
+    categoria: ''
+  };
+
   agregando_prod = {
-    codigo: '0',
-    colegio:'colegioql',
+    id: 0,
+    colegio:'',
     nombre:'',
     n_talla:'',
-    cantidad: '',
+    cantidad: '1',
   };
   resumen: any[] = [];
 
@@ -37,8 +41,9 @@ constructor(private firebaseService: FirebaseService
 
 
 
-colegioSelected(option: string): void {
-  const id = parseInt(option);
+colegioSelected(event: any): void {
+  const selectedOption = event.target.options[event.target.selectedIndex];
+  const id = parseInt(selectedOption.getAttribute('id'));
   this.prodsFiltrados = this.filtrar(id);
   if(this.prodsFiltrados.length !== 0){
     this.tallas = this.getTallas(this.prodsFiltrados[0].id);
@@ -53,15 +58,18 @@ colegioSelected(option: string): void {
   
 }
 
-productoSelected(option: string): void{
-  const id = parseInt(option);
+productoSelected(event: any): void{
+  const selectedOption = event.target.options[event.target.selectedIndex];
+  const id = parseInt(selectedOption.getAttribute('id'));
+  console.log("id producte: "+id)
   this.tallas = this.getTallas(id);
   this.bool_producto = true;
 
 }
 
-tallaSelected(option: string): void{
-  const id = parseInt(option);
+tallaSelected(event: any): void{
+  const selectedOption = event.target.options[event.target.selectedIndex];
+  const id = parseInt(selectedOption.getAttribute('id'));
   this.bool_talla = true;
 }
 
@@ -78,6 +86,7 @@ getProductos(){
 }
 
 getTallas(id: number){
+  console.log("id: "+id)
   let tallas : any [] | null = [];
   if(this.prodsFiltrados === null){
     return tallas = null;
@@ -103,15 +112,23 @@ filtrar(id: number) { //filtrar por colegio
   return prodsFiltrados;
 }
 
-pushProduct(){
+guardarProducto(){
+  console.log("la opción elegida es: "+this.product.categoria);
+}
+
+onSubmit(){
   this.resumen.push(this.agregando_prod);
   this.agregando_prod = {
-    codigo: '0',
+    id: 0,
     colegio:'',
     nombre:'',
     n_talla:'',
-    cantidad: '',
+    cantidad: '1',
   };
+  this.bool_colegio = false;
+  this.bool_producto = false;
+  this.bool_talla= false;
+
 }
 
 
