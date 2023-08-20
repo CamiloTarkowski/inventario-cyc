@@ -35,7 +35,7 @@ export class ProductosComponent {
   private router: Router,
  ) { }
 
- ngOnInit(): void {
+  ngOnInit(): void {
   const cld = new Cloudinary({cloud: {cloudName: 'ddzvvd9de'}});
   this.route.params.subscribe((params) => {
     const id = params['id'];
@@ -48,8 +48,8 @@ export class ProductosComponent {
       },
       (err) => {
         this.router.navigate(['/']);
-      }
-    );
-  });
-}
+        }
+      );
+    });
+  }
 }

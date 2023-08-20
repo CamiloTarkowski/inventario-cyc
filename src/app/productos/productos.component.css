@@ -1,0 +1,25 @@
+body{
+    margin: auto;
+    width: 1324px;
+}
+
+.main{
+    margin: auto;
+}
+
+.img_producto{
+    cursor: pointer;
+}
+
+.nombre{
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+}
+
+.descripcion{
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.cardimg{
+    margin: 5px;
+}

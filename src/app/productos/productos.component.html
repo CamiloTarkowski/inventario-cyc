@@ -1,16 +1,17 @@
 
 <body>
-    
-    <h1>{{ colegio?.fullname }}</h1>
-      <div class="d-flex">
-          <div *ngFor="let producto of prodsFiltrados">
-              <div class="card" style="width: 18rem;"routerLink="/producto/{{ producto.id }}">
-                  <img src="{{ producto?.img_url }}"  class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <p class="card-text">{{ producto?.nombre }}</p>
-                    <p class="card-text">{{ producto?.descripcion }}</p>
-                  </div>
-              </div>
+    <div>
+      <h1>{{ colegio?.fullname }}</h1>
+        <div class="d-flex">
+            <div *ngFor="let producto of prodsFiltrados">
+                <div class="card cardimg shadow-sm" style="width: 300px">
+                    <img src="{{ producto?.img_url }}" routerLink="/producto/{{ producto.id }}" class="card-img-top img_producto">
+                    <div class="card-body">
+                      <p class="card-text fs-4 nombre">{{ producto?.nombre }}</p>
+                      <p class="card-text text fs-6 descripcion">{{ producto?.descripcion }}</p>
+                    </div>
+                </div>
+            </div>
           </div>
-        </div>
+      </div>
   </body>

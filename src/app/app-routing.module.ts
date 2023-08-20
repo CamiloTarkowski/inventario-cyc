@@ -6,6 +6,7 @@ import { ProductoComponent } from './producto/producto.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ColegiosComponent } from './colegios/colegios.component';
 import { VenderComponent } from './vender/vender.component';
+import { AddColegioComponent } from './add-colegio/add-colegio.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'vender',
     component: VenderComponent
+  },
+  {
+    path: 'add-colegio',
+    component: AddColegioComponent
   }
 
 ];

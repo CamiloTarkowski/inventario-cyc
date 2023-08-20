@@ -10,11 +10,12 @@ body{
 }
 
 h2{
-    font-size: 100px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 80px;
 }
 
 .nom-colegio{
     font-size: 40px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     cursor: pointer;
 }

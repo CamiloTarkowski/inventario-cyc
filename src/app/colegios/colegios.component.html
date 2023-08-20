@@ -1,9 +1,13 @@
 <body>
-    <div class = "container">
-        <h2>COLEGIOS</h2>
-        <div *ngFor = "let colegio of colegios$ | async">
-            <div class = "nom-colegio" routerLink="/productos/{{ colegio.id }}">{{colegio.nombre}}</div>
+    <br>
+    <div class="">
+        <div class = "container m-auto rounded bg-light p-10 m-10 shadow-sm">
+            <h2>COLEGIOS</h2>
+            <div *ngFor = "let colegio of colegios$ | async">
+                <div class = "nom-colegio" routerLink="/productos/{{ colegio.id }}">{{colegio.nombre}}</div>
+            </div>
+            <button type="button" class="btn btn-outline-success" routerLink="/add-colegio/">+ Agrega un nuevo colegio</button>
+            <br>
         </div>
     </div>
-
 </body>

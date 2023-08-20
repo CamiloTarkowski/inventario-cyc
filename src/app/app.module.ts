@@ -16,6 +16,7 @@ import { VenderComponent } from './vender/vender.component';
 import { ColegioComponent } from './colegio/colegio.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { AddColegioComponent } from './add-colegio/add-colegio.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LoginComponent } from './login/login.component';
     ColegiosComponent,
     VenderComponent,
     ColegioComponent,
-    LoginComponent
+    LoginComponent,
+    AddColegioComponent
   ],
   imports: [
     BrowserModule,

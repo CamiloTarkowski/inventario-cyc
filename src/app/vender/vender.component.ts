@@ -25,11 +25,11 @@ export class VenderComponent {
   };
 
   agregando_prod = {
-    id: 0,
+    id: 10000,
     colegio:'',
     nombre:'',
     n_talla:'',
-    cantidad: '1',
+    cantidad: 1,
   };
   resumen: any[] = [];
 
@@ -61,7 +61,7 @@ colegioSelected(event: any): void {
 productoSelected(event: any): void{
   const selectedOption = event.target.options[event.target.selectedIndex];
   const id = parseInt(selectedOption.getAttribute('id'));
-  console.log("id producte: "+id)
+  this.agregando_prod.id = id;
   this.tallas = this.getTallas(id);
   this.bool_producto = true;
 
@@ -86,7 +86,6 @@ getProductos(){
 }
 
 getTallas(id: number){
-  console.log("id: "+id)
   let tallas : any [] | null = [];
   if(this.prodsFiltrados === null){
     return tallas = null;
@@ -116,21 +115,43 @@ guardarProducto(){
   console.log("la opción elegida es: "+this.product.categoria);
 }
 
+isTheSame(nuevo: any){
+  let nuevaCantidad = 0;
+  let same = false;
+
+  for (let producto of this.resumen){
+    if(producto.id == nuevo.id){
+        if(producto.n_talla == nuevo.n_talla){
+          same = true;
+          nuevaCantidad = producto.cantidad + nuevo.cantidad;
+          this.resumen[nuevo.id].cantidad = nuevaCantidad;
+        }
+    }
+  }
+  if(!same){
+    this.resumen.push(nuevo);
+  }
+}
+
 onSubmit(){
-  this.resumen.push(this.agregando_prod);
+  this.isTheSame(this.agregando_prod);
   this.agregando_prod = {
     id: 0,
     colegio:'',
     nombre:'',
     n_talla:'',
-    cantidad: '1',
+    cantidad: 1,
   };
+
   this.bool_colegio = false;
   this.bool_producto = false;
   this.bool_talla= false;
 
 }
 
+deleteProduct(index: number){
+  this.resumen.splice(index, 1)
+}
 
 
 
