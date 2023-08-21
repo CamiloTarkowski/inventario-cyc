@@ -24,13 +24,11 @@ export class InventarioComponent implements OnInit {
       }
     }
   }
-  getColegio(colegioId: number): void {
-    this.firebaseService.getColegioPorId(colegioId).subscribe(colegio => {
+  getColegio(id: string): void {
+    this.firebaseService.getColegioPorId(id).subscribe(colegio => {
       this.colegio = colegio;
     });
-  }
-
- 
+  } 
 
   constructor(private firebaseService: FirebaseService,
   private route: ActivatedRoute,
@@ -38,10 +36,9 @@ export class InventarioComponent implements OnInit {
  ) { }
 
  ngOnInit(): void {
-  const cld = new Cloudinary({cloud: {cloudName: 'ddzvvd9de'}});
   this.route.params.subscribe((params) => {
     const id = params['id'];
-    this.getColegio(id);
+    this.getColegio(id.toString());
 
     this.firebaseService.getProductos().subscribe(
       (productos) => {

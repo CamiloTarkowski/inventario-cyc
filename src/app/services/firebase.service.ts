@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase} from '@angular/fire/compat/database';
+import { Observable, map } from 'rxjs';
 
 
 
@@ -19,37 +20,42 @@ export class FirebaseService {
     return this.db.object(`productos/${id}`).valueChanges();
   }
 
-  getColegios(){
-    return this.db.list('colegios').valueChanges();
+  getColegios(): Observable<any[]> {
+    return this.db.list('colegios').snapshotChanges().pipe(
+      map(changes =>
+        changes.map((c:any) => ({
+          id: c.payload.key,
+          ...c.payload.val()
+        }))
+      ),
+      map(colegios => colegios.sort((a, b) => a.nombre.localeCompare(b.nombre)))
+    );
   }
 
-  getColegioPorId(colegioId: number) {
-    return this.db.object(`colegios/${colegioId}`).valueChanges();
+  getColegioPorId(id: string): Observable<any> {
+    return this.db.object(`colegios/${id}`).valueChanges();    
   }
 
   async addColegio(nombre: string, fullname: string) {
-    let colegios;
-    let colegio = {
-      nombre: nombre,
-      fullname: fullname
-    }
-  
+    let colegios: any;
+
     this.getColegios()
-      .subscribe(data => {
-  
-      colegios = data;
-      
-      if (colegios.some((c: any) => c.nombre === nombre)) {
-        alert("El colegio que intenta agregar ya existe.");
-        return;
-      }
-      else{
-        const colegioRef = this.db.list('colegios');
-        console.log("Colegio agregado exitosamente.")
-        return colegioRef.push(colegio);
-      }
-  
-    });
+      .subscribe(data => {  
+        colegios = data;
+        if (colegios.some((c: any) => c.nombre === nombre)) {
+          return;
+        }
+        else{
+          const colegioRef = this.db.list('colegios');
+          const colegio = {
+            nombre: nombre,
+            fullname: fullname,
+          }
+          
+          return colegioRef.push(colegio);
+        }
+    
+      });
     
   }
 }

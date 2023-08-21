@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cloudinary } from '@cloudinary/url-gen';
 
 @Component({
   selector: 'app-productos',
@@ -22,29 +21,30 @@ export class ProductosComponent {
       }
     }
   }
-  getColegio(colegioId: number): void {
-    this.firebaseService.getColegioPorId(colegioId).subscribe(colegio => {
-      this.colegio = colegio;
-    });
-  }
-
- 
-
+  
   constructor(private firebaseService: FirebaseService,
   private route: ActivatedRoute,
   private router: Router,
  ) { }
 
+ getColegio(id: string): void {
+  this.firebaseService.getColegioPorId(id).subscribe(colegio => {
+    this.colegio = colegio;
+  },
+  err => {
+    console.error("error: "+err);
+  });
+}
+
   ngOnInit(): void {
-  const cld = new Cloudinary({cloud: {cloudName: 'ddzvvd9de'}});
   this.route.params.subscribe((params) => {
     const id = params['id'];
-    this.getColegio(id);
+    this.getColegio(id.toString());
 
     this.firebaseService.getProductos().subscribe(
       (productos) => {
         this.productos = productos;
-        this.filtrar(id);
+        this.filtrar(id.toString());
       },
       (err) => {
         this.router.navigate(['/']);

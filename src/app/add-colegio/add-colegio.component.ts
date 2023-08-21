@@ -14,7 +14,7 @@ export class AddColegioComponent {
     // Añadir colegio  
     this.firebaseService.addColegio(nombre, fullname)
       .then()
-     .catch(error => console.error('Error agregando:', error));
+      .catch(error => console.error('Error agregando:', error));
   }
 
 

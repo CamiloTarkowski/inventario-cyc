@@ -1,8 +1,22 @@
-<form (ngSubmit)="agregarColegio(nombre.value, fullname.value)">
+<body>
+  <div class="main">
+    <form (ngSubmit)="agregarColegio(nombre.value, fullname.value)">
 
-    <input type="text" #nombre>
-    <input type="text" #fullname>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nombre: </span>
+        <input type="text" class="form-control" #nombre placeholder="El Niño Jesús" aria-describedby="basic-addon1">
+      </div>
     
-    <button type="submit">Agregar</button>
-  
-  </form>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Nombre completo: </span>
+        <input type="text" #fullname class="form-control" #nombre placeholder="Colegio El Niño Jesús de Talagante" aria-describedby="basic-addon1">
+      </div>
+      
+      
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-outline-success">Agregar colegio</button>
+      </div>
+      
+    </form>
+  </div>
+</body>
