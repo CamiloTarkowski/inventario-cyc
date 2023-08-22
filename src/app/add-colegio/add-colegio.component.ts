@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-add-colegio',
@@ -8,7 +10,8 @@ import { FirebaseService } from '../services/firebase.service';
 })
 export class AddColegioComponent {
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor(private firebaseService: FirebaseService,
+              private router: Router) { }
 
   agregarColegio(nombre: string, fullname: string) {
     // Añadir colegio  

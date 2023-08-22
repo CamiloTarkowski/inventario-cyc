@@ -16,7 +16,8 @@ export class ColegiosComponent {
    }
 
   ngOnInit(): void {
-    this.colegios$ = this.firebaseService.getColegios();   
+    this.colegios$ = this.firebaseService.getColegios();
+    
 
   }
 

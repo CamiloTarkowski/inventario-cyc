@@ -1,8 +1,6 @@
 body{
     width: 1324px;
     margin: auto;
-    border-style: solid;
-    border-color: red;
 }
 
 h1{
@@ -12,4 +10,15 @@ h1{
 
 table{
     text-align: center;
+}
+
+.main{
+    max-width: 950px;
+    background-color: white;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 10px;
+    font-family: 'Nunito sans', sans-serif;
+
 }

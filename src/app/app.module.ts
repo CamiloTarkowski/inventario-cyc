@@ -17,6 +17,7 @@ import { ColegioComponent } from './colegio/colegio.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AddColegioComponent } from './add-colegio/add-colegio.component';
+import { AddProductoComponent } from './add-producto/add-producto.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AddColegioComponent } from './add-colegio/add-colegio.component';
     VenderComponent,
     ColegioComponent,
     LoginComponent,
-    AddColegioComponent
+    AddColegioComponent,
+    AddProductoComponent
   ],
   imports: [
     BrowserModule,

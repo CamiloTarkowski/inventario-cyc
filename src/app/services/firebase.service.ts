@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase} from '@angular/fire/compat/database';
+import { Router } from '@angular/router';
 import { Observable, map } from 'rxjs';
+
 
 
 
@@ -9,7 +11,8 @@ import { Observable, map } from 'rxjs';
 })
 export class FirebaseService {
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase,
+    private router: Router) {
    }
 
   getProductos(){
@@ -51,8 +54,10 @@ export class FirebaseService {
             nombre: nombre,
             fullname: fullname,
           }
+          this.router.navigate(['/colegios']);
           
           return colegioRef.push(colegio);
+          
         }
     
       });

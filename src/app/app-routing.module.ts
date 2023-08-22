@@ -7,6 +7,7 @@ import { ProductosComponent } from './productos/productos.component';
 import { ColegiosComponent } from './colegios/colegios.component';
 import { VenderComponent } from './vender/vender.component';
 import { AddColegioComponent } from './add-colegio/add-colegio.component';
+import { AddProductoComponent } from './add-producto/add-producto.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,11 @@ const routes: Routes = [
   {
     path: 'add-colegio',
     component: AddColegioComponent
-  }
+  },
+  {
+    path: 'add-producto/:id',
+    component: AddProductoComponent
+  },
 
 ];
 
