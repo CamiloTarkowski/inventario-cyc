@@ -17,6 +17,8 @@
         <div *ngIf="prodsFiltrados.length == 0">
             Aún no hay productos registrados para este colegio.             
         </div>
+        <button type="button" class="btn btn-outline-success" routerLink="/add-producto/{{ colegio.id }}">Agrega un producto para este colegio</button>
+        
     </div>
         
   </body>

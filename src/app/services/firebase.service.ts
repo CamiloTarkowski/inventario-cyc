@@ -36,7 +36,15 @@ export class FirebaseService {
   }
 
   getColegioPorId(id: string): Observable<any> {
-    return this.db.object(`colegios/${id}`).valueChanges();    
+    return this.db.object(`colegios/${id}`)
+    .snapshotChanges()
+    .pipe(
+      map((snapshot: any) => {
+        const data = snapshot.payload.val(); // 'data' son los valores del elemento
+        const id = snapshot.payload.key; // id es el 'document id' de este elemento 
+        return { id, ...data };  //se retorna el elemento + el id del documento
+      })
+   );  
   }
 
   async addColegio(nombre: string, fullname: string) {
@@ -62,5 +70,26 @@ export class FirebaseService {
     
       });
     
+  }
+
+  async addProduct(producto: any) {
+
+
+    this.getColegios()
+    .subscribe(data => {
+      const productos = data;
+      })
+
+    console.log(productos);
+
+    if (productos.some(p => p.name === producto.name)) {
+      throw new Error('Producto ya existe'); 
+    }
+    
+  
+    const productRef = this.db.list('/products');
+  
+    return productRef.push(producto);
+  
   }
 }
