@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,8 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AddColegioComponent {
 
-  constructor(private firebaseService: FirebaseService,
-              private router: Router) { }
+  constructor(private firebaseService: FirebaseService) { }
 
   agregarColegio(nombre: string, fullname: string) {
     // Añadir colegio  
@@ -19,9 +17,7 @@ export class AddColegioComponent {
       .then()
       .catch(error => console.error('Error agregando:', error));
   }
-
-
-
+  
   ngOnInit(): void {
 
   }

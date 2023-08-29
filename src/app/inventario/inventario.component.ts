@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Cloudinary } from '@cloudinary/url-gen';
 
 
 @Component({

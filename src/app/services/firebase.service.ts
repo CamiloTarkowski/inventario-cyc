@@ -72,24 +72,19 @@ export class FirebaseService {
     
   }
 
-  async addProduct(producto: any) {
+  async addProducto(producto: any) {
+    let productos: any;
 
-
-    this.getColegios()
-    .subscribe(data => {
-      const productos = data;
-      })
-
-    console.log(productos);
-
-    if (productos.some(p => p.name === producto.name)) {
-      throw new Error('Producto ya existe'); 
-    }
-    
-  
-    const productRef = this.db.list('/products');
-  
-    return productRef.push(producto);
-  
+    this.getProductos()
+      .subscribe(data => {
+        productos = data;
+        if (productos.some((p: any) => p.nombre === producto.nombre)) {
+          console.log("Producto ya existe.");
+         return;
+       }
+       const productRef = this.db.list('/productos');
+       console.log("Producto agregado correctamente.")
+       return productRef.push(producto);
+       })
   }
 }

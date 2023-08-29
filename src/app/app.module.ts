@@ -7,8 +7,9 @@ import { ProductoComponent } from './producto/producto.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { InventarioComponent } from './inventario/inventario.component';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
-import {CloudinaryModule} from '@cloudinary/ng';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ColegiosComponent } from './colegios/colegios.component';
@@ -18,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AddColegioComponent } from './add-colegio/add-colegio.component';
 import { AddProductoComponent } from './add-producto/add-producto.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 
 @NgModule({
@@ -39,9 +42,12 @@ import { AddProductoComponent } from './add-producto/add-producto.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CloudinaryModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]

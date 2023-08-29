@@ -12,7 +12,11 @@
             </div>
             
             <div>
-                Sube una foto: 
+                Sube una foto:
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Default file input example</label>
+                  <input (change)="subirArchivo($event)" class="form-control" type="file" id="formFile">
+                </div>
             </div>
             <br>
             <div class="d-flex">
@@ -29,8 +33,49 @@
                 <input style="margin-left: auto; " type="number" min="0" class="form-control" name="precio{{i}}" [(ngModel)]="producto.tallas[i].precio" value="">
               
             </div>
-            <button type="submit">Agregar producto</button>
+            
+            <div class="d-flex justify-content-center pt-2" >
+                <button type="submit" class="btn btn-success">Agregar producto</button>
+            </div>
 
         </form>
     </div>
 </body>
+
+<!-- <div class="row">
+  <div class="col-8">
+    <label>
+      <input
+        type="file"
+        class="text-nowrap text-truncate"
+        (change)="selectFile($event)"
+      />
+    </label>
+  </div>
+
+  <div class="col-4">
+    <button
+      class="btn btn-success btn-sm"
+      [disabled]="!selectedFiles"
+      (click)="upload()"
+    >
+      Upload
+    </button>
+  </div>
+</div>
+
+<div *ngIf="currentFileUpload" class="progress mt-2">
+  <div
+    class="progress-bar progress-bar-info"
+    role="progressbar"
+    attr.aria-valuenow="{{ percentage }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [ngStyle]="{ width: percentage + '%' }"
+  >
+    {{ percentage }}%
+  </div>
+</div> -->
+
+
+ <!--The content below is only a placeholder and can be replaced.-->
