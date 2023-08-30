@@ -20,16 +20,14 @@ export class VenderComponent {
 
   id!: number;
 
-  product = {
-    categoria: ''
-  };
-
   agregando_prod = {
-    id: 10000,
+    id: '',
     colegio:'',
     nombre:'',
     n_talla:'',
+    precio: 0,
     cantidad: 1,
+    total: 0,
   };
   resumen: any[] = [];
 
@@ -43,9 +41,10 @@ constructor(private firebaseService: FirebaseService
 
 colegioSelected(event: any): void {
   const selectedOption = event.target.options[event.target.selectedIndex];
-  const id = parseInt(selectedOption.getAttribute('id'));
-  this.prodsFiltrados = this.filtrar(id);
-  if(this.prodsFiltrados.length !== 0){
+  const id_colegio = selectedOption.getAttribute('id');
+  this.prodsFiltrados = this.filtrar(id_colegio);
+  
+  if(this.prodsFiltrados.length > 0){
     this.tallas = this.getTallas(this.prodsFiltrados[0].id);
     this.bool_colegio = true;
   }
@@ -60,7 +59,7 @@ colegioSelected(event: any): void {
 
 productoSelected(event: any): void{
   const selectedOption = event.target.options[event.target.selectedIndex];
-  const id = parseInt(selectedOption.getAttribute('id'));
+  const id = selectedOption.getAttribute('id');
   this.agregando_prod.id = id;
   this.tallas = this.getTallas(id);
   this.bool_producto = true;
@@ -69,7 +68,7 @@ productoSelected(event: any): void{
 
 tallaSelected(event: any): void{
   const selectedOption = event.target.options[event.target.selectedIndex];
-  const id = parseInt(selectedOption.getAttribute('id'));
+  const id = selectedOption.getAttribute('id');
   this.bool_talla = true;
 }
 
@@ -101,34 +100,27 @@ getTallas(id: number){
   return tallas;
 }
 
-filtrar(id: number) { //filtrar por colegio
+filtrar(id_colegio: string) { //filtrar por colegio
   let prodsFiltrados: any[] = [];
   for(let producto of this.productos){
-    if(producto.colegio.id == id){
+    if(producto.colegio.id == id_colegio){
       prodsFiltrados.push(producto);
     }
   }
   return prodsFiltrados;
 }
 
-guardarProducto(){
-  console.log("la opción elegida es: "+this.product.categoria);
-}
-
 isTheSame(nuevo: any){
-  let nuevaCantidad = 0;
-  let same = false;
-
-  for (let producto of this.resumen){
-    if(producto.id == nuevo.id){
-        if(producto.n_talla == nuevo.n_talla){
-          same = true;
-          nuevaCantidad = producto.cantidad + nuevo.cantidad;
-          this.resumen[nuevo.id].cantidad = nuevaCantidad;
-        }
+  if(this.resumen.length > 0){
+    for (let producto of this.resumen){
+      if(producto.id == nuevo.id && producto.n_talla == nuevo.n_talla){
+          alert("Producto ya se encuentra ingresado.");
+          return;
+      }
     }
+    this.resumen.push(nuevo)   
   }
-  if(!same){
+  else{
     this.resumen.push(nuevo);
   }
 }
@@ -136,10 +128,12 @@ isTheSame(nuevo: any){
 onSubmit(){
   this.isTheSame(this.agregando_prod);
   this.agregando_prod = {
-    id: 0,
+    id: '',
     colegio:'',
     nombre:'',
     n_talla:'',
+    precio: 0,
+    total: 0,
     cantidad: 1,
   };
 

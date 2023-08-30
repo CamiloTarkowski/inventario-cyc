@@ -21,6 +21,8 @@ import { AddColegioComponent } from './add-colegio/add-colegio.component';
 import { AddProductoComponent } from './add-producto/add-producto.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { EditProductoComponent } from './edit-producto/edit-producto.component';
+import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     ColegioComponent,
     LoginComponent,
     AddColegioComponent,
-    AddProductoComponent
+    AddProductoComponent,
+    EditProductoComponent,
+    EditColegioComponent,
   ],
   imports: [
     BrowserModule,

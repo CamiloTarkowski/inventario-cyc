@@ -14,7 +14,7 @@ export class ProductosComponent {
   colegio: any;
 
 
-  filtrar(id: number){
+  filtrar(id: string){
     for(let producto of this.productos){
       if(producto.colegio.id == id){
         this.prodsFiltrados.push(producto);
@@ -44,12 +44,13 @@ export class ProductosComponent {
     this.firebaseService.getProductos().subscribe(
       (productos) => {
         this.productos = productos;
-        this.filtrar(id.toString());
+        this.filtrar(id);
       },
       (err) => {
         this.router.navigate(['/']);
         }
       );
     });
+    console.log(this.prodsFiltrados);
   }
 }

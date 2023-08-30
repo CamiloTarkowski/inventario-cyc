@@ -16,11 +16,27 @@ export class FirebaseService {
    }
 
   getProductos(){
-    return this.db.list('productos').valueChanges();
+     return this.db.list('productos').snapshotChanges().pipe(
+      map(changes =>
+        changes.map((p: any) => ({
+          id: p.payload.key,
+          ...p.payload.val()
+        }))
+      ),
+      map(productos => productos.sort((a, b) => a.nombre.localeCompare(b.nombre)))
+    );
   }
   
-  getProductoPorId(id: number) {
-    return this.db.object(`productos/${id}`).valueChanges();
+  getProductoPorId(id: string) {
+    return this.db.object(`productos/${id}`)
+    .snapshotChanges()
+    .pipe(
+      map((snapshot: any) => {
+        const data = snapshot.payload.val(); // 'data' son los valores del elemento
+        const id = snapshot.payload.key; // id es el 'document id' de este elemento 
+        return { id, ...data };  //se retorna el elemento + el id del documento
+      })
+   );  
   }
 
   getColegios(): Observable<any[]> {
@@ -45,6 +61,15 @@ export class FirebaseService {
         return { id, ...data };  //se retorna el elemento + el id del documento
       })
    );  
+  }
+
+  getProductosByColegioId(colegioId: string) {
+
+    return this.db.list('/productos', ref => {
+      return ref.orderByChild('colegio/id').equalTo(colegioId) 
+    })
+    .valueChanges();
+  
   }
 
   async addColegio(nombre: string, fullname: string) {
@@ -87,4 +112,19 @@ export class FirebaseService {
        return productRef.push(producto);
        })
   }
+
+  updateColegio(id: string, updatedColegio: any) {
+    
+    console.log("Colegio actualizado con éxito. ");
+    this.router.navigate(['/colegios']);
+    return this.db.object(`colegios/${id}`).update(updatedColegio);
+  }
+
+  updateProducto(id: string, updatedProducto: any) {
+
+    console.log("Producto actualizado con éxito. ");
+    this.router.navigate(['productos/',updatedProducto.colegio.id]);
+    return this.db.object(`productos/${id}`)
+      .update(updatedProducto);
+ }
 }

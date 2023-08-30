@@ -10,12 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductoComponent implements OnInit {
 
   producto: any;
-  id!: number;
+  id!: string;
 
   constructor(private firebaseService: FirebaseService,
     private route: ActivatedRoute) { }
 
-  getProducto(id: number){
+  getProducto(id: string){
     this.firebaseService.getProductoPorId(id).subscribe((producto) =>{
       this.producto = producto;
     });
@@ -23,7 +23,7 @@ export class ProductoComponent implements OnInit {
   }
   
   getId(){
-    this.route.params.subscribe((params)=> {
+    this.route.params.subscribe(params => {
       this.id = params['id'];
     });
   }

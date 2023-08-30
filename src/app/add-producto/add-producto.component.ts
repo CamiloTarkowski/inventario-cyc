@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { Storage, ref, uploadBytes } from '@angular/fire/storage';
-import { error } from 'console';
 
 @Component({
   selector: 'app-add-producto',
@@ -11,10 +10,7 @@ import { error } from 'console';
 })
 export class AddProductoComponent {
 
-  percentage = 0;
-  url_img: string = '';
-
-  
+  url_img: string = '';  
 
   producto = {
     nombre: '',
@@ -24,65 +20,75 @@ export class AddProductoComponent {
       fullname: '',
       id: ''
     },
-    tallas: [{
+    talla: [{
       id: 0,
       n_talla: '6',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 1,
       n_talla: '8',
       precio:0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 2,
       n_talla: '10',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 3,
       n_talla: '12',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 4,
       n_talla: '14',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 5,
       n_talla: '16',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 6,
       n_talla: 'S',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 7,
       n_talla: 'M',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 8,
       n_talla: 'L',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     },
     {
       id: 9,
       n_talla: 'XL',
       precio: 0,
-      cantidad: 0
+      cantidad: 0,
+      ubicacion: ""
     }]
   }
 
@@ -101,30 +107,6 @@ export class AddProductoComponent {
     .then(x => {console.log(x)})
     .catch(err => {console.error(err)})
   }
-  /* onUpload(event: any) {
-
-    const file = event.target.files[0];
-  
-    const filePath = 'name-to-upload-file-to'; 
-  
-    const fileRef = this.storage.ref(filePath);
-  
-    const task = this.storage.upload(filePath, file);
-  
-    task.snapshotChanges().pipe(
-      
-      finalize(() => {
-  
-        fileRef.getDownloadURL().subscribe(url => {
-         this.url_img = url;
-        });
-  
-      })
-  
-    ).subscribe();
-  
-  } */
-
 
  getColegio(id: string){
     this.firebaseService.getColegioPorId(id)

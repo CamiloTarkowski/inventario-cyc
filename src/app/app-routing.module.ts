@@ -8,6 +8,8 @@ import { ColegiosComponent } from './colegios/colegios.component';
 import { VenderComponent } from './vender/vender.component';
 import { AddColegioComponent } from './add-colegio/add-colegio.component';
 import { AddProductoComponent } from './add-producto/add-producto.component';
+import { EditProductoComponent } from './edit-producto/edit-producto.component';
+import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'add-producto/:id',
     component: AddProductoComponent
+  },
+  {
+    path: 'edit-producto/:id',
+    component: EditProductoComponent
+  },
+  {
+    path: 'edit-colegio/:id',
+    component: EditColegioComponent
   },
 
 ];
