@@ -1,81 +1,52 @@
 
 <body>
-    <form (ngSubmit)="onSubmit()">    
-            <label for="colegio">Colegio</label>
-            <div>
-                <select id="colegio" class="form-select" (change)="colegioSelected($event)" [(ngModel)]="agregando_prod.colegio" name="colegio">
-
-                    <option *ngFor="let colegio of colegios" value="{{colegio?.nombre}}" id="{{colegio?.id}}">
-                        {{ colegio?.nombre }}
-                    </option>
-                </select>
-            </div>
-        <br>
-
-        <label for="producto">Producto</label>
+  
+        <label for="colegio">Colegio</label>
         <div>
-            <select id="producto" class="form-select" (change)="productoSelected($event)" [(ngModel)]="agregando_prod.nombre" name="nombre">
-                <option *ngFor="let producto of prodsFiltrados" value="{{producto?.nombre}}" id="{{ producto?.id }}">
-                    {{ producto?.nombre }}
+            <select id="colegio" class="form-select" (change)="colegioSelected($event)" name="colegio">
+
+                <option *ngFor="let colegio of colegios" value="{{colegio?.nombre}}" id="{{colegio?.id}}">
+                    {{ colegio?.nombre }}
                 </option>
             </select>
         </div>
-        <br>
-
-        <label for="talla">Talla</label>
-        <div>
-            <select id="talla" class="form-select" (change)="tallaSelected($event)" [(ngModel)]="agregando_prod.n_talla" name="n_talla">
-                <option *ngFor="let talla of tallas" value="{{ talla?.n_talla }}">
-                    <span class="talla">Talla {{ talla?.n_talla }}: </span> 
-                    <span class="unidades">{{ talla?.cantidad }} unidades</span>
-                </option>
-            </select>
-            <br>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <div class="m-0">Ingrese cantidad a agregar: </div>
-                <input type="number" [(ngModel)]="agregando_prod.cantidad" value="1" min="1" name="cantidad" class= "ml-2">
-            </div>
-
-            <button *ngIf="bool_colegio == false || bool_producto == false || bool_talla == false" class="btn btn-success disabled">Agregar</button>
-            <button *ngIf="bool_colegio == true && bool_producto == true && bool_talla == true" type="submit" class="btn btn-success">Agregar</button>
-        </div>
-
-        
-        
-
-    </form>
     <br>
-    <h1>Resumen de venta: </h1>
-    <table class="table table-striped table-hover text-center">
-        <thead>
-            <tr>
-                <th>Producto</th>
-                <th>Colegio</th>
-                <th>Talla</th>
-                <th>Precio</th>
-                <th>Unidades</th>
-                <th>Total</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of resumen; let i = index">
-                <td>{{ item?.nombre }}</td>
-                <td>{{ item?.colegio }}</td>
-                <td>{{ item?.n_talla }}</td>
-                <td>{{ item?.precio }}</td>
-                <td>{{ item?.cantidad }}</td>
-                <td>total</td>
-                <td>
-                    <i (click)="deleteProduct(i)"class="fa-solid fa-trash pointer text-danger"></i>                   
-                </td>
-            </tr>
-        </tbody>        
-    </table>
-    <div class="justify-content-center d-flex" *ngIf = "resumen.length > 0">
-        <a name="" id="" class="btn btn-success" href="#" role="button">Vender</a>
+
+    <label for="producto">Producto</label>
+    <div>
+        <select id="producto" class="form-select" (change)="productoSelected($event)">
+            <option *ngFor="let producto of prodsFiltrados" value="{{producto?.nombre}}" id="{{ producto?.id }}">
+                {{ producto?.nombre }}
+            </option>
+        </select>
     </div>
+    <br>
+
+    <label for="talla">Talla</label>
+    <div>
+        <select id="talla" class="form-select" (change)="tallaSelected($event)">
+            <option *ngFor="let talla of tallas" value="{{ talla?.n_talla }}">
+                <span class="talla">Talla {{ talla?.n_talla }}: </span> 
+                <span class="unidades">{{ talla?.cantidad }} unidades</span>
+            </option>
+        </select>
+        <br>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center">
+            <div class="m-0">Ingrese cantidad a agregar: </div>
+            <input type="number" value="1" min="1" name="cantidad" class= "ml-2">
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-outline-primary" (click)="reboot()">Reiniciar</button>
+        </div>
+        
+
+        <button *ngIf="bool_colegio == false" class="btn btn-success disabled">Agregar</button>
+        <button *ngIf="bool_colegio == true" (click)="agregar()" class="btn btn-success">Agregar</button>
+    </div>
+    <br>
+    <app-resumen-venta></app-resumen-venta>
 </body>

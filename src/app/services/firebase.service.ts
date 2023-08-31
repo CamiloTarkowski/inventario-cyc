@@ -63,13 +63,17 @@ export class FirebaseService {
    );  
   }
 
-  getProductosByColegioId(colegioId: string) {
+  getProductosByColegio(colegioId: string) {
 
     return this.db.list('/productos', ref => {
       return ref.orderByChild('colegio/id').equalTo(colegioId) 
     })
     .valueChanges();
   
+  }
+
+  getTallasByProducto(productoId: string) {
+    return this.db.object(`/productos/${productoId}`).valueChanges(); 
   }
 
   async addColegio(nombre: string, fullname: string) {
@@ -111,6 +115,10 @@ export class FirebaseService {
        console.log("Producto agregado correctamente.")
        return productRef.push(producto);
        })
+  }
+
+  getTallaDeProducto(idProducto: string, idTalla: number){
+    return this.db.object(`/productos/${idProducto}/talla/${idTalla}`).valueChanges();
   }
 
   updateColegio(id: string, updatedColegio: any) {

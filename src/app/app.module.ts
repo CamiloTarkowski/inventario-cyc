@@ -23,6 +23,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { EditProductoComponent } from './edit-producto/edit-producto.component';
 import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
+import { ResumenVentaComponent } from './resumen-venta/resumen-venta.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
     AddProductoComponent,
     EditProductoComponent,
     EditColegioComponent,
+    ResumenVentaComponent,
   ],
   imports: [
     BrowserModule,

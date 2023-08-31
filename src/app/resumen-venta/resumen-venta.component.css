@@ -1,0 +1,42 @@
+/* Estilo para ocultar el select original */
+#custom-select {
+    display: none;
+  }
+  
+  /* Estilos para el custom select */
+  .custom-select-wrapper {
+    position: relative;
+    width: 200px;
+  }
+
+  .selected-option {
+    color: #999;
+  }
+  
+  /* Icono (puedes utilizar FontAwesome u otra librería de iconos) */
+  .fas.fa-chevron-down {
+    color: #999;
+  }
+
+  .talla{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+  }
+
+  .unidades{
+    text-align: right;
+    justify-content: end;
+  }
+
+  body{
+    max-width: 1324px;
+    margin: auto;
+    padding: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: black;
+    font-weight: 900;
+  }
+
+  .pointer{
+    cursor: pointer;
+  }
