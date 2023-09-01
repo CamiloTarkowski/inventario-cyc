@@ -11,7 +11,7 @@ export class VenderComponent implements OnInit {
 
   colegios!: any[];
   productos!: any[];
-  tallas: any[] | null = [] ;
+  tallas: any[] = [] ;
   prodsFiltrados: any[] | null = [];
 
   bool_colegio: boolean = false;
@@ -89,16 +89,21 @@ tallaSelected(event: any): void{
     console.log(talla));
 }
 
-getColegios(){
+getData(){
   this.firebaseService.getColegios().subscribe((colegios) => {
     this.colegios = colegios;
+    this.agregando_prod.colegio = this.colegios[0].id;
+    this.firebaseService.getProductosByColegio('0').subscribe(productos => {
+      this.prodsFiltrados = productos;
+      console.log(productos);
+      this.agregando_prod = this.prodsFiltrados[0];
+      this.firebaseService.getTallasByProducto(this.prodsFiltrados[0].id).subscribe((tallas: any) => {
+        console.log("tallas"+tallas);
+        this.agregando_prod.talla = tallas[0];
+      }
+      )})
   })
-}
-
-getProductos(){
-  this.firebaseService.getProductos().subscribe((productos) => {
-    this.productos = productos;
-  })
+  
 }
 
 getTallas(id: number){
@@ -141,8 +146,8 @@ agregar(){
 
 ngOnInit(): void {
 
-  this.getColegios();
-  this.getProductos();
+  this.getData();
+
   }
 
 reboot(){

@@ -63,9 +63,9 @@ export class FirebaseService {
    );  
   }
 
-  getProductosByColegio(colegioId: string) {
+  getProductosByColegio(colegioId: string): Observable<any[]> {
 
-    return this.db.list('/productos', ref => {
+    return this.db.list('productos', ref => {
       return ref.orderByChild('colegio/id').equalTo(colegioId) 
     })
     .valueChanges();
