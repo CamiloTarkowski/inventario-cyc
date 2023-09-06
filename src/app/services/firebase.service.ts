@@ -66,9 +66,17 @@ export class FirebaseService {
   getProductosByColegio(colegioId: string): Observable<any[]> {
 
     return this.db.list('productos', ref => {
-      return ref.orderByChild('colegio/id').equalTo(colegioId) 
+      return ref.orderByChild('colegio/id').equalTo(colegioId); 
     })
-    .valueChanges();
+    .snapshotChanges()
+    .pipe(
+      map(changes => {
+        return changes.map((c: any) => ({
+          id: c.payload.key,
+          ...c.payload.val()
+        }))
+      })
+    )
   
   }
 

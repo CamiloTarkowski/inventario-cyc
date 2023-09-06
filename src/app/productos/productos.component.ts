@@ -15,11 +15,13 @@ export class ProductosComponent {
 
 
   filtrar(id: string){
+    console.log(this.productos);
     for(let producto of this.productos){
-      if(producto.colegio.id == id){
+      if(producto.colegio.id === id){
         this.prodsFiltrados.push(producto);
       }
     }
+    console.log(this.prodsFiltrados);
   }
   
   constructor(private firebaseService: FirebaseService,
@@ -39,11 +41,12 @@ export class ProductosComponent {
   ngOnInit(): void {
   this.route.params.subscribe((params) => {
     const id = params['id'];
-    this.getColegio(id.toString());
+    this.getColegio(id);
 
     this.firebaseService.getProductos().subscribe(
       (productos) => {
         this.productos = productos;
+
         this.filtrar(id);
       },
       (err) => {
@@ -51,6 +54,5 @@ export class ProductosComponent {
         }
       );
     });
-    console.log(this.prodsFiltrados);
   }
 }

@@ -11,8 +11,9 @@ export class VenderComponent implements OnInit {
 
   colegios!: any[];
   productos!: any[];
-  tallas: any[] = [] ;
+  tallas: any[] = [];
   prodsFiltrados: any[] | null = [];
+  tallas1!: any[];
 
   bool_colegio: boolean = false;
   id!: number;
@@ -52,20 +53,28 @@ colegioSelected(event: any): void {
   const id_colegio = selectedOption.getAttribute('id');
   this.firebaseService.getColegioPorId(id_colegio).subscribe(colegio => {
     this.agregando_prod.colegio = colegio;
+
     }
   )
-  this.prodsFiltrados = this.filtrar(id_colegio);
-  this.agregando_prod = this.prodsFiltrados[0];
+  this.firebaseService.getProductosByColegio(id_colegio).subscribe(
+    productos => {
+      this.prodsFiltrados = productos;
+      this.agregando_prod = this.prodsFiltrados[0];
+
+      if(this.prodsFiltrados.length > 0){
+        this.tallas = this.getTallas(this.prodsFiltrados[0].id);
+        this.bool_colegio = true;
+        this.agregando_prod.talla = this.tallas[0];
+      }
+      else{
+        this.tallas = [];
+        this.bool_colegio = false;
+      }
+    }
+  )
   
-  if(this.prodsFiltrados.length > 0){
-    this.tallas = this.getTallas(this.prodsFiltrados[0].id);
-    this.bool_colegio = true;
-    this.agregando_prod.talla = this.tallas[0];
-  }
-  else{
-    this.tallas = [];
-    this.bool_colegio = false;
-  }
+  
+  
   
 }
 
@@ -93,13 +102,12 @@ getData(){
   this.firebaseService.getColegios().subscribe((colegios) => {
     this.colegios = colegios;
     this.agregando_prod.colegio = this.colegios[0].id;
-    this.firebaseService.getProductosByColegio('0').subscribe(productos => {
+    this.firebaseService.getProductosByColegio(this.colegios[0].id).subscribe(productos => {
       this.prodsFiltrados = productos;
-      console.log(productos);
       this.agregando_prod = this.prodsFiltrados[0];
-      this.firebaseService.getTallasByProducto(this.prodsFiltrados[0].id).subscribe((tallas: any) => {
-        console.log("tallas"+tallas);
-        this.agregando_prod.talla = tallas[0];
+      this.firebaseService.getProductoPorId(this.prodsFiltrados[0].id).subscribe((tallas) => {
+        this.agregando_prod.talla = tallas.talla[0];
+        //this.prodsFiltrados.talla = tallas.talla;
       }
       )})
   })
@@ -124,6 +132,7 @@ getTallas(id: number){
 
 filtrar(id_colegio: string) { //filtrar por colegio
   let prodsFiltrados: any[] = [];
+  console.log(this.productos);
   for(let producto of this.productos){
     if(producto.colegio.id == id_colegio){
       prodsFiltrados.push(producto);
@@ -148,7 +157,7 @@ ngOnInit(): void {
 
   this.getData();
 
-  }
+}
 
 reboot(){
   window.location.reload();

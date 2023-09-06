@@ -25,7 +25,7 @@
     <label for="talla">Talla</label>
     <div>
         <select id="talla" class="form-select" (change)="tallaSelected($event)">
-            <option *ngFor="let talla of tallas" value="{{ talla?.n_talla }}">
+            <option *ngFor="let talla of tallas">
                 <span class="talla">Talla {{ talla?.n_talla }}: </span> 
                 <span class="unidades">{{ talla?.cantidad }} unidades</span>
             </option>
