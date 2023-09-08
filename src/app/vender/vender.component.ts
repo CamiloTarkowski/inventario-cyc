@@ -9,7 +9,7 @@ import { ResumenVentaService } from '../services/resumen-venta.service';
 })
 export class VenderComponent implements OnInit {
 
-  colegios!: any[];
+  colegios: any[] = [];
   productos!: any[];
   tallas: any[] = [];
   prodsFiltrados: any[] | null = [];
@@ -85,29 +85,47 @@ productoSelected(event: any): void{
   .subscribe(producto => {
     const {talla, ...prodSinTalla } = producto;//prodSinTalla = producto - producto.talla (se traspasan todos los valores del elemento producto exceptuando el objeto talla)
     this.agregando_prod = prodSinTalla;
+    this.tallas = producto.talla;
+    this.agregando_prod.talla = producto.talla[0];
     
   });
-  this.tallas = this.getTallas(id_producto);
+
+  console.log(this.tallas);
 
 }
 
 tallaSelected(event: any): void{
   const selectedOption = event.target.options[event.target.selectedIndex];
   const id_talla = parseInt(selectedOption.getAttribute('id'));
-  this.firebaseService.getTallaDeProducto(this.agregando_prod.id, id_talla).subscribe(talla => 
-    console.log(talla));
+  console.log(id_talla);
+  this.firebaseService.getTallaDeProducto(this.agregando_prod.id, id_talla).subscribe(talla => { 
+    console.log(talla)
+  });
 }
 
 getData(){
+
+  this.firebaseService.getProductos().subscribe(p => {
+    this.productos = p;
+  })
+
   this.firebaseService.getColegios().subscribe((colegios) => {
-    this.colegios = colegios;
-    this.agregando_prod.colegio = this.colegios[0].id;
+    for(let colegio of colegios){
+      for(let producto of this.productos){
+        if(colegio.id === producto.colegio.id){
+
+          if(this.colegios.some(c => c.id === producto.colegio.id)){
+            this.colegios.push(colegio);
+          }
+        }
+      }
+    }
     this.firebaseService.getProductosByColegio(this.colegios[0].id).subscribe(productos => {
       this.prodsFiltrados = productos;
       this.agregando_prod = this.prodsFiltrados[0];
       this.firebaseService.getProductoPorId(this.prodsFiltrados[0].id).subscribe((tallas) => {
         this.agregando_prod.talla = tallas.talla[0];
-        //this.prodsFiltrados.talla = tallas.talla;
+        this.tallas = tallas.talla;
       }
       )})
   })
@@ -140,6 +158,8 @@ filtrar(id_colegio: string) { //filtrar por colegio
   }
   return prodsFiltrados;
 }
+
+
 
 
 
