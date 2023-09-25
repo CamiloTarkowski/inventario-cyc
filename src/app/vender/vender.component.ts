@@ -13,7 +13,7 @@ export class VenderComponent implements OnInit {
   productos!: any[];
   tallas: any[] = [];
   prodsFiltrados: any[] | null = [];
-  tallas1!: any[];
+  cantidad: number = 1;
 
   bool_colegio: boolean = false;
   id!: number;
@@ -32,7 +32,9 @@ export class VenderComponent implements OnInit {
       precio: -1,
       cantidad: -1,
       n_talla: '',
-      ubicacion: ''
+      ubicacion: '',
+      cantVenta: 1,
+      total: 0,
     }
   };
 
@@ -65,6 +67,8 @@ colegioSelected(event: any): void {
         this.tallas = this.getTallas(this.prodsFiltrados[0].id);
         this.bool_colegio = true;
         this.agregando_prod.talla = this.tallas[0];
+        this.agregando_prod.talla.cantVenta = 1;
+        this.agregando_prod.talla.total = this.agregando_prod.talla.cantVenta * this.agregando_prod.talla.precio;
       }
       else{
         this.tallas = [];
@@ -87,21 +91,30 @@ productoSelected(event: any): void{
     this.agregando_prod = prodSinTalla;
     this.tallas = producto.talla;
     this.agregando_prod.talla = producto.talla[0];
+    this.agregando_prod.talla.cantVenta = 1;
+    this.agregando_prod.talla.total = this.agregando_prod.talla.precio * this.agregando_prod.talla.cantVenta;
     
   });
 
-  console.log(this.tallas);
 
 }
 
 tallaSelected(event: any): void{
   const selectedOption = event.target.options[event.target.selectedIndex];
   const id_talla = parseInt(selectedOption.getAttribute('id'));
-  console.log(id_talla);
-  this.firebaseService.getTallaDeProducto(this.agregando_prod.id, id_talla).subscribe(talla => { 
-    console.log(talla)
+  this.firebaseService.getProductoPorId(this.agregando_prod.id).subscribe(talla => { 
+    this.agregando_prod.talla = talla.talla[id_talla];
+    this.agregando_prod.talla.cantVenta = 1;
+    this.agregando_prod.talla.total = this.agregando_prod.talla.cantVenta * this.agregando_prod.talla.precio;
+    
   });
 }
+
+/* asignarCantidad(event: any) {
+  const nuevaCantidad = parseInt(event.target.value, 10);
+  this.agregando_prod.talla.cantVenta = nuevaCantidad;
+  this.agregando_prod.talla.total = nuevaCantidad * this.agregando_prod.talla.precio;
+} */
 
 getData(){
 
@@ -113,8 +126,7 @@ getData(){
     for(let colegio of colegios){
       for(let producto of this.productos){
         if(colegio.id === producto.colegio.id){
-
-          if(this.colegios.some(c => c.id === producto.colegio.id)){
+          if (!this.colegios.includes(colegio)) {
             this.colegios.push(colegio);
           }
         }
@@ -125,7 +137,11 @@ getData(){
       this.agregando_prod = this.prodsFiltrados[0];
       this.firebaseService.getProductoPorId(this.prodsFiltrados[0].id).subscribe((tallas) => {
         this.agregando_prod.talla = tallas.talla[0];
+        this.agregando_prod.talla.cantVenta = 1;
+        this.agregando_prod.talla.total = this.agregando_prod.talla.precio * this.agregando_prod.talla.cantVenta;
+        
         this.tallas = tallas.talla;
+        
       }
       )})
   })
@@ -150,7 +166,6 @@ getTallas(id: number){
 
 filtrar(id_colegio: string) { //filtrar por colegio
   let prodsFiltrados: any[] = [];
-  console.log(this.productos);
   for(let producto of this.productos){
     if(producto.colegio.id == id_colegio){
       prodsFiltrados.push(producto);
@@ -164,10 +179,13 @@ filtrar(id_colegio: string) { //filtrar por colegio
 
 
 agregar(){
-  this.res.isTheSame(this.agregando_prod);
-  console.log(this.agregando_prod);
-  this.bool_colegio = false;
-
+  if(this.cantidad >= 1){
+    const pushProducto = {...this.agregando_prod};
+    this.res.isTheSame(pushProducto, this.cantidad);
+    this.bool_colegio = false;
+  } else{
+    alert("La cantidad no puede ser 0");
+  }
 }
 
 

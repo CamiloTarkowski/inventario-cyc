@@ -9,24 +9,29 @@ export class ResumenVentaService {
 
   resumen: any[] = [];
 
-  isTheSame(nuevo: any){
-    console.log(nuevo)
+  isTheSame(nuevo: any, cantidad: number){
     if(this.resumen.length > 0){
       for (let producto of this.resumen){
-        if(producto.id === nuevo.id && producto.n_talla === nuevo.n_talla){
+        if(producto.id === nuevo.id && producto.talla.id === nuevo.talla.id){
             alert("Producto ya se encuentra ingresado.");
             return;
         }
       }
-      this.resumen.push(nuevo)   
+      nuevo.talla.cantVenta = cantidad;
+      nuevo.talla.total = cantidad * nuevo.talla.precio;
+      this.resumen.push(nuevo);
+      return;  
     }
     else{
+      nuevo.talla.cantVenta = cantidad;
+      nuevo.talla.total = cantidad * nuevo.talla.precio;
       this.resumen.push(nuevo);
+      return;
     }
-    this.getResumen();
   }
 
   getResumen(): any{
     return this.resumen;
   }
+
 }

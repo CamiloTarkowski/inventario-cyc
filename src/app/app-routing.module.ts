@@ -11,6 +11,9 @@ import { AddProductoComponent } from './add-producto/add-producto.component';
 import { EditProductoComponent } from './edit-producto/edit-producto.component';
 import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
 import { ColegioComponent } from './colegio/colegio.component';
+import { VentasComponent } from './ventas/ventas.component';
+import { VentaComponent } from './venta/venta.component';
+
 
 const routes: Routes = [
   {
@@ -56,6 +59,14 @@ const routes: Routes = [
   {
     path: 'colegio',
     component: ColegioComponent
+  },
+  {
+    path: 'ventas',
+    component: VentasComponent
+  },
+  {
+    path: 'venta/:id',
+    component: VentaComponent
   }
 
 ];

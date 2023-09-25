@@ -24,7 +24,9 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { EditProductoComponent } from './edit-producto/edit-producto.component';
 import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
 import { ResumenVentaComponent } from './resumen-venta/resumen-venta.component';
-import { FormControl } from '@angular/forms';
+import { VentasComponent } from './ventas/ventas.component';
+import { PesoChilenoPipe } from './pipes/peso-chileno.pipe';
+import { VentaComponent } from './venta/venta.component';
 
 
 @NgModule({
@@ -44,6 +46,9 @@ import { FormControl } from '@angular/forms';
     EditProductoComponent,
     EditColegioComponent,
     ResumenVentaComponent,
+    VentasComponent,
+    PesoChilenoPipe,
+    VentaComponent,
   ],
   imports: [
     BrowserModule,

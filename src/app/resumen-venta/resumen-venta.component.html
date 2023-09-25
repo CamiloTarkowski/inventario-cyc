@@ -8,7 +8,7 @@
                 <th>Talla</th>
                 <th>Precio</th>
                 <th>Unidades</th>
-                <th>Total</th>
+                <th>SubTotal</th>
                 <th>Acción</th>
             </tr>
         </thead>
@@ -17,9 +17,9 @@
                 <td>{{ r?.nombre }}</td>
                 <td>{{ r?.colegio.nombre }}</td>
                 <td>{{ r?.talla.n_talla }}</td>
-                <td>{{ r?.talla.precio }}</td>
-                <td>{{ r?.talla.cantidad }}</td>
-                <td>{{r?.talla.cantidad * r?.talla.precio}}</td>
+                <td>{{ r?.talla.precio | pesoChileno }}</td>
+                <td>{{ r?.talla.cantVenta }}</td>
+                <td>{{ r?.talla.total | pesoChileno }}</td>
                 <td>
                     <i (click)="deleteProduct(i)"class="fa-solid fa-trash pointer text-danger"></i>                   
                 </td>
@@ -27,6 +27,6 @@
         </tbody>        
     </table>
     <div class="justify-content-center d-flex" *ngIf = "resumen.length > 0">
-        <a name="" id="" class="btn btn-success" href="#" role="button">Vender</a>
+        <a name="" (click)="vender()"id="" class="btn btn-success" role="button">Vender</a>
     </div>
 </body>

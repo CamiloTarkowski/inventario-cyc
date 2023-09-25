@@ -15,13 +15,11 @@ export class ProductosComponent {
 
 
   filtrar(id: string){
-    console.log(this.productos);
     for(let producto of this.productos){
       if(producto.colegio.id === id){
         this.prodsFiltrados.push(producto);
       }
     }
-    console.log(this.prodsFiltrados);
   }
   
   constructor(private firebaseService: FirebaseService,

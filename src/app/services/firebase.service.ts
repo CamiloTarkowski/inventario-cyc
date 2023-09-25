@@ -86,7 +86,6 @@ export class FirebaseService {
 
   async addColegio(nombre: string, fullname: string) {
     let colegios: any;
-
     this.getColegios()
       .subscribe(data => {  
         colegios = data;
@@ -94,20 +93,42 @@ export class FirebaseService {
           return;
         }
         else{
-          const colegioRef = this.db.list('colegios');
           const colegio = {
             nombre: nombre,
             fullname: fullname,
           }
           this.router.navigate(['/colegios']);
-          
-          return colegioRef.push(colegio);
-          
+          return this.db.list('colegios').push(colegio);
         }
-    
       });
-    
   }
+
+  async addVenta(resumen: any, nuevoID: number){
+    const fecha = new Date();
+    const formatoFecha: Intl.DateTimeFormatOptions = {
+    weekday: 'long',  
+    day: 'numeric',   
+    month: 'long',    
+    year: 'numeric',  
+    hour: 'numeric',    
+    minute: 'numeric' 
+    };
+    const fechaFormateada = fecha.toLocaleString('es-ES', formatoFecha);
+    const total = resumen.reduce((sumatoria: number, resumen: any) => {
+      return sumatoria + resumen.talla.total;
+    }, 0);
+
+    const venta = {
+      idVenta: nuevoID,
+      resumen: resumen,
+      fecha: fechaFormateada,
+      total: total
+    }
+    
+    this.router.navigate(['/colegios']);
+    return this.db.list('ventas').push(venta);
+        
+    }
 
   async addProducto(producto: any) {
     let productos: any;
@@ -125,7 +146,7 @@ export class FirebaseService {
        })
   }
 
-  getTallaDeProducto(idProducto: string, idTalla: number){
+  getTallaDeProducto(idProducto: string, idTalla: number) {
     return this.db.object(`/productos/${idProducto}/talla/${idTalla}`).valueChanges();
   }
 
@@ -143,4 +164,87 @@ export class FirebaseService {
     return this.db.object(`productos/${id}`)
       .update(updatedProducto);
  }
+
+ 
+
+  getVentas(): Observable<any[]> {
+    return this.db.list('ventas').snapshotChanges().pipe(
+      map(changes =>
+        changes.map((v:any) => ({
+          id: v.payload.key,
+          ...v.payload.val()
+        }))
+      )
+    );
+  }
+
+  getVenta(id: number): Observable<any> {
+    return this.db.object(`ventas/${id}`).valueChanges();
+
+  }
+
+
 }
+
+
+
+/* 
+
+
+
+pushVenta(resumen: any){
+
+  const fecha = new Date();
+
+  const formatoFecha: Intl.DateTimeFormatOptions = {
+    weekday: 'long',  
+    day: 'numeric',   
+    month: 'long',    
+    year: 'numeric',  
+    hour: 'numeric',    
+    minute: 'numeric' 
+  };
+
+  const fechaFormateada = fecha.toLocaleString('es-ES', formatoFecha);
+
+  const total = resumen.reduce((sumatoria: number, resumen: any) => {
+    return sumatoria + resumen.talla.total;
+  }, 0);
+
+  this.getVentas().subscribe(ventas => {
+    const maxIdVenta = Math.max(...ventas.map(ven => ven.idVenta), -1);
+    const id_venta = maxIdVenta + 1;
+
+    const venta = {
+      idVenta: id_venta,
+      resumen: resumen,
+      total: total,
+      fecha: fechaFormateada
+    };
+
+    this.db.list('ventas').push(venta);
+  });
+
+
+  }
+
+  async addColegio(nombre: string, fullname: string) {
+    let colegios: any;
+    this.getColegios()
+      .subscribe(data => {  
+        colegios = data;
+        if (colegios.some((c: any) => c.nombre === nombre)) {
+          return;
+        }
+        else{
+          const colegio = {
+            nombre: nombre,
+            fullname: fullname,
+          }
+          this.router.navigate(['/colegios']);
+          return this.db.list('colegios').push(colegio);
+        }
+      });
+  }
+
+ */

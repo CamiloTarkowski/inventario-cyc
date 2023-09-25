@@ -1,0 +1,16 @@
+body{
+    max-width: 1324px;
+    margin-top: 20px;
+    margin: auto;
+}
+
+.main{
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 10px;
+}
+
+.total{
+    text-align: center;
+    justify-content: center;
+}
