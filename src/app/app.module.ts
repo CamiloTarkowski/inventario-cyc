@@ -27,6 +27,7 @@ import { ResumenVentaComponent } from './resumen-venta/resumen-venta.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { PesoChilenoPipe } from './pipes/peso-chileno.pipe';
 import { VentaComponent } from './venta/venta.component';
+import { AllProductosComponent } from './all-productos/all-productos.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { VentaComponent } from './venta/venta.component';
     VentasComponent,
     PesoChilenoPipe,
     VentaComponent,
+    AllProductosComponent,
   ],
   imports: [
     BrowserModule,

@@ -137,11 +137,11 @@ export class FirebaseService {
       .subscribe(data => {
         productos = data;
         if (productos.some((p: any) => p.nombre === producto.nombre)) {
-          console.log("Producto ya existe.");
          return;
        }
        const productRef = this.db.list('/productos');
-       console.log("Producto agregado correctamente.")
+       const idColegio = producto.colegio.id;
+       this.router.navigate(['/productos/'+idColegio]);
        return productRef.push(producto);
        })
   }

@@ -1,25 +1,35 @@
 body{
-    max-width: 1324;
-    margin: auto;
+
+    margin-top: 20px;
 }
 
-.container{
-    max-width: 1000px;
+.colegios{
+    max-width: 1324px;
     margin: auto;
     text-align: center;
 }
 
 h2{
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 80px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
 }
 
 .nom-colegio{
-    font-size: 40px;
-    font-family: 'Nunito Sans', sans-serif;
-    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
 }
 
 .main{
     margin-bottom: 50px;
+}
+
+.titulo{
+    background-color: #189818;
+    color: #a5d9a5;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 8px 8px 0px 0px;
+ 
 }

@@ -1,9 +1,10 @@
 <body>    
     <div class="main">
         <h1 class="text-center">{{colegio?.fullname}} <a class="text-center" routerLink="../../edit-colegio/{{ colegio?.id }}"><i class="fa-solid fa-pen"></i></a></h1>
-           
-        <div *ngIf="prodsFiltrados.length > 0" class="mx-auto">
-            <div *ngFor="let producto of prodsFiltrados">
+
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let producto of prodsFiltrados">
                 <div  class="card cardimg shadow-sm mx-auto m-2" style="max-width: 300px;" routerLink="/producto/{{ producto?.id }}">
                     <div>
                         <img src="{{ producto?.img_url }}" class="card-img-top img_producto">
@@ -16,8 +17,10 @@
                         <p class="card-text text fs-6 descripcion">{{ producto?.descripcion }}</p>
                     </div>
                 </div>
+              </div>
             </div>
-        </div>
+          </div>
+          
         <div *ngIf="prodsFiltrados.length == 0">
             Aún no hay productos registrados para este colegio.             
         </div>

@@ -1,27 +1,107 @@
 body{
     padding-top: 20px;
-}
+    padding-bottom: 40px;
 
-.container{
-    max-width: 1324px;
-    margin: auto;
-    text-align: center;
+
 }
 
 .main{
     border-radius: 8px;
     background-color: rgb(255, 255, 255);
+    margin: auto;
+    max-width: 1324px;
+}
 
+.title{
+  background-color: #81165c;
+  color: #e3c5d8;
+  border-radius: 8px 8px 0px 0px;
 }
 
 h2{
-    font-size: 50px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 30px;
 }
 
 .nom-colegio{
     font-size: 40px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     cursor: pointer;
 }
+
+.cuadrado {
+    width: 180px; 
+    height: 180px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    transform: scale(0.92);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .cuadrado:hover {
+    transform: scale(0.98); 
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); 
+  }
+
+  
+  .contenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .icono {
+    font-size: 36px; /* Tamaño del ícono */
+    margin-bottom: 10px; /* Espacio entre el ícono y el nombre */
+  }
+  
+  .nombre {
+    font-size: 18px; /* Tamaño del texto del nombre */
+    color: #fff; /* Color del texto del nombre */
+  }
+  
+  .vender{
+    background-color: #4b2ca2;
+    color: #e8bef5;
+  }
+
+  .historial{
+    background-color: #d9db60;
+    color: #d50636;
+  }
+
+  .colegios{
+    background-color: #883c2d;
+    color: #dbd8f1;
+  }
+
+  .productos{
+    background-color: #5ff85c;
+    color: #81165c;
+  }
+
+  .font{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+  }
+
+  .addproductos{
+    background-color: #37eafe;
+    color: #610efc;
+  }
+
+  .materiales{
+    background-color: #0b7605;
+    color: #bae5f6;
+
+  }
+
+  .inventario{
+    background-color: #eb600a;
+    color: #f9ccf2;
+  }

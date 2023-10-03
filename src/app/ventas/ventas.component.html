@@ -14,7 +14,7 @@
             <tr *ngFor="let v of ventas">
                 <td>{{ v.idVenta }}</td>
                 <td>
-                    <div *ngFor="let r of v.resumen">{{ r.nombre }} </div>
+                    <div *ngFor="let r of v.resumen">{{ r.nombre }} - {{ r.colegio.nombre }} </div>
                 </td>
                 <td>{{ v.fecha }}</td>
                 <td>{{ v.total | pesoChileno }}</td>

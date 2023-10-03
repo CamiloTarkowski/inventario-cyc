@@ -13,6 +13,7 @@ import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
 import { ColegioComponent } from './colegio/colegio.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentaComponent } from './venta/venta.component';
+import { AllProductosComponent } from './all-productos/all-productos.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,10 @@ const routes: Routes = [
   {
     path: 'venta/:id',
     component: VentaComponent
+  },
+  {
+    path: 'all-productos',
+    component: AllProductosComponent
   }
 
 ];

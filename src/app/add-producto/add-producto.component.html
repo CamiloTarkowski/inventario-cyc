@@ -1,6 +1,7 @@
 <body>
     <div class="main">
         <form (ngSubmit)="onSubmit()">
+          <h1>{{producto.colegio.fullname}}</h1>
             <div class="input-group mb-3">
                 <span class="input-group-text">Nombre de producto: </span>
                 <input type="text" class="form-control" placeholder="Polera polo roja" aria-label="Nombre" [(ngModel)]="producto.nombre" name="nombre">
@@ -12,9 +13,9 @@
             </div>
             
             <div>
-                Sube una foto:
-                <div class="mb-3">
-                  <input (change)="subirArchivo($event)" class="form-control" type="file" id="formFile">
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Sube una foto:</label>                
+                <input (change)="detectFile($event)" class="form-control" type="file" id="formFile" accept="image/png, image/jpeg">
                 </div>
             </div>
             <br>

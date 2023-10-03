@@ -1,0 +1,40 @@
+body{
+    margin: auto;
+    max-width: 1324px;
+}
+
+.main{
+    margin: auto;
+}
+
+.img_producto{
+    cursor: pointer;
+    width: 300px;
+}
+
+.nombre{
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+}
+
+.descripcion{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+.cardimg{
+    width: 300px;
+    height: 550px;
+    scale: 0.8;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.cardimg:hover{
+    scale: 0.83;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
