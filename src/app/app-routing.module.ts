@@ -14,6 +14,7 @@ import { ColegioComponent } from './colegio/colegio.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentaComponent } from './venta/venta.component';
 import { AllProductosComponent } from './all-productos/all-productos.component';
+import { AddProductNoschoolComponent } from './add-product-noschool/add-product-noschool.component';
 
 
 const routes: Routes = [
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path: 'all-productos',
     component: AllProductosComponent
+  },
+  {
+    path: 'add-product-noschool',
+    component: AddProductNoschoolComponent
   }
 
 ];

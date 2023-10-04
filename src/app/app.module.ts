@@ -28,6 +28,7 @@ import { VentasComponent } from './ventas/ventas.component';
 import { PesoChilenoPipe } from './pipes/peso-chileno.pipe';
 import { VentaComponent } from './venta/venta.component';
 import { AllProductosComponent } from './all-productos/all-productos.component';
+import { AddProductNoschoolComponent } from './add-product-noschool/add-product-noschool.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { AllProductosComponent } from './all-productos/all-productos.component';
     PesoChilenoPipe,
     VentaComponent,
     AllProductosComponent,
+    AddProductNoschoolComponent,
   ],
   imports: [
     BrowserModule,

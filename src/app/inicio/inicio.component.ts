@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class InicioComponent implements OnInit {
 
   colegios$! : Observable<any[]>;
+  mostrarFormulario = false;
 
 
   constructor(private db : FirebaseService) { }
@@ -18,6 +19,7 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
 
     this.colegios$ = this.db.getColegios();
+    this.mostrarFormulario = false;
 
 
   }

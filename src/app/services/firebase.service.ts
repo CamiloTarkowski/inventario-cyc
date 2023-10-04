@@ -84,18 +84,20 @@ export class FirebaseService {
     return this.db.object(`/productos/${productoId}`).valueChanges(); 
   }
 
-  async addColegio(nombre: string, fullname: string) {
+  async addColegio(col: any) {
     let colegios: any;
     this.getColegios()
       .subscribe(data => {  
         colegios = data;
-        if (colegios.some((c: any) => c.nombre === nombre)) {
+        if (colegios.some((c: any) => c.nombre === col.nombre)) {
           return;
         }
         else{
           const colegio = {
-            nombre: nombre,
-            fullname: fullname,
+            nombre: col.nombre,
+            fullname: col.fullname,
+            comuna: col.comuna,
+            region: col.region
           }
           this.router.navigate(['/colegios']);
           return this.db.list('colegios').push(colegio);

@@ -1,17 +1,15 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
 
 @Component({
-  selector: 'app-add-producto',
-  templateUrl: './add-producto.component.html',
-  styleUrls: ['./add-producto.component.css']
+  selector: 'app-add-product-noschool',
+  templateUrl: './add-product-noschool.component.html',
+  styleUrls: ['./add-product-noschool.component.css']
 })
-export class AddProductoComponent {
-  
-
-  url_img: string = '';  
+export class AddProductNoschoolComponent implements OnInit{
+  url_img: string = '';
+  colegios: any;  
 
   producto = {
     nombre: '',
@@ -95,14 +93,22 @@ export class AddProductoComponent {
   }
 
   constructor(private firebaseService: FirebaseService,
-    private activateRoute: ActivatedRoute,
     private storage: Storage){
-      
+
   }
+
   file: File = {} as File;
 
   detectFile(event: any){
     this.file = event.target.files[0];
+  }
+
+  colegioSelected(event: any): void {
+    const selectedOption = event.target.options[event.target.selectedIndex];
+    const id_colegio = selectedOption.getAttribute('id');
+    this.firebaseService.getColegioPorId(id_colegio).subscribe(
+      data => { this.producto.colegio = data }
+    )
   }
 
   subirArchivo(fileInput: any){
@@ -119,13 +125,6 @@ export class AddProductoComponent {
       alert("Debes agregar la imagen del producto.")
       return
     }
-  }
-
- getColegio(id: string){
-    this.firebaseService.getColegioPorId(id)
-    .subscribe(colegio =>
-      this.producto.colegio = colegio
-    )
   }
 
   onSubmit(){
@@ -150,12 +149,10 @@ export class AddProductoComponent {
     }
   }  
 
-  ngOnInit(): void {
-    this.activateRoute.params.subscribe(params => {
-      const id = params['id'];
-      this.getColegio(id);
+  ngOnInit(): void{
+    this.firebaseService.getColegios().subscribe(data => {
+      this.colegios = data;
     })
-
   }
 
 }

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class ColegiosComponent {
 
   colegios$!: Observable<any[]>; 
-
+  mostrarFormulario = false;
 
   constructor(private firebaseService : FirebaseService) {
    }

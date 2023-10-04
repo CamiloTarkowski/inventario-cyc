@@ -1,10 +1,10 @@
 <body>
-    <div class="main px-2">
+    <div class="main mx-2">
         <div class="colegios rounded bg-light shadow-sm">
             <div>
                 <h2 class="titulo">Colegios</h2>
             </div>
-            <div class="container">
+            <div class="container py-3">
                 <div class="row px-3">
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-start" *ngFor="let colegio of colegios$ | async">
                         <a href="/productos/{{ colegio.id }}" class ="nom-colegio link-success link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover">{{colegio.nombre}}</a>
@@ -12,9 +12,10 @@
                 </div>
             </div>
             
-            <div class="agrega pt-3 pb-2">
+            <div class="agrega pt-3 pb-4">
                 <button type="button" class="btn btn-outline-success" routerLink="/add-colegio/">+ Agrega un nuevo colegio</button>
             </div>           
         </div>
     </div>
 </body>
+<app-add-colegio *ngIf="mostrarFormulario"></app-add-colegio>
