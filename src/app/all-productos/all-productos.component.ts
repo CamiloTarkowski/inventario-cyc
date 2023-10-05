@@ -50,6 +50,8 @@ export class AllProductosComponent implements OnInit {
     this.firebaseService.getProductos().subscribe(data => {
       this.productos = data;
     })
+
+    
   }
 
 

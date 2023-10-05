@@ -1,74 +1,93 @@
-<body class="px-2">
-
-    <div class="main shadow-sm rounded">
-        <h2 class="title py-3 text-center">Menú Principal</h2>
-        <div class="container font sm-shadow pb-3">
-            <div class="row justify-content-evenly">
-                <div class="cuadrado vender m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/vender/" >
-                    <div class="contenido">
-                        <div class="icono">
-                            <i class="fa-solid fa-cart-shopping"></i>
+<body>
+    <div class="menu">
+        <div class="main shadow-sm rounded">
+            <h2 class="title py-3 text-center">Menú Principal</h2>
+            <div class="container font sm-shadow pb-3">
+                <div class="row justify-content-evenly">
+                    <div class="cuadrado vender m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/vender/" >
+                        <div class="contenido">
+                            <div class="icono">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                            <div class="nombre vender">
+                            Vender
+                            </div>
                         </div>
-                        <div class="nombre vender">
-                        Vender
+                    </div>
+                    <div class="cuadrado historial m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/ventas/">
+                        <div class="contenido">
+                            <div class="icono">
+                                <i class="fa-brands fa-sellsy"></i>
+                            </div>
+                            <div class="nombre historial">
+                            Historial de Ventas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cuadrado colegios m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/colegios/">
+                        <div class="contenido">
+                            <div class="icono colegios">
+                                <i class="fa-solid fa-school"></i>
+                            </div>
+                            <div class="nombre colegios">
+                            Colegios
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cuadrado addproductos m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/add-product-noschool/">
+                        <div class="contenido">
+                            <div class="icono addproductos">
+                                <i class="fa-solid fa-shirt"></i>
+                            </div>
+                            <div class="nombre addproductos">
+                            Agregar Producto
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cuadrado inventario m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/all-productos/">
+                        <div class="contenido">
+                            <div class="icono inventario">
+                                <i class="fa-solid fa-list-check"></i>
+                            </div>
+                            <div class="nombre inventario">
+                            Inventario
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cuadrado materiales m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/all-productos/">
+                        <div class="contenido">
+                            <div class="icono materiales">
+                                <i class="fa-solid fa-scissors"></i>
+                            </div>
+                            <div class="nombre materiales">
+                            Materiales
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="cuadrado historial m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/ventas/">
-                    <div class="contenido">
-                        <div class="icono">
-                            <i class="fa-brands fa-sellsy"></i>
-                        </div>
-                        <div class="nombre historial">
-                        Historial de Ventas
-                        </div>
-                    </div>
-                </div>
-                <div class="cuadrado colegios m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/colegios/">
-                    <div class="contenido">
-                        <div class="icono colegios">
-                            <i class="fa-solid fa-school"></i>
-                        </div>
-                        <div class="nombre colegios">
-                        Colegios
-                        </div>
-                    </div>
-                </div>
-                <div class="cuadrado addproductos m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/add-product-noschool/">
-                    <div class="contenido">
-                        <div class="icono addproductos">
-                            <i class="fa-solid fa-shirt"></i>
-                        </div>
-                        <div class="nombre addproductos">
-                        Agregar Producto
-                        </div>
-                    </div>
-                </div>
-                <div class="cuadrado inventario m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/all-productos/">
-                    <div class="contenido">
-                        <div class="icono inventario">
-                            <i class="fa-solid fa-list-check"></i>
-                        </div>
-                        <div class="nombre inventario">
-                        Inventario
-                        </div>
-                    </div>
-                </div>
-                <div class="cuadrado materiales m-1 col-lg-1 col-md-4 col-sm-6 col-6" type="button" routerLink="/all-productos/">
-                    <div class="contenido">
-                        <div class="icono materiales">
-                            <i class="fa-solid fa-scissors"></i>
-                        </div>
-                        <div class="nombre materiales">
-                        Materiales
-                        </div>
-                    </div>
-                </div>
+                
             </div>
-            
+        </div>
+
+    </div>
+    
+    
+</body>
+<div class="container max-width">
+    <div class="row">
+        <div class="col-xl-6 col-lg-12 col-md-12 col-xs-12">
+            <app-colegios></app-colegios>
+        </div>
+        <div class="col-xl-6 col-lg-12 col-md-12 col-xs-12">
+            <app-ventas></app-ventas>
         </div>
     </div>
-</body>
-<app-colegios></app-colegios>
-<app-all-productos></app-all-productos>
+</div>
+<div class="container max-width">
+    <app-all-productos></app-all-productos>
+</div>
+
+
+
+
 

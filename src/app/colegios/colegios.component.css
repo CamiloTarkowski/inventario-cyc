@@ -1,6 +1,5 @@
 body{
-
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .colegios{
@@ -21,12 +20,12 @@ h2{
 }
 
 .main{
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .titulo{
-    background-color: #189818;
-    color: #a5d9a5;
+    background-color: #883c2d;
+    color: #dbd8f1;
     font-weight: bold;
     padding-top: 15px;
     padding-bottom: 15px;

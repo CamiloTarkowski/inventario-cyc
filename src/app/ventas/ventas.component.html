@@ -1,22 +1,22 @@
-<body>
-    <h1>Historial de Ventas</h1>
-    <table class="table table-striped table-hover text-center">
-        <thead>
+<body class="mt-2">
+    <h2 class="title py-3 text-center">Historial de Ventas</h2>
+    <table class="table table-striped table-hover font">
+        <thead class="fs-5">
             <tr>
-                <th>Folio</th>
+                <th *ngIf="ruta=='/ventas'" class="fw-bold">Folio</th>
                 <th>Producto(s)</th>
-                <th>Fecha</th>
+                <th *ngIf="ruta=='/ventas'">Fecha</th>
                 <th>Total</th>
                 <th>Acción</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let v of ventas">
-                <td>{{ v.idVenta }}</td>
+                <td class="font" *ngIf="ruta=='/ventas'">{{ v.idVenta }}</td>
                 <td>
                     <div *ngFor="let r of v.resumen">{{ r.nombre }} - {{ r.colegio.nombre }} </div>
                 </td>
-                <td>{{ v.fecha }}</td>
+                <td *ngIf="ruta=='/ventas'">{{ v.fecha }}</td>
                 <td>{{ v.total | pesoChileno }}</td>
                 <td> <a href="venta/{{v.id}}">ver venta</a></td>
             </tr>

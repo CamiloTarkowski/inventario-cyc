@@ -11,13 +11,14 @@ export class ColegiosComponent {
 
   colegios$!: Observable<any[]>; 
   mostrarFormulario = false;
+  rutaActual!: string;
 
   constructor(private firebaseService : FirebaseService) {
    }
 
   ngOnInit(): void {
     this.colegios$ = this.firebaseService.getColegios();
-    
+    this.rutaActual = window.location.pathname;    
 
   }
 

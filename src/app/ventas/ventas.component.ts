@@ -9,6 +9,7 @@ import { FirebaseService } from '../services/firebase.service';
 export class VentasComponent implements OnInit {
 
   ventas: any[] = [];
+  ruta!: string;
 
   constructor(private firebaseService: FirebaseService){
 
@@ -20,6 +21,9 @@ export class VentasComponent implements OnInit {
       this.ventas = ventas;
 
     })
+
+    this.ruta = window.location.pathname;
+
     
   }
 
