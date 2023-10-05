@@ -128,9 +128,10 @@ export class FirebaseService {
     }
     
     this.router.navigate(['/colegios']);
+    this.actualizarStock(resumen);
     return this.db.list('ventas').push(venta);
         
-    }
+  }
 
   async addProducto(producto: any) {
     let productos: any;
@@ -185,68 +186,23 @@ export class FirebaseService {
 
   }
 
+  actualizarStock(resumen: any[]) {
+    for (const r of resumen) {
+      let idTalla = (r.talla.id).toString();
+      const productoRefconTalla = this.db.object(`productos/${r.id}/talla/${idTalla}`);
+      const productoRef = this.db.object(`productos/${r.id}`);
+      productoRef.snapshotChanges().subscribe((producto: any) => {
+        const productoData = producto.payload.val();
 
-}
+        const nuevaCantidad = productoData.talla[r.talla.id].cantidad - r.talla.cantVenta;
+        console.log("r.talla.cantVenta: ",r.talla.cantVenta);
 
-
-
-/* 
-
-
-
-pushVenta(resumen: any){
-
-  const fecha = new Date();
-
-  const formatoFecha: Intl.DateTimeFormatOptions = {
-    weekday: 'long',  
-    day: 'numeric',   
-    month: 'long',    
-    year: 'numeric',  
-    hour: 'numeric',    
-    minute: 'numeric' 
-  };
-
-  const fechaFormateada = fecha.toLocaleString('es-ES', formatoFecha);
-
-  const total = resumen.reduce((sumatoria: number, resumen: any) => {
-    return sumatoria + resumen.talla.total;
-  }, 0);
-
-  this.getVentas().subscribe(ventas => {
-    const maxIdVenta = Math.max(...ventas.map(ven => ven.idVenta), -1);
-    const id_venta = maxIdVenta + 1;
-
-    const venta = {
-      idVenta: id_venta,
-      resumen: resumen,
-      total: total,
-      fecha: fechaFormateada
-    };
-
-    this.db.list('ventas').push(venta);
-  });
-
-
-  }
-
-  async addColegio(nombre: string, fullname: string) {
-    let colegios: any;
-    this.getColegios()
-      .subscribe(data => {  
-        colegios = data;
-        if (colegios.some((c: any) => c.nombre === nombre)) {
-          return;
-        }
-        else{
-          const colegio = {
-            nombre: nombre,
-            fullname: fullname,
-          }
-          this.router.navigate(['/colegios']);
-          return this.db.list('colegios').push(colegio);
+        if (nuevaCantidad >= 0) {
+          productoRefconTalla.update({ cantidad: nuevaCantidad });
+        } else {
+          console.error(`No hay suficiente stock para ${productoData.nombre}`);
         }
       });
+    }
   }
-
- */
+}
