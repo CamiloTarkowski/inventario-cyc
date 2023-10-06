@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase} from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, map, firstValueFrom } from 'rxjs';
 
 
 
@@ -27,7 +27,7 @@ export class FirebaseService {
     );
   }
   
-  getProductoPorId(id: string) {
+  getProductoPorId(id: string): Observable<any> {
     return this.db.object(`productos/${id}`)
     .snapshotChanges()
     .pipe(
@@ -142,6 +142,9 @@ export class FirebaseService {
         if (productos.some((p: any) => p.nombre === producto.nombre)) {
          return;
        }
+       else{
+        console.log("holaaaaaaaa");
+       }
        const productRef = this.db.list('/productos');
        const idColegio = producto.colegio.id;
        this.router.navigate(['/productos/'+idColegio]);
@@ -164,8 +167,7 @@ export class FirebaseService {
 
     console.log("Producto actualizado con éxito. ");
     this.router.navigate(['productos/',updatedProducto.colegio.id]);
-    return this.db.object(`productos/${id}`)
-      .update(updatedProducto);
+    return this.db.object(`productos/${id}`).update(updatedProducto);
  }
 
  
@@ -186,23 +188,20 @@ export class FirebaseService {
 
   }
 
-  actualizarStock(resumen: any[]) {
+  
+
+  async actualizarStock(resumen: any[]) {
     for (const r of resumen) {
       let idTalla = (r.talla.id).toString();
       const productoRefconTalla = this.db.object(`productos/${r.id}/talla/${idTalla}`);
-      const productoRef = this.db.object(`productos/${r.id}`);
-      productoRef.snapshotChanges().subscribe((producto: any) => {
-        const productoData = producto.payload.val();
+      const productoData = await firstValueFrom(this.getProductoPorId(r.id));
+      const nuevaCantidad = productoData.talla[r.talla.id].cantidad - r.talla.cantVenta;
 
-        const nuevaCantidad = productoData.talla[r.talla.id].cantidad - r.talla.cantVenta;
-        console.log("r.talla.cantVenta: ",r.talla.cantVenta);
-
-        if (nuevaCantidad >= 0) {
-          productoRefconTalla.update({ cantidad: nuevaCantidad });
-        } else {
-          console.error(`No hay suficiente stock para ${productoData.nombre}`);
-        }
-      });
+      if (nuevaCantidad >= 0) {
+        productoRefconTalla.update({ cantidad: nuevaCantidad });
+      } else {
+        console.error(`No hay suficiente stock para ${productoData.nombre}`);
+      }
     }
   }
 }
