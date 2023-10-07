@@ -1,9 +1,11 @@
 <body>
+       
     <div class="main">
+        <div *ngIf="rutaActual == '/colegios'">
+            <br>
+        </div>
         <div class="colegios rounded bg-light shadow-sm">
-            <div>
-                <h2 class="titulo">Colegios</h2>
-            </div>
+            <h2 class="titulo">Colegios</h2>
             <div class="container py-3">
                 <div class="row px-3">
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-start pb-3" *ngFor="let colegio of colegios$ | async">

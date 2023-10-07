@@ -2,15 +2,26 @@
   <div class="main">
     <form (ngSubmit)="agregarColegio()">
       <h2 class="text-center">Agrega un colegio</h2>
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Nombre: </span>
-        <input [(ngModel)]="colegio.nombre" name="nombre" type="text" class="form-control" #nombre aria-describedby="basic-addon1">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="form-floating mb-3">
+              <input [(ngModel)]="colegio.nombre" name="nombre" type="text" class="form-control" id="floatingInput" >
+              <label for="floatingInput">Nombre</label>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-12">
+            <div class="form-floating mb-3">
+              <input [(ngModel)]="colegio.fullname" name="fullname" type="text" class="form-control" id="floatingInput">
+              <label for="floatingInput">Nombre completo</label>
+            </div>
+          </div>
+        </div>
       </div>
-    
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1">Nombre completo: </span>
-        <input [(ngModel)]="colegio.fullname" name="fullname" type="text" #fullname class="form-control" #nombre aria-describedby="basic-addon1">
-      </div>
+
+
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-6 col-sm-12">
@@ -33,9 +44,12 @@
       </div>
       
       
-      <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-outline-success">Agregar colegio</button>
+      <div class="d-flex justify-content-center">
+        <button type="submit" class="btn color-boton fw-bold">Agregar colegio</button>
+
       </div>
+        
+
       
     </form>
   </div>

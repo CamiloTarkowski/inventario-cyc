@@ -1,4 +1,11 @@
 .barra{
     max-width: 1324px;
     font-family: 'Nunito Sans', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* Estilo personalizado para el ícono de la barra de navegación */
+.navbar-toggler-icon {
+    color: white; /* Cambia el color a blanco */
 }
