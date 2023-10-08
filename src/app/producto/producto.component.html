@@ -15,12 +15,13 @@
                     <div class="col-lg-4 p-4 border border-secondary rounded">
                         <h1 class="fs-4 fw-bold">{{producto?.nombre}}</h1>
                         <p>{{ producto?.descripcion }}</p>
+                        <p class="text-danger">{{ producto?.colegio.nombre }}</p>
                         <a routerLink="../../edit-producto/{{ producto?.id }}">Editar producto</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Talla</th>
-                                    <th>Unidades</th>
+                                    <th>Stock</th>
                                     <th><i class="fa-solid fa-money-bill"></i></th>
                                     <th><i class="fa-solid fa-location-dot"></i></th>
                                 </tr>
