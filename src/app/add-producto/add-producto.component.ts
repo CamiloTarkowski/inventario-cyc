@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-add-producto',
@@ -11,7 +12,8 @@ import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage
 export class AddProductoComponent {
   
 
-  url_img: string = '';  
+  url_img: string = '';
+  uploaded = false;  
 
   producto = {
     nombre: '',
@@ -102,22 +104,9 @@ export class AddProductoComponent {
   file: File = {} as File;
 
   detectFile(event: any){
-    this.file = event.target.files[0];
-  }
-
-  subirArchivo(fileInput: any){
-    if (fileInput && fileInput.files && fileInput.files.length > 0) {
-      // Obtiene el primer archivo seleccionado (puedes manejar múltiples archivos si es necesario)
-      const file = fileInput.files[0];
-
-      const imgRef = ref(this.storage, `images/${file.name}`)
-
-      uploadBytes(imgRef, file)
-      .then(x => {console.log(x)})
-      .catch(err => {console.error(err)})
-    }else{
-      alert("Debes agregar la imagen del producto.")
-      return
+    if (event && event.files && event.files.length > 0){
+      this.file = event.target.files[0];
+      this.uploaded = true;
     }
   }
 
@@ -129,18 +118,14 @@ export class AddProductoComponent {
   }
 
   onSubmit(){
-    if(this.file){
+    if(this.uploaded){
       const imgRef = ref(this.storage, `${this.producto.colegio.nombre}/${this.file.name}`);
-
       uploadBytes(imgRef, this.file)
       .then((snapshot) => {
         return getDownloadURL(imgRef);
       })
       .then((downloadURL) => {
-        this.producto.img_url = downloadURL;
-        this.firebaseService.addProducto(this.producto)
-        .then(value => alert("Producto agregado con éxito"))
-        .catch(err => console.error("Error ",err));
+        this.producto.img_url = downloadURL;       
         
       })
       .catch(err => {console.error('Error al cargar la imagen: ',err)})
@@ -148,13 +133,20 @@ export class AddProductoComponent {
     }else{
       console.log("Producto ingresado sin imagen.");
     }
+    if(this.producto.nombre != "" && this.producto.descripcion != ""){
+      this.firebaseService.addProducto(this.producto)
+      .then(value => alert("Producto agregado con éxito"))
+      .catch(err => console.error("Error ",err));
+    }else{
+      alert("Debe agregar nombre y/o descripción del producto.")
+    }
+    
   }  
 
-  ngOnInit(): void {
-    this.activateRoute.params.subscribe(params => {
+  async ngOnInit() {
+      const params = await firstValueFrom(this.activateRoute.params);
       const id = params['id'];
       this.getColegio(id);
-    })
 
   }
 

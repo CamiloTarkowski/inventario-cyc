@@ -2,32 +2,40 @@
     <div class="main">
         <h1 class="text-center">{{colegio?.fullname}} <a class="text-center" routerLink="../../edit-colegio/{{ colegio?.id }}"><i class="fa-solid fa-pen"></i></a></h1>
 
-        <div class="container">
+        <div class="container-xxl">
             <div class="row">
-              <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let producto of prodsFiltrados">
-                <div  class="card cardimg shadow-sm mx-auto m-2" style="max-width: 300px;" routerLink="/producto/{{ producto?.id }}">
-                    <div>
-                        <img src="{{ producto?.img_url }}" class="card-img-top img_producto">
+              <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let producto of productos">
+                <div class="card cardimg shadow-sm mx-auto">
+                    <div *ngIf="producto.img_url != '' " class="onlyimg">
+                        <img src="{{ producto?.img_url }}" routerLink="/producto/{{ producto?.id }}" class="card-img-top img_producto" style="max-width: 100%; height: 350px;">
                     </div>
-                    <div *ngIf="producto.img_url == null">
-                        <img src="https://firebasestorage.googleapis.com/v0/b/inventario-cyc.appspot.com/o/images%2Fsinimagen.jpg?alt=media&token=2a3a77a2-a45f-4f30-9b92-9ed13a3a91fd" routerLink="/producto/{{ producto?.id }}" class="card-img-top img_producto">
+                    <div *ngIf="producto.img_url == '' " class="onlyimg">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/inventario-cyc.appspot.com/o/images%2Fsinimagen.jpg?alt=media&token=2a3a77a2-a45f-4f30-9b92-9ed13a3a91fd" routerLink="/producto/{{ producto?.id }}" class="card-img-top img_producto" style="max-width: 100%; height: 350px;">
                     </div>
                     <div class="card-body">
-                        <p class="card-text fs-4 nombre">{{ producto?.nombre }}</p>
-                        <p class="card-text text fs-6 descripcion">{{ producto?.descripcion }}</p>
+                        <p class="card-text fs-6 nombre">{{ producto?.nombre }}</p>
+                        <div class="d-flex justify-content-between">
+                            <div class="card-text fs-6 nombre text-danger">{{ producto?.colegio.nombre }}</div>
+                            <div class="text-end text-secondary fs-7">({{ cantTotal(producto) }} unidades)</div>
+                        </div>
+                        <div class="descripcion overflow-hidden">
+                            <p class="card-text">{{ producto?.descripcion }}</p>
+                        </div>
+                        <div class="text-center">
+                            <span class="text-success" *ngIf="minimo(producto) != 0">{{ minimo(producto) | pesoChileno }} -</span>
+                            <span class="text-success text-align-center">{{ maximo(producto) | pesoChileno }} </span>
+                        </div>           
                     </div>
                 </div>
               </div>
             </div>
+            <div *ngIf="productos.length == 0">
+                (Aún no hay productos).          
+            </div>
+            <div class = "justify-content-center pb-2">
+                <button type="button" class="btn btn-outline-success" routerLink="/add-producto/{{ colegio?.id }}">Agrega un producto para este colegio</button>
+            </div>
           </div>
-          
-        <div *ngIf="prodsFiltrados.length == 0">
-            Aún no hay productos registrados para este colegio.             
-        </div>
-        
-        <div class = "justify-content-center pb-2">
-            <button type="button" class="btn btn-outline-success" routerLink="/add-producto/{{ colegio?.id }}">Agrega un producto para este colegio</button>
-        </div>
         
     </div>       
 </body>

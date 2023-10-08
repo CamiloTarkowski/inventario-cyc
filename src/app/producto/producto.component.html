@@ -1,31 +1,45 @@
 <body>
     <div class="main shadow-sm">
-        <h1>
-            {{producto?.nombre}}
-        </h1>
-        <a routerLink="../../edit-producto/{{ producto?.id }}">Editar producto</a>
-        <p>{{ producto?.descripcion }}</p>
-        <div *ngIf="producto?.img_url">
-            <img src="{{ producto?.img_url}}" alt="" width="300">
-        </div>
-        <div *ngIf="producto?.img_url == null">
-            <img src="https://firebasestorage.googleapis.com/v0/b/inventario-cyc.appspot.com/o/images%2Fsinimagen.jpg?alt=media&token=2a3a77a2-a45f-4f30-9b92-9ed13a3a91fd" alt="" width="300">
-        </div>
-        
-        <h1>Tallas</h1>
-        <table class = "table table-bordered border-success">
-            <thead>
-                <tr>
-                    <th *ngFor = "let talla of producto?.talla"> {{ talla?.n_talla }}</th>
-                </tr>
 
-                
-            </thead>
-            <tbody>
-                <tr>
-                    <td *ngFor = "let talla of producto?.talla">{{ talla?.cantidad}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="box_product">
+            <div class="container p-5">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div *ngIf="producto?.img_url">
+                            <img src="{{ producto?.img_url}}" alt="" width="500">
+                        </div>
+                        <div *ngIf="producto?.img_url == null">
+                            <img src="https://firebasestorage.googleapis.com/v0/b/inventario-cyc.appspot.com/o/images%2Fsinimagen.jpg?alt=media&token=2a3a77a2-a45f-4f30-9b92-9ed13a3a91fd" alt="" width="300">
+                        </div>                        
+                    </div>
+                    <div class="col-lg-4 p-4 border border-secondary rounded">
+                        <h1 class="fs-4 fw-bold">{{producto?.nombre}}</h1>
+                        <p>{{ producto?.descripcion }}</p>
+                        <a routerLink="../../edit-producto/{{ producto?.id }}">Editar producto</a>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Talla</th>
+                                    <th>Unidades</th>
+                                    <th><i class="fa-solid fa-money-bill"></i></th>
+                                    <th><i class="fa-solid fa-location-dot"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let talla of producto.talla">
+                                    <td class="fw-bold">{{talla?.n_talla}}</td>
+                                    <td>{{talla?.cantidad}}</td>
+                                    <td>{{talla?.precio | pesoChileno}}</td>
+                                    <td *ngIf="talla?.ubicacion == ''">N/E</td>
+                                    <td *ngIf="talla?.ubicacion != ''">{{talla?.ubicacion}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>

@@ -32,9 +32,9 @@ export class FirebaseService {
     .snapshotChanges()
     .pipe(
       map((snapshot: any) => {
-        const data = snapshot.payload.val(); // 'data' son los valores del elemento
-        const id = snapshot.payload.key; // id es el 'document id' de este elemento 
-        return { id, ...data };  //se retorna el elemento + el id del documento
+        const data = snapshot.payload.val();
+        const id = snapshot.payload.key; 
+        return { id, ...data };  
       })
    );  
   }
@@ -56,9 +56,9 @@ export class FirebaseService {
     .snapshotChanges()
     .pipe(
       map((snapshot: any) => {
-        const data = snapshot.payload.val(); // 'data' son los valores del elemento
-        const id = snapshot.payload.key; // id es el 'document id' de este elemento 
-        return { id, ...data };  //se retorna el elemento + el id del documento
+        const data = snapshot.payload.val(); 
+        const id = snapshot.payload.key; 
+        return { id, ...data }; 
       })
    );  
   }
@@ -85,24 +85,21 @@ export class FirebaseService {
   }
 
   async addColegio(col: any) {
-    let colegios: any;
-    this.getColegios()
-      .subscribe(data => {  
-        colegios = data;
-        if (colegios.some((c: any) => c.nombre === col.nombre)) {
-          return;
-        }
-        else{
-          const colegio = {
-            nombre: col.nombre,
-            fullname: col.fullname,
-            comuna: col.comuna,
-            region: col.region
-          }
-          this.router.navigate(['/colegios']);
-          return this.db.list('colegios').push(colegio);
-        }
-      });
+    const colegios = await firstValueFrom(this.getColegios());
+    if (colegios.some((c: any) => c.nombre === col.nombre)) {
+      alert("Colegio que desea ingresar ya está registrado. ")
+      return;
+    }
+    else{
+      const colegio = {
+        nombre: col.nombre,
+        fullname: col.fullname,
+        comuna: col.comuna,
+        region: col.region
+      }
+      this.router.navigate(['/colegios']);
+      return this.db.list('colegios').push(colegio);
+    }
   }
 
   async addVenta(resumen: any, nuevoID: number){
@@ -134,22 +131,15 @@ export class FirebaseService {
   }
 
   async addProducto(producto: any) {
-    let productos: any;
-
-    this.getProductos()
-      .subscribe(data => {
-        productos = data;
-        if (productos.some((p: any) => p.nombre === producto.nombre)) {
-         return;
-       }
-       else{
-        console.log("holaaaaaaaa");
-       }
-       const productRef = this.db.list('/productos');
-       const idColegio = producto.colegio.id;
-       this.router.navigate(['/productos/'+idColegio]);
-       return productRef.push(producto);
-       })
+    const productos = await firstValueFrom(this.getProductos());
+    if (productos.some((p: any) => p.nombre === producto.nombre && p.colegio.nombre === producto.colegio.nombre)) {
+      alert("Producto ya se encuentra registrado.")
+      return;
+    }
+    const productRef = this.db.list('/productos');
+    const idColegio = producto.colegio.id;
+    this.router.navigate(['/productos/'+idColegio]);
+    return productRef.push(producto);
   }
 
   getTallaDeProducto(idProducto: string, idTalla: number) {

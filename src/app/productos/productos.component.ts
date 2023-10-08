@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-productos',
@@ -10,17 +11,40 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductosComponent {
 
   productos: any[] = [];
-  prodsFiltrados : any[] = [];
   colegio: any;
 
 
-  filtrar(id: string){
-    for(let producto of this.productos){
-      if(producto.colegio.id === id){
-        this.prodsFiltrados.push(producto);
+
+
+  minimo(producto: any){
+    const tallas = producto.talla;
+    let minimo = Number.MAX_VALUE;
+    for(const talla of tallas){
+      if(talla.precio < minimo){
+        minimo = talla.precio;
       }
     }
+    return minimo;
   }
+
+  maximo(producto: any){
+    const tallas = producto.talla;
+    let maximo = 0;
+    for(const talla of tallas){
+      if(talla.precio > maximo){
+        maximo = talla.precio;
+      }
+    }
+    return maximo;
+  }
+
+  cantTotal(producto: any){
+    const tallas = producto.talla;
+    const cantidadTotal = tallas.reduce((total: number, talla: any) => total + talla.cantidad, 0);
+    return cantidadTotal;
+
+  }
+
   
   constructor(private firebaseService: FirebaseService,
   private route: ActivatedRoute,
@@ -36,21 +60,17 @@ export class ProductosComponent {
   });
 }
 
-  ngOnInit(): void {
-  this.route.params.subscribe((params) => {
+  async ngOnInit() {
+    const params = await firstValueFrom(this.route.params);
     const id = params['id'];
-    this.getColegio(id);
+    this.firebaseService.getColegioPorId(id).subscribe(
+      data => { 
+        this.colegio = data;
+      }
+    )
 
-    this.firebaseService.getProductos().subscribe(
-      (productos) => {
-        this.productos = productos;
-
-        this.filtrar(id);
-      },
-      (err) => {
-        this.router.navigate(['/']);
-        }
-      );
+    this.firebaseService.getProductosByColegio(id).subscribe(data => {
+      this.productos = data;
     });
   }
 }
