@@ -38,7 +38,8 @@ const routes: Routes = [
   },
   {
     path: 'productos/:id',
-    component:ProductosComponent
+    component:ProductosComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'colegios',

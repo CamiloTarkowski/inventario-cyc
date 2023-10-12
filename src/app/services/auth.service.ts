@@ -33,17 +33,18 @@ export class AuthService {
   }
 
   isLogged(): Observable<boolean> {
+    let cualquiera: Observable<boolean>;
     this.auth.onAuthStateChanged((user) => {
       if (user) {
         console.log("entré al if")
-        return of(true);
+        cualquiera = of(true);
       } else {
         console.log("entre al else")
-        return of(false);
+        cualquiera = of(false);
       }
     })
-    console.log("no entré a ni una weá")
-    return of(false);
+    console.log("no entré")
+    return cualquiera;
   }
 
 
