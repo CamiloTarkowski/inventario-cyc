@@ -14,20 +14,27 @@ import { VentasComponent } from './ventas/ventas.component';
 import { VentaComponent } from './venta/venta.component';
 import { AllProductosComponent } from './all-productos/all-productos.component';
 import { AddProductNoschoolComponent } from './add-product-noschool/add-product-noschool.component';
+import { LoginComponent } from './login/login.component';
+import { authGuard } from './guards/auth.guard';
+import { NotfoundComponent } from './notfound/notfound.component';
+
 
 
 const routes: Routes = [
   {
     path: '',
     component:InicioComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'inventario/:id',
     component: InventarioComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'producto/:id',
     component:ProductoComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'productos/:id',
@@ -35,43 +42,65 @@ const routes: Routes = [
   },
   {
     path: 'colegios',
-    component:ColegiosComponent
+    component:ColegiosComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'vender',
-    component: VenderComponent
+    component: VenderComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'add-producto/:id',
-    component: AddProductoComponent
+    component: AddProductoComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'edit-producto/:id',
-    component: EditProductoComponent
+    component: EditProductoComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'edit-colegio/:id',
-    component: EditColegioComponent
+    component: EditColegioComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'colegio',
-    component: ColegioComponent
+    component: ColegioComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'ventas',
-    component: VentasComponent
+    component: VentasComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'venta/:id',
-    component: VentaComponent
+    component: VentaComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'all-productos',
-    component: AllProductosComponent
+    component: AllProductosComponent,
+    canActivate: [authGuard]
   },
   {
     path: 'add-product-noschool',
-    component: AddProductNoschoolComponent
+    component: AddProductNoschoolComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
+  {
+    path: 'notfound',
+    component: NotfoundComponent
   }
 
 ];

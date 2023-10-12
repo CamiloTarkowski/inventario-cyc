@@ -1,0 +1,11 @@
+.main{
+    max-width: 600px;
+    margin: auto;
+    margin-top: 300px;
+    border: 1px solid ;
+    border-color: rgb(134, 159, 207);
+    border-radius: 8px;
+    padding: 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}

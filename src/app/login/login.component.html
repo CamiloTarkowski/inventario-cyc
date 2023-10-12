@@ -1,1 +1,24 @@
-<p>login works!</p>
+<body class="p-2">
+
+   
+    <div class="main rounded shadow-sm bg-light">
+        
+        <h4 class="text-center p-3 fw-bold">Accede</h4>
+        <form (ngSubmit)="iniciarSesion()">        
+            <div class="form-floating mb-3">
+                <input type="email" [(ngModel)]="email" name="email" class="form-control fw-bold" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Correo electrónico</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" [(ngModel)]="password" name="password" class="form-control fw-bold" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+
+            <div class="d-grid gap-2 mt-3" style="height: 50px">
+                <button class="btn btn-primary fw-bold" type="submit">Ingresa</button>
+            </div>
+        </form>
+    </div>
+</body>
+
