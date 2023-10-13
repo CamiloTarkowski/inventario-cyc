@@ -45,6 +45,12 @@ export class AuthService {
     });
   }
 
+  obsIsLogged(): Observable<boolean>{
+    this.auth.onAuthStateChanged.subscribe((user: any) => {
+      let cualquiera = user;
+    })
+  }
+
 
   getAuthToken(): Observable<boolean>{
     return of(true);
