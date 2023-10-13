@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'inventario-cyc';
+
+  /* constructor(private authService: AuthService){  }
+
+  async isLogged(){
+    const logeado = await this.authService.isLogged();
+    return logeado;
+  } */
+
 }

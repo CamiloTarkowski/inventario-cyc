@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   }
 
   iniciarSesion(){
-    console.log("estoy en iniciar sesion()")
     this.authService.login(this.email, this.password)
 
   }

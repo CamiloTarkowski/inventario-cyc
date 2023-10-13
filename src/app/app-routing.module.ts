@@ -16,7 +16,7 @@ import { AllProductosComponent } from './all-productos/all-productos.component';
 import { AddProductNoschoolComponent } from './add-product-noschool/add-product-noschool.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './guards/auth.guard';
-import { NotfoundComponent } from './notfound/notfound.component';
+import { noAuthGuard } from './guards/no-auth.guard';
 
 
 
@@ -94,14 +94,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [noAuthGuard]
+
   },
   {
     path: '**',
-    redirectTo: '',
-  },
-  {
-    path: 'notfound',
-    component: NotfoundComponent
+    redirectTo: 'login',
   }
 
 ];

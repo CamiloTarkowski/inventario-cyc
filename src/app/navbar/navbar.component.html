@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-lg bg-success">
+<nav *ngIf="estaLogeado" class="navbar navbar-dark navbar-expand-lg bg-success">
   <div class="container barra">
     <a class="navbar-brand text-light" routerLink="">Inicio</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +17,9 @@
         </li>
         <li class="nav-item me-4 mr-auto">
           <a class="nav-link active text-light" aria-current="page" routerLink="all-productos">Productos</a>
+        </li>
+        <li class="nav-item ml-auto" (click)="logout()">
+          <a class="nav-link active text-light" aria-current="page" >Cerrar sesión</a>
         </li>
       </ul>
     </div>
