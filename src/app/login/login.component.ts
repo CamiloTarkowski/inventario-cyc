@@ -7,7 +7,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  
+  mostrarNavbar: boolean = false;
   email = "";
   password = "";
   

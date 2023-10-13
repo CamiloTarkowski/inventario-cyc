@@ -12,6 +12,7 @@ export class AllProductosComponent implements OnInit {
   min = 0;
   max = 0;
   unidades = 0;
+  ruta!: string;
 
   constructor(private firebaseService: FirebaseService){
   }
@@ -50,6 +51,8 @@ export class AllProductosComponent implements OnInit {
     this.firebaseService.getProductos().subscribe(data => {
       this.productos = data;
     })
+
+    this.ruta = window.location.pathname;
 
     
   }
