@@ -17,6 +17,8 @@ import { AddProductNoschoolComponent } from './add-product-noschool/add-product-
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { noAuthGuard } from './guards/no-auth.guard';
+import { MaterialComponent } from './material/material.component';
+import { AddMaterialComponent } from './add-material/add-material.component';
 
 
 
@@ -89,6 +91,16 @@ const routes: Routes = [
   {
     path: 'add-product-noschool',
     component: AddProductNoschoolComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'material',
+    component: MaterialComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'add-material',
+    component: AddMaterialComponent,
     canActivate: [authGuard]
   },
   {

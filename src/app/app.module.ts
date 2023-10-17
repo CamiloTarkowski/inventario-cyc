@@ -30,6 +30,8 @@ import { VentaComponent } from './venta/venta.component';
 import { AllProductosComponent } from './all-productos/all-productos.component';
 import { AddProductNoschoolComponent } from './add-product-noschool/add-product-noschool.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { MaterialComponent } from './material/material.component';
+import { AddMaterialComponent } from './add-material/add-material.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     AllProductosComponent,
     AddProductNoschoolComponent,
     NotfoundComponent,
+    MaterialComponent,
+    AddMaterialComponent,
   ],
   imports: [
     BrowserModule,

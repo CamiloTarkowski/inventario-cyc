@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<body>
+    <div class="main">
+        <form (ngSubmit)="onSubmit()">
+          <h1>Agrega un material</h1>
+            <div class="input-group mb-3">
+                <span class="input-group-text">Nombre de material: </span>
+                <input type="text" class="form-control"  aria-label="Nombre" name="nombre">
+            </div>  
+              
+            <div class="input-group mb-3">
+                <span class="input-group-text">Descripción: </span>
+                <input type="text" class="form-control"  name="descripcion" >
+            </div>
+            
+            <div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Sube una foto:</label>                
+                <input (change)="detectFile($event)" class="form-control" type="file" id="formFile" accept="image/png, image/jpeg">
+                </div>
+            </div>
+            <br>
+            
+            <div class="d-flex justify-content-center pt-2" >
+                <button type="submit" class="btn btn-success">Agregar producto</button>
+            </div>
+
+        </form>
+    </div>
+</body>

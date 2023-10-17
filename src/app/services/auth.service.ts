@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 
@@ -45,8 +44,4 @@ export class AuthService {
     });
   }
 
-
-  getAuthToken(): Observable<boolean>{
-    return of(true);
-  }
 }
