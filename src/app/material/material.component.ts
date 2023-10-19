@@ -11,11 +11,28 @@ export class MaterialComponent {
 
   file: File = {} as File;
   uploaded = false;
-  material!: any;
   existencia = 1;
+  material = {
+    id: '',
+    nombre: '',
+    descripcion: '',
+    categoria: '',
+    cantidad: 0,
+    unidadMedida: '',
+    ubicacion: '',
+    img_url: '',
+    precio: 0,
+    fechaAdquisicion: '',
+    proveedor: {
+      nombre: '',
+      fono: '',
+      direccion: ''
+    }
+  }
+
   proveedores = [{
       nombre: "AProveedor 1",
-      telefono: "+56912345678",
+      fono: "+56912345678",
       direccion: "Calle Bonita 69, Independencia."
     },
     {
