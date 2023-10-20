@@ -136,10 +136,9 @@ export class FirebaseService {
       alert("Producto ya se encuentra registrado.")
       return;
     }
-    const productRef = this.db.list('/productos');
     const idColegio = producto.colegio.id;
     this.router.navigate(['/productos/'+idColegio]);
-    return productRef.push(producto);
+    return this.db.list(`productos`).push(producto);
   }
 
   getTallaDeProducto(idProducto: string, idTalla: number) {
@@ -173,12 +172,52 @@ export class FirebaseService {
     );
   }
 
-  getVenta(id: number): Observable<any> {
-    return this.db.object(`ventas/${id}`).valueChanges();
+  getMateriales(): Observable<any[]> {
+    return this.db.list('materiales').valueChanges();
+  }
+
+  getMaterial(id: string): Observable<any>{
+    return this.db.list(`materiales/${id}`).valueChanges();
+  }
+
+  updateMaterial(id: string, material: any){
+    return this.db.object(`materiales/${id}`).update(material);
+  }
+
+  async addMaterial(material: any){
+    const materiales = await firstValueFrom(this.getMateriales());
+    if(materiales.some((m: any) => m.nombre === material.nombre)){
+      alert("Material ya se encuentra registrado.")
+      return;
+    }
+    return this.db.list(`materiales`).push(material);
+  }
+
+  getProveedores(): Observable<any>{
+    return this.db.list(`proveedores`).valueChanges();
+  }
+
+  getProveedor(id: string){
+    return this.db.object(`proveedores/${id}`).valueChanges();
+  }
+
+  updateProveedor(id: string, proveedor: any){
+    return this.db.object(`proveedores/${id}`).update(proveedor);
+  }
+
+  async addProveedor(proveedor: any){
+    const proveedores = await firstValueFrom(this.getProveedores());
+    if (proveedores.some((p: any) => p.nombre === proveedor.nombre)) {
+      alert("Proveedor ya se encuentra registrado.")
+      return;
+    }
+    return this.db.list(`proveedores`).push(proveedor);
 
   }
 
-  
+  getVenta(id: number): Observable<any> {
+    return this.db.object(`ventas/${id}`).valueChanges();
+  }
 
   async actualizarStock(resumen: any[]) {
     for (const r of resumen) {
