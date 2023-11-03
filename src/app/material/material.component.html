@@ -16,7 +16,7 @@
             <div>
               <div class="mb-3">
                 <label for="formFile" class="form-label">Sube una foto:</label>                
-                <input (change)="detectFile($event)" class="form-control" type="file" id="formFile" accept="image/png, i mage/jpeg">
+                <input (change)="detectFile($event)" class="form-control" type="file" id="formFile" accept="image/png, image/jpeg">
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
             <div class="d-flex">
 
                 <label for="cantidad">Cantidad: </label>
-                <input [(ngModel)]="material.cantidad" class="form-control" type="number">
+                <input name="cantidad" [(ngModel)]="material.cantidad" class="form-control" type="number">
 
                 <label class="form-label" for="unidadMedida">Unidad: </label>
                 <select [(ngModel)]="material.unidadMedida" class="form-select" name="unidadMedida" id="unidadMedida">
@@ -62,13 +62,13 @@
             <h1>Proveedor</h1>
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="existencia" [(ngModel)]="existencia" value="1" id="flexRadioDefault1" checked>
+                <input class="form-check-input" type="radio" name="existencia" [(ngModel)]="existencia" value="1" id="flexRadioDefault1" >
                 <label class="form-check-label" for="flexRadioDefault1">
                   Existente
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="existencia" [(ngModel)]="existencia" value="2"  id="flexRadioDefault2">
+                <input class="form-check-input" type="radio" name="existencia" [(ngModel)]="existencia" value="2"  id="flexRadioDefault2" checked>
                 <label class="form-check-label" for="flexRadioDefault2">
                     Nuevo
                 </label>
@@ -81,13 +81,13 @@
 
             <div *ngIf="existencia == 2">
                 <label class="form-label" for="nombre">Nombre: </label>
-                <input class="form-control" [(ngModel)]="material.proveedor.nombre" type="text" id="nombre">
+                <input class="form-control" [(ngModel)]="material.proveedor.nombre" name="proveedor.nombre" type="text" id="nombre">
 
                 <label class="form-label" for="fono">Teléfono: </label>
-                <input class="form-control" [(ngModel)]="material.proveedor.fono" type="text" id="fono">
+                <input class="form-control" [(ngModel)]="material.proveedor.fono" name="proveedor.fono" type="text" id="fono">
 
                 <label class="form-label" for="direccion">Dirección: </label>
-                <input class="form-control" [(ngModel)]="material.proveedor.direccion" type="form" type="text" id="direccion">
+                <input class="form-control" [(ngModel)]="material.proveedor.direccion" name="proveedor.direccion" type="text" id="direccion">
             </div>
 
             <div class="d-flex justify-content-center pt-2" >

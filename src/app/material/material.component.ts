@@ -33,17 +33,17 @@ export class MaterialComponent {
   proveedores = [{
       nombre: "AProveedor 1",
       fono: "+56912345678",
-      direccion: "Calle Bonita 69, Independencia."
+      direccion: "Calle Bonita 59, Independencia."
     },
     {
       nombre: "CProveedor 2",
       telefono: "+56912345678",
-      direccion: "Calle Bonita 69, Independencia."
+      direccion: "Calle Bonita 59, Independencia."
     },
     {
       nombre: "BProveedor 3",
       telefono: "+56912345678",
-      direccion: "Calle Bonita 69, Independencia."
+      direccion: "Calle Bonita 59, Independencia."
     }
   ]
   
@@ -70,8 +70,7 @@ export class MaterialComponent {
         return getDownloadURL(imgRef);
       })
       .then((downloadURL) => {
-        this.material.img_url = downloadURL;       
-        
+        this.material.img_url = downloadURL;      
       })
       .catch(err => {console.error('Error al cargar la imagen: ',err)})
 
@@ -79,8 +78,14 @@ export class MaterialComponent {
       console.log("Material ingresado sin imagen.");
     }
     if(this.material.nombre != "" && this.material.descripcion != ""){
-      this.firebaseService.addProducto(this.material)
-      .then(value => alert("Material agregado con éxito"))
+      this.firebaseService.addMaterial(this.material)
+      .then(value => {
+        alert("Material agregado con éxito");
+        if(this.existencia === 2){
+          console.log("ESTOY DENTRO DEL IF EXISTENCIA")
+          this.firebaseService.addProveedor(this.material.proveedor);
+        }        
+      })
       .catch(err => console.error("Error ",err));
     }else{
       alert("Debe agregar nombre y/o descripción del producto.")
