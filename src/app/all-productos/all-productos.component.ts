@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-all-productos',
@@ -14,7 +15,8 @@ export class AllProductosComponent implements OnInit {
   unidades = 0;
   ruta!: string;
 
-  constructor(private firebaseService: FirebaseService){
+  constructor(
+    private productosSvc: ProductosService){
   }
 
   minimo(producto: any){
@@ -48,7 +50,7 @@ export class AllProductosComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.firebaseService.getProductos().subscribe(data => {
+    this.productosSvc.getProductos().subscribe(data => {
       this.productos = data;
     })
 

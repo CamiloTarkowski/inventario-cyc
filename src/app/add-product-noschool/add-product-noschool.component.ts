@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
+import { ColegiosService } from '../services/colegios.service';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-add-product-noschool',
@@ -93,8 +95,11 @@ export class AddProductNoschoolComponent implements OnInit{
     }]
   }
 
-  constructor(private firebaseService: FirebaseService,
-    private storage: Storage){
+  constructor(
+    private firebaseService: FirebaseService,
+    private storage: Storage,
+    private productosSvc: ProductosService,
+    private colegiosSvc: ColegiosService){
 
   }
 
@@ -110,7 +115,7 @@ export class AddProductNoschoolComponent implements OnInit{
   colegioSelected(event: any): void {
     const selectedOption = event.target.options[event.target.selectedIndex];
     const id_colegio = selectedOption.getAttribute('id');
-    this.firebaseService.getColegioPorId(id_colegio).subscribe(
+    this.colegiosSvc.getColegioPorId(id_colegio).subscribe(
       data => { this.producto.colegio = data }
     )
   }
@@ -132,7 +137,7 @@ export class AddProductNoschoolComponent implements OnInit{
       console.log("Producto ingresado sin imagen.");
     }
     if(this.producto.nombre != "" && this.producto.descripcion != ""){
-      this.firebaseService.addProducto(this.producto)
+      this.productosSvc.addProducto(this.producto)
       .then(value => alert("Producto agregado con éxito"))
       .catch(err => console.error("Error ",err));
     }else{
@@ -142,7 +147,7 @@ export class AddProductNoschoolComponent implements OnInit{
   }  
 
   ngOnInit(): void{
-    this.firebaseService.getColegios().subscribe(data => {
+    this.colegiosSvc.getColegios().subscribe(data => {
       this.colegios = data;
       this.producto.colegio = data[0];
     })

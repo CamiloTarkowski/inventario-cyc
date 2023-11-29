@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { firstValueFrom } from 'rxjs';
+import { ColegiosService } from '../services/colegios.service';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-add-producto',
@@ -96,9 +98,11 @@ export class AddProductoComponent {
     }]
   }
 
-  constructor(private firebaseService: FirebaseService,
+  constructor(
     private activateRoute: ActivatedRoute,
-    private storage: Storage){
+    private storage: Storage,
+    private colegiosSvc: ColegiosService,
+    private productosSvc: ProductosService){
       
   }
   file: File = {} as File;
@@ -111,7 +115,7 @@ export class AddProductoComponent {
   }
 
  getColegio(id: string){
-    this.firebaseService.getColegioPorId(id)
+    this.colegiosSvc.getColegioPorId(id)
     .subscribe(colegio =>
       this.producto.colegio = colegio
     )
@@ -134,7 +138,7 @@ export class AddProductoComponent {
       console.log("Producto ingresado sin imagen.");
     }
     if(this.producto.nombre != "" && this.producto.descripcion != ""){
-      this.firebaseService.addProducto(this.producto)
+      this.productosSvc.addProducto(this.producto)
       .then(value => alert("Producto agregado con éxito"))
       .catch(err => console.error("Error ",err));
     }else{

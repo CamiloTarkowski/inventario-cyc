@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
-import { FirebaseService } from '../services/firebase.service';
+import { MaterialesService } from '../services/materiales.service';
+import { ProveedoresService } from '../services/proveedores.service';
 
 @Component({
   selector: 'app-material',
@@ -49,7 +50,8 @@ export class MaterialComponent implements OnInit {
   
   constructor(
     private storage: Storage,
-    private firebaseService: FirebaseService
+    private materialesSvc: MaterialesService,
+    private proveedorSvc: ProveedoresService
     ){
 
   }
@@ -78,12 +80,12 @@ export class MaterialComponent implements OnInit {
       console.log("Material ingresado sin imagen.");
     }
     if(this.material.nombre != "" && this.material.descripcion != ""){
-      this.firebaseService.addMaterial(this.material)
+      this.materialesSvc.addMaterial(this.material)
       .then(value => {
         alert("Material agregado con éxito");
         if(this.existencia === 2){
           console.log("ESTOY DENTRO DEL IF EXISTENCIA")
-          this.firebaseService.addProveedor(this.material.proveedor);
+          this.proveedorSvc.addProveedor(this.material.proveedor);
         }        
       })
       .catch(err => console.error("Error ",err));
@@ -95,7 +97,7 @@ export class MaterialComponent implements OnInit {
   
   
   ngOnInit(): void{
-    this.firebaseService.getProveedores().subscribe(
+    this.proveedorSvc.getProveedores().subscribe(
       data => {
         this.proveedores = data; 
       }

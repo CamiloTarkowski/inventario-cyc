@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute } from '@angular/router';
+import { ColegiosService } from '../services/colegios.service';
 
 @Component({
   selector: 'app-edit-colegio',
@@ -12,11 +12,12 @@ export class EditColegioComponent {
   colegio: any = {};
   id!: string;
 
-  constructor(private firebaseService: FirebaseService,
+  constructor(
+    private colegiosSvc: ColegiosService,
     private route: ActivatedRoute) { }
 
   getColegio(id: string){
-    this.firebaseService.getColegioPorId(id).subscribe(colegio => {
+    this.colegiosSvc.getColegioPorId(id).subscribe(colegio => {
       this.colegio = colegio;
       console.log(this.colegio);
     })
@@ -34,7 +35,7 @@ export class EditColegioComponent {
   }
 
   editarColegio(){
-    this.firebaseService.updateColegio(this.id, this.colegio)
+    this.colegiosSvc.updateColegio(this.id, this.colegio)
     .then()
     .catch()
   }
