@@ -9,14 +9,14 @@
             <h2 class="titulo">Colegios</h2>
             <div class="container py-3">
                 <div class="row px-3">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 text-start pb-3" *ngFor="let colegio of colegios$ | async">
-                        <a href="/productos/{{ colegio.id }}" class ="nom-colegio link-danger link-offset-2 link-underline link-underline-opacity-0 link-opacity-50-hover">{{colegio.nombre}}</a>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12  text-start pb-3" *ngFor="let colegio of colegios$ | async">
+                        <a href="/productos/{{ colegio.id }}" class ="nom-colegio link-offset-2 texto">{{colegio.nombre}}</a>
                     </div>
                 </div>
             </div>
             
             <div *ngIf="rutaActual != '/colegios'" class="agrega pt-3 pb-4">
-                <button type="button" class="btn btn-outline-danger" routerLink="/colegios">+ Agrega un nuevo colegio</button>
+                <button type="button" class="btn btn-outline-success" routerLink="/colegios">+ Agrega un nuevo colegio</button>
             </div>           
         </div>
     </div>

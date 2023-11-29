@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { FirebaseService } from '../services/firebase.service';
 
@@ -7,7 +7,7 @@ import { FirebaseService } from '../services/firebase.service';
   templateUrl: './material.component.html',
   styleUrls: ['./material.component.css']
 })
-export class MaterialComponent {
+export class MaterialComponent implements OnInit {
 
   file: File = {} as File;
   uploaded = false;
@@ -91,7 +91,16 @@ export class MaterialComponent {
       alert("Debe agregar nombre y/o descripción del producto.")
     }
     
-  }  
+  }
+  
+  
+  ngOnInit(): void{
+    this.firebaseService.getProveedores().subscribe(
+      data => {
+        this.proveedores = data; 
+      }
+    )
 
+  }
 
 }

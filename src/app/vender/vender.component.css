@@ -9,6 +9,12 @@
     width: 200px;
   }
 
+  .main{
+    display: flex;
+    justify-content: center;
+
+  }
+
   .selected-option {
     color: #999;
   }

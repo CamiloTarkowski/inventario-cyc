@@ -16,8 +16,8 @@ body{
 }
 
 .title{
-  background-color: #81165c;
-  color: #e3c5d8;
+  background-color: #268116;
+  color: #fff;
   border-radius: 8px 8px 0px 0px;
 }
 
@@ -45,11 +45,11 @@ h2{
     transform: scale(1);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   }
+
   .cuadrado:hover {
     transform: scale(1.03); 
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); 
   }
-
   
   .contenido {
     display: flex;
@@ -68,23 +68,23 @@ h2{
   }
   
   .vender{
-    background-color: #4b2ca2;
-    color: #e8bef5;
+    background-color: rgb(205, 175, 10);
+    color: #ffffff;
   }
 
   .historial{
-    background-color: #d9db60;
-    color: #d50636;
+    background-color: #de6920;
+    color: #ffffff;
   }
 
   .colegios{
-    background-color: #883c2d;
-    color: #dbd8f1;
+    background-color: #d82733;
+    color: #fff;
   }
 
   .productos{
-    background-color: #5ff85c;
-    color: #81165c;
+    background-color: #8720c3;
+    color: #fff;
   }
 
   .font{
@@ -94,19 +94,19 @@ h2{
   }
 
   .addproductos{
-    background-color: #37eafe;
-    color: #610efc;
+    background-color: #8720c3;
+    color: #fff;
+  }
+
+  .inventario{
+    background-color: #2b20c3;
+    color: #fff;
   }
 
   .materiales{
     background-color: #0b7605;
-    color: #bae5f6;
+    color: #fff;
 
-  }
-
-  .inventario{
-    background-color: #eb600a;
-    color: #f9ccf2;
   }
 
   .max-width{

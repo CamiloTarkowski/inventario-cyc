@@ -19,13 +19,22 @@ h2{
     font-weight: 600;
 }
 
+.texto{
+    color: #268116;
+    text-decoration: none;
+}
+
+.texto:hover{
+    opacity: 0.7;
+}
+
 .main{
     margin-bottom: 30px;
 }
 
 .titulo{
-    background-color: #883c2d;
-    color: #dbd8f1;
+    background-color: rgb(212, 246, 226);
+    color: #268116;
     font-weight: bold;
     padding-top: 15px;
     padding-bottom: 15px;

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseService } from '../services/firebase.service';
 import { RegionesService } from '../services/regiones.service';
+import { ColegiosService } from '../services/colegios.service';
 
 
 
@@ -24,7 +25,7 @@ export class AddColegioComponent {
 
     ciudadesFiltradas: any[] = [];
 
-  constructor(private firebaseService: FirebaseService,
+  constructor(private colegiosSvc: ColegiosService,
     private regionesService: RegionesService) {
     
    }
@@ -43,7 +44,7 @@ export class AddColegioComponent {
 
   agregarColegio() {
     if(this.colegio.nombre != null || this.colegio.fullname != null || this.colegio.region != null || this.colegio.comuna != null){
-        this.firebaseService.addColegio(this.colegio)
+        this.colegiosSvc.addColegio(this.colegio)
         .then()
         .catch(error => console.error('Error agregando:', error));
     }else{

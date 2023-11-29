@@ -440,12 +440,9 @@ export class RegionesService {
     return this.regiones;
   }
 
-  getComunas(region: string){
-     for (let r of this.regiones){
-      if(r.region === region){
-        return r.comunas;
-      }
-    }
-    return;
+  getComunas(region: string) {
+    const regionEncontrada = this.regiones.find(r => r.region === region);
+    return regionEncontrada ? regionEncontrada.comunas : undefined;
   }
+  
 }

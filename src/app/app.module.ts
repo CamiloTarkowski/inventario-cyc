@@ -32,6 +32,8 @@ import { AddProductNoschoolComponent } from './add-product-noschool/add-product-
 import { NotfoundComponent } from './notfound/notfound.component';
 import { MaterialComponent } from './material/material.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
+import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { AddProveedorComponent } from './add-proveedor/add-proveedor.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { AddMaterialComponent } from './add-material/add-material.component';
     NotfoundComponent,
     MaterialComponent,
     AddMaterialComponent,
+    ProveedoresComponent,
+    AddProveedorComponent,
   ],
   imports: [
     BrowserModule,

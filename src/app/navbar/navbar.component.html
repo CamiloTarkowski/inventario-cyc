@@ -1,6 +1,6 @@
-<nav class="navbar navbar-dark navbar-expand-lg bg-success">
+<nav class="navbar navbar-expand-lg fixed-top blur-effect d-flex justify-content-around">
   <div class="container barra">
-    <a class="navbar-brand text-light" routerLink="">Inicio
+    <a class="navbar-brand text-dark" routerLink="">Inicio
       <i class="fa-solid fa-house"></i>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,44 +8,53 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
+
         <li class="nav-item me-4">
-          <a *ngIf="ruta=='/'" class="nav-link active text-light" aria-current="page" routerLink="/colegios">Colegios
+          <a *ngIf="ruta=='/'" class="nav-link active" aria-current="page" routerLink="/colegios">Colegios
             <i class="fa-solid fa-school"></i>
           </a>
-          <a *ngIf="ruta!='/'" class="nav-link active text-light" aria-current="page" routerLink="../colegios">Colegios
+          <a *ngIf="ruta!='/'" class="nav-link active" aria-current="page" routerLink="../colegios">Colegios
             <i class="fa-solid fa-school"></i>
           </a>
         </li>
+
         <li class="nav-item me-4">
-          <a *ngIf="ruta=='/'" class="nav-link active text-light" aria-current="page" routerLink="/vender">Vender
+          <a *ngIf="ruta=='/'" class="nav-link active" aria-current="page" routerLink="/vender">Vender
             <i class="fa-solid fa-cart-shopping"></i>
           </a>
-          <a *ngIf="ruta!='/'" class="nav-link active text-light" aria-current="page" routerLink="../vender">Vender
+          <a *ngIf="ruta!='/'" class="nav-link active" aria-current="page" routerLink="../vender">Vender
             <i class="fa-solid fa-cart-shopping"></i>
           </a>
         </li>
+
         <li class="nav-item me-4">
-          <a *ngIf="ruta=='/'" class="nav-link active text-light" aria-current="page" routerLink="/ventas">Historial de Ventas
+          <a *ngIf="ruta=='/'" class="nav-link active" aria-current="page" routerLink="/ventas">Historial de Ventas
             <i class="fa-brands fa-sellsy"></i>
           </a>
-          <a *ngIf="ruta!='/'" class="nav-link active text-light" aria-current="page" routerLink="../ventas">Historial de Ventas
+          <a *ngIf="ruta!='/'" class="nav-link active" aria-current="page" routerLink="../ventas">Historial de Ventas
             <i class="fa-brands fa-sellsy"></i>
           </a>
         </li>
+
         <li class="nav-item me-4 mr-auto">
-          <a *ngIf="ruta=='/'" class="nav-link active text-light" aria-current="page" routerLink="/all-productos">Productos
+          <a *ngIf="ruta=='/'" class="nav-link active" aria-current="page" routerLink="/all-productos">Productos
             <i class="fa-solid fa-shirt"></i>
           </a>
-          <a *ngIf="ruta!='/'" class="nav-link active text-light" aria-current="page" routerLink="../all-productos">Productos
+          <a *ngIf="ruta!='/'" class="nav-link active" aria-current="page" routerLink="../all-productos">Productos
             <i class="fa-solid fa-shirt"></i>
           </a>
         </li>
+
         <li class="nav-item ml-auto" (click)="logout()">
-          <a href="#" class="nav-link active text-light" aria-current="page" >Cerrar sesión
+          <a href="#" class="nav-link active" aria-current="page" >Cerrar sesión
             <i class="fa-solid fa-right-from-bracket"></i>
           </a>
         </li>
+        
       </ul>
     </div>
   </div>
 </nav>
+
+<br>
+<br>

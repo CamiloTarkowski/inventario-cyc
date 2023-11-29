@@ -9,3 +9,13 @@
 .navbar-toggler-icon {
     color: white; /* Cambia el color a blanco */
 }
+
+
+
+.blur-effect{
+
+    padding: 0;
+    margin: 0;
+    backdrop-filter: blur(0.4rem);
+    -webkit-backdrop-filter: blur(0.4rem); /* Para compatibilidad con navegadores WebKit */
+  }
