@@ -4,14 +4,13 @@ body{
 }
 
 .form-floating input:focus {
-    border-color: red; /* Cambia "red" al color deseado */
-    box-shadow: 0 0 0 0.25rem red; /* Cambia "red" al color deseado */
+    border-color: #268116; /* Cambia "red" al color deseado */
+    box-shadow: 0 0 0 0.25rem #268116; /* Cambia "red" al color deseado */
     opacity: 50%;
 }
 
 .form-select:focus {
-    border-color: red; /* Cambia "red" al color deseado */
-    box-shadow: 0 0 0 0.25rem red; /* Cambia "red" al color deseado */
+    border-color: #268116; /* Cambia "red" al color deseado */
     opacity: 50%;
 }
 
@@ -20,21 +19,21 @@ body{
     margin: auto;
     margin-top: 20px;
     padding: 40px;
-    background-color: #f1e9d8;
+    background-color: #ffffff;
     font-family: 'Nunito Sans', sans-serif;
     border: 3px solid;
-    border-color: #883c2d;
+    border-color: #268116;
     border-style: solid;
     border-radius: 8px; 
 }
 
 h2{
-    color: #883c2d;
+    color: #268116;
     font-weight: 600;
     margin-block: 20px;
 }
 
 .color-boton{
-    background-color: #883c2d;
+    background-color: #268116;
     color: white;
 }
