@@ -1,8 +1,13 @@
 .barra{
-    max-width: 1324px;
     font-family: 'Nunito Sans', sans-serif;
     font-weight: bold;
     font-size: 15px;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;    
 }
 
 /* Estilo personalizado para el ícono de la barra de navegación */
@@ -18,4 +23,24 @@
     margin: 0;
     backdrop-filter: blur(0.4rem);
     -webkit-backdrop-filter: blur(0.4rem); /* Para compatibilidad con navegadores WebKit */
+  }
+
+  header{
+    background-color: aqua;
+  }
+
+  .sin-vineta{
+    list-style-type: none;
+  }
+
+  ul>li>a{
+    text-decoration: none;
+    color: #000000;
+  }
+
+  .nav2{
+    max-width: 1324px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

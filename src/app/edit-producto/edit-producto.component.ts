@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FirebaseService } from '../services/firebase.service';
 import { Storage, ref, uploadBytes } from '@angular/fire/storage';
+import { ColegiosService } from '../services/colegios.service';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-edit-producto',
@@ -15,7 +16,9 @@ export class EditProductoComponent {
 
   producto: any = {}; 
 
-  constructor(private firebaseService: FirebaseService,
+  constructor(
+    private colegioSvc: ColegiosService,
+    private productoSvc: ProductosService,
     private activateRoute: ActivatedRoute,
     private storage: Storage){
       
@@ -32,7 +35,7 @@ export class EditProductoComponent {
   }
 
  getColegio(id: string){
-    this.firebaseService.getColegioPorId(id)
+    this.colegioSvc.getColegioPorId(id)
     .subscribe(colegio => {
       this.producto.colegio = colegio
       console.log(colegio);
@@ -41,13 +44,13 @@ export class EditProductoComponent {
     )
   }
   getProducto(id: string){
-    this.firebaseService.getProductoPorId(id).subscribe( data => {
+    this.productoSvc.getProductoPorId(id).subscribe( data => {
       this.producto = data; 
     })
   }
 
   onSubmit(){
-    this.firebaseService.addProducto(this.producto)
+    this.productoSvc.addProducto(this.producto)
       .then()
       .catch(error => console.error('Error agregando:', error));
   }  
@@ -60,6 +63,6 @@ export class EditProductoComponent {
   }
 
   editarProducto(){
-    this.firebaseService.updateProducto(this.id, this.producto)
+    this.productoSvc.updateProducto(this.id, this.producto)
   }
 }

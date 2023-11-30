@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { Observable } from 'rxjs';
-import { ColegioComponent } from '../colegio/colegio.component';
 import { ColegiosService } from '../services/colegios.service';
 
 @Component({

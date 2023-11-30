@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { ColegiosService } from '../services/colegios.service';
 import { ProductosService } from '../services/productos.service';
@@ -96,7 +95,6 @@ export class AddProductNoschoolComponent implements OnInit{
   }
 
   constructor(
-    private firebaseService: FirebaseService,
     private storage: Storage,
     private productosSvc: ProductosService,
     private colegiosSvc: ColegiosService){

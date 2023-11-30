@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { Observable } from 'rxjs';
+import { ColegiosService } from '../services/colegios.service';
 
 
 @Component({
@@ -14,11 +14,11 @@ export class InicioComponent implements OnInit {
   mostrarFormulario = false;
 
 
-  constructor(private db : FirebaseService) { }
+  constructor(private colegiosSvc : ColegiosService) { }
 
   ngOnInit(): void {
 
-    this.colegios$ = this.db.getColegios();
+    this.colegios$ = this.colegiosSvc.getColegios();
     this.mostrarFormulario = false;
 
 

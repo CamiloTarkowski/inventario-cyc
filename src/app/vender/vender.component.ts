@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { ResumenVentaService } from '../services/resumen-venta.service';
+import { ColegiosService } from '../services/colegios.service';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-vender',
@@ -44,7 +45,8 @@ export class VenderComponent implements OnInit {
 
 
 constructor(
-  private firebaseService: FirebaseService,
+  private colegiosSvc: ColegiosService,
+  private productosSvc: ProductosService,
   private res: ResumenVentaService
    ) { }
 
@@ -53,12 +55,12 @@ constructor(
 colegioSelected(event: any): void {
   const selectedOption = event.target.options[event.target.selectedIndex];
   const id_colegio = selectedOption.getAttribute('id');
-  this.firebaseService.getColegioPorId(id_colegio).subscribe(colegio => {
+  this.colegiosSvc.getColegioPorId(id_colegio).subscribe(colegio => {
     this.agregando_prod.colegio = colegio;
 
     }
   )
-  this.firebaseService.getProductosByColegio(id_colegio).subscribe(
+  this.productosSvc.getProductosByColegio(id_colegio).subscribe(
     productos => {
       this.prodsFiltrados = productos;
       this.agregando_prod = this.prodsFiltrados[0];
@@ -85,7 +87,7 @@ colegioSelected(event: any): void {
 productoSelected(event: any): void{
   const selectedOption = event.target.options[event.target.selectedIndex];
   const id_producto = selectedOption.getAttribute('id');
-  this.firebaseService.getProductoPorId(id_producto)
+  this.productosSvc.getProductoPorId(id_producto)
   .subscribe(producto => {
     const {talla, ...prodSinTalla } = producto;//prodSinTalla = producto - producto.talla (se traspasan todos los valores del elemento producto exceptuando el objeto talla)
     this.agregando_prod = prodSinTalla;
@@ -102,7 +104,7 @@ productoSelected(event: any): void{
 tallaSelected(event: any): void{
   const selectedOption = event.target.options[event.target.selectedIndex];
   const id_talla = parseInt(selectedOption.getAttribute('id'));
-  this.firebaseService.getProductoPorId(this.agregando_prod.id).subscribe(talla => { 
+  this.productosSvc.getProductoPorId(this.agregando_prod.id).subscribe(talla => { 
     this.agregando_prod.talla = talla.talla[id_talla];
     this.agregando_prod.talla.cantVenta = 1;
     this.agregando_prod.talla.total = this.agregando_prod.talla.cantVenta * this.agregando_prod.talla.precio;
@@ -118,11 +120,11 @@ tallaSelected(event: any): void{
 
 getData(){
 
-  this.firebaseService.getProductos().subscribe(p => {
+  this.productosSvc.getProductos().subscribe(p => {
     this.productos = p;
   })
 
-  this.firebaseService.getColegios().subscribe((colegios) => {
+  this.colegiosSvc.getColegios().subscribe((colegios) => {
     for(let colegio of colegios){
       for(let producto of this.productos){
         if(colegio.id === producto.colegio.id){
@@ -132,10 +134,10 @@ getData(){
         }
       }
     }
-    this.firebaseService.getProductosByColegio(this.colegios[0].id).subscribe(productos => {
+    this.productosSvc.getProductosByColegio(this.colegios[0].id).subscribe(productos => {
       this.prodsFiltrados = productos;
       this.agregando_prod = this.prodsFiltrados[0];
-      this.firebaseService.getProductoPorId(this.prodsFiltrados[0].id).subscribe((tallas) => {
+      this.productosSvc.getProductoPorId(this.prodsFiltrados[0].id).subscribe((tallas) => {
         this.agregando_prod.talla = tallas.talla[0];
         this.agregando_prod.talla.cantVenta = 1;
         this.agregando_prod.talla.total = this.agregando_prod.talla.precio * this.agregando_prod.talla.cantVenta;

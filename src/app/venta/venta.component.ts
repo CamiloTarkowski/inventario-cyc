@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute } from '@angular/router';
+import { VentasService } from '../services/ventas.service';
 
 @Component({
   selector: 'app-venta',
@@ -11,7 +11,7 @@ export class VentaComponent implements OnInit {
 
   venta: any;
 
-  constructor(private firebaseService: FirebaseService,
+  constructor(private ventasSvc: VentasService,
     private activatedRoute: ActivatedRoute){
 
   }
@@ -19,7 +19,7 @@ export class VentaComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const id = params['id'];
-      this.firebaseService.getVenta(id).subscribe(data => {
+      this.ventasSvc.getVenta(id).subscribe(data => {
         this.venta = data;
       })
     })    

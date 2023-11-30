@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute } from '@angular/router';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-producto',
@@ -12,11 +12,12 @@ export class ProductoComponent implements OnInit {
   producto: any;
   id!: string;
 
-  constructor(private firebaseService: FirebaseService,
+  constructor(
+    private productosSvc: ProductosService,
     private route: ActivatedRoute) { }
 
   getProducto(id: string){
-    this.firebaseService.getProductoPorId(id).subscribe((producto) =>{
+    this.productosSvc.getProductoPorId(id).subscribe((producto) =>{
       this.producto = producto;
     });
 

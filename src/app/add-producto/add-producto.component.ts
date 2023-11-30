@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FirebaseService } from '../services/firebase.service';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { firstValueFrom } from 'rxjs';
 import { ColegiosService } from '../services/colegios.service';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
+import { VentasService } from '../services/ventas.service';
 
 @Component({
   selector: 'app-ventas',
@@ -13,13 +13,14 @@ export class VentasComponent implements OnInit {
   ventasPorPagina = 10;
   paginaActual = 1;
 
-  constructor(private firebaseService: FirebaseService){
+  constructor(
+    private ventasSvc: VentasService){
 
   }
 
   ngOnInit(): void{
 
-    this.firebaseService.getVentas().subscribe(ventas => {
+    this.ventasSvc.getVentas().subscribe(ventas => {
       this.ventas = ventas;
 
     }) 

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
+import { ColegiosService } from '../services/colegios.service';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-productos',
@@ -46,13 +47,14 @@ export class ProductosComponent {
   }
 
   
-  constructor(private firebaseService: FirebaseService,
-  private route: ActivatedRoute,
-  private router: Router,
+  constructor(
+  private colegiosSvc: ColegiosService,
+  private productosSvc: ProductosService,
+  private route: ActivatedRoute
  ) { }
 
  getColegio(id: string): void {
-  this.firebaseService.getColegioPorId(id).subscribe(colegio => {
+  this.colegiosSvc.getColegioPorId(id).subscribe(colegio => {
     this.colegio = colegio;
   },
   err => {
@@ -63,13 +65,13 @@ export class ProductosComponent {
   async ngOnInit() {
     const params = await firstValueFrom(this.route.params);
     const id = params['id'];
-    this.firebaseService.getColegioPorId(id).subscribe(
+    this.colegiosSvc.getColegioPorId(id).subscribe(
       data => { 
         this.colegio = data;
       }
     )
 
-    this.firebaseService.getProductosByColegio(id).subscribe(data => {
+    this.productosSvc.getProductosByColegio(id).subscribe(data => {
       this.productos = data;
     });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ColegiosService } from '../services/colegios.service';
+import { ProductosService } from '../services/productos.service';
 
 
 @Component({
@@ -15,6 +16,13 @@ export class InventarioComponent implements OnInit {
   prodsFiltrados : any[] = [];
   colegio: any;
 
+  constructor(
+    private colegiosSvc: ColegiosService,
+    private productosSvc: ProductosService,
+    private route: ActivatedRoute,
+    private router: Router,
+   ) { }
+
 
   filtrar(id: number){
     for(let producto of this.productos){
@@ -24,22 +32,18 @@ export class InventarioComponent implements OnInit {
     }
   }
   getColegio(id: string): void {
-    this.firebaseService.getColegioPorId(id).subscribe(colegio => {
+    this.colegiosSvc.getColegioPorId(id).subscribe(colegio => {
       this.colegio = colegio;
     });
   } 
 
-  constructor(private firebaseService: FirebaseService,
-  private route: ActivatedRoute,
-  private router: Router,
- ) { }
 
  ngOnInit(): void {
   this.route.params.subscribe((params) => {
     const id = params['id'];
     this.getColegio(id.toString());
 
-    this.firebaseService.getProductos().subscribe(
+    this.productosSvc.getProductos().subscribe(
       (productos) => {
         this.productos = productos;
         this.filtrar(id);

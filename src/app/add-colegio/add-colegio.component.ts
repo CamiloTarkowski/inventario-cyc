@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FirebaseService } from '../services/firebase.service';
 import { RegionesService } from '../services/regiones.service';
 import { ColegiosService } from '../services/colegios.service';
 
