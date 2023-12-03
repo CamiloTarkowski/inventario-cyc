@@ -34,6 +34,7 @@ import { MaterialComponent } from './material/material.component';
 import { AddMaterialComponent } from './add-material/add-material.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { AddProveedorComponent } from './add-proveedor/add-proveedor.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { AddProveedorComponent } from './add-proveedor/add-proveedor.component';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,37 @@
-<p>add-proveedor works!</p>
+<body class="border border-rounded">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <h3 class="text-center">Agrega a un proveedor</h3>
+        <div class="form-floating mb-3">
+            <input class="form-control fw-bold" type="text" formControlName="nombre" id="nombre" placeholder="Nombre proveedor">
+            <label class="fw-bold text-secondary container-fluid d-flex" for="nombre">Nombre: <span class="container fluid text-danger d-flex justify-content-end">*</span></label>
+            <div class="text-danger fw-bold" *ngIf="this.myForm.get('nombre')?.touched && this.myForm.get('nombre')?.errors?.['required']">El campo 'Nombre' es obligatorio</div>
+            <div class="text-danger fw-bold" *ngIf="this.myForm.get('nombre')?.touched && this.myForm.get('nombre')?.errors?.['minlength']">El campo 'Nombre' debe tener al menos 3 caracteres</div>            
+        </div>
+    
+        <div class="form-floating mb-3">            
+            <input class="form-control fw-bold" type="text" formControlName="telefono" id="telefono" placeholder="+56912345678">
+            <label class="fw-bold text-secondary" for="telefono">Teléfono: </label>
+            <div class="text-danger fw-bold" *ngIf="this.myForm.get('telefono')?.touched && this.myForm.get('telefono')?.errors?.['minlength']">Teléfono debe contener al menos 9 dígitos</div> 
+        </div>
+    
+        <div class="form-floating mb-3">
+            <input class="form-control fw-bold" type="text" formControlName="direccion" id="direccion" placeholder="Dirección">
+            <label class="fw-bold text-secondary" for="direccion">Dirección: </label>               
+        </div>    
+    
+        <div class="form-floating mb-3">
+            <input class="form-control fw-bold" type="text" formControlName="email" id="email" placeholder="name@example.com">
+            <label class="fw-bold text-secondary" for="email">Email: </label>
+            <div class="text-danger fw-bold" *ngIf="this.myForm.get('email')?.touched && this.myForm.get('email')?.errors?.['email']">La estructura del correo es inválida</div>
+        </div>
+        
+        <div class="d-grid gap-2 mt-3" style="height: 50px">
+            <button class="btn btn-primary fw-bold" type="submit" [disabled]="myForm.invalid">Agregar</button>
+        </div>
+
+    </form>   
+
+</body>
+
+
+

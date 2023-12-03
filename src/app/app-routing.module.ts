@@ -18,7 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { noAuthGuard } from './guards/no-auth.guard';
 import { MaterialComponent } from './material/material.component';
-import { AddMaterialComponent } from './add-material/add-material.component';
+import { ProveedoresComponent } from './proveedores/proveedores.component';
 
 
 
@@ -99,9 +99,9 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'add-material',
-    component: AddMaterialComponent,
-    canActivate: [authGuard]
+    path: 'proveedores',
+    component: ProveedoresComponent,
+    canActivate: [authGuard] 
   },
   {
     path: 'login',

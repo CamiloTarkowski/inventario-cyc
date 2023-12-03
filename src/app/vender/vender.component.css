@@ -1,25 +1,17 @@
-/* Estilo para ocultar el select original */
-#custom-select {
-    display: none;
-  }
-  
-  /* Estilos para el custom select */
+
   .custom-select-wrapper {
     position: relative;
     width: 200px;
   }
 
   .main{
-    display: flex;
-    justify-content: center;
 
   }
 
   .selected-option {
     color: #999;
   }
-  
-  /* Icono (puedes utilizar FontAwesome u otra librería de iconos) */
+
   .fas.fa-chevron-down {
     color: #999;
   }
@@ -38,6 +30,7 @@
     max-width: 1324px;
     margin: auto;
     padding: 10px;
+    padding-top: 50px;
     font-family: 'Nunito Sans', sans-serif;
     color: black;
     font-weight: 900;

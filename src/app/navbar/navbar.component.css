@@ -1,46 +1,49 @@
 .barra{
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: bold;
-    font-size: 15px;
     display: flex;
     margin: auto;
     align-items: center;
     border-color: #000000;
     border-style: solid;
-    border-width: 0px 0px 2px 0px;    
+    border-width: 2px 0px 0px 0px;
+
 }
 
-/* Estilo personalizado para el ícono de la barra de navegación */
-.navbar-toggler-icon {
-    color: white; /* Cambia el color a blanco */
+.main{
+  width: 1324px;
 }
-
-
 
 .blur-effect{
-
     padding: 0;
     margin: 0;
     backdrop-filter: blur(0.4rem);
-    -webkit-backdrop-filter: blur(0.4rem); /* Para compatibilidad con navegadores WebKit */
-  }
-
-  header{
-    background-color: aqua;
-  }
-
-  .sin-vineta{
-    list-style-type: none;
+    -webkit-backdrop-filter: blur(0.4rem);
   }
 
   ul>li>a{
     text-decoration: none;
-    color: #000000;
+    color:#164d09;
+    
   }
 
-  .nav2{
-    max-width: 1324px;
+  ul{
+    list-style-type: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+  }
+
+  ul>li{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+  }
+
+  ul>li>a>i{
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  ul>li>a>p{
+    font-size: 12px;
   }

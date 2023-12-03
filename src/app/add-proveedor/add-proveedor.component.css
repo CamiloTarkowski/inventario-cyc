@@ -1,0 +1,18 @@
+body {
+    max-width: 600px;
+    margin: auto;
+    padding: 60px;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
+}
+
+h3{
+    font-weight: 600;
+    font-size: 30px;
+    padding: 20px;
+}
+
+.has-error input {
+    border-color: #fa0000;
+    background-color: #4a0dd6;
+  }
