@@ -11,7 +11,7 @@ import { ProductosService } from '../services/productos.service';
 export class VenderComponent implements OnInit {
 
   colegios: any[] = [];
-  productos!: any[];
+  productos: any[] = [];
   tallas: any[] = [];
   prodsFiltrados: any[] | null = [];
   cantidad: number = 1;
@@ -23,6 +23,7 @@ export class VenderComponent implements OnInit {
     id: '',
     nombre:'',
     descripcion: '',
+    img_url: '',
     colegio: {
       id: '',
       nombre:'',
@@ -112,11 +113,6 @@ tallaSelected(event: any): void{
   });
 }
 
-/* asignarCantidad(event: any) {
-  const nuevaCantidad = parseInt(event.target.value, 10);
-  this.agregando_prod.talla.cantVenta = nuevaCantidad;
-  this.agregando_prod.talla.total = nuevaCantidad * this.agregando_prod.talla.precio;
-} */
 
 getData(){
 

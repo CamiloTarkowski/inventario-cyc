@@ -4,8 +4,13 @@
           <h1 class="text-center">Agrega un material</h1>
             <div class="input-group mb-3">
                 <span class="input-group-text">Nombre: </span>
-                <input [(ngModel)]="material.nombre" type="text" class="form-control"  aria-label="Nombre" name="nombre">
-            </div>  
+                <input type="text" class="form-control"  aria-label="Nombre" name="nombre">
+            </div>
+            
+            <div class="form-floating mb-3">
+                <input [(ngModel)]="material.nombre" type="nombre" class="form-control" id="material" placeholder="nombre de material">
+                <label for="material">Nombre de material</label>
+            </div>
               
             <div class="input-group mb-3">
                 <span class="input-group-text">Descripción: </span>
@@ -83,11 +88,6 @@
                     <option *ngFor="let proveedor of proveedores" value="">{{proveedor?.nombre}}</option>
                 </select>
             </div>
-            
-            <div *ngFor="let p of proveedores">
-                {{p.nombre }}
-
-            </div>
 
             <div *ngIf="existencia == 2">
                 <label class="form-label" for="nombre">Nombre: </label>
@@ -98,6 +98,9 @@
 
                 <label class="form-label" for="direccion">Dirección: </label>
                 <input class="form-control" [(ngModel)]="material.proveedor.direccion" name="proveedor.direccion" type="text" id="direccion">
+
+                <label class="form-label" for="email">Correo electrónico: </label>
+                <input class="form-control" [(ngModel)]="material.proveedor.email" name="proveedor.direccion" type="email" id="email">
             </div>
 
             <div class="d-flex justify-content-center pt-2" >

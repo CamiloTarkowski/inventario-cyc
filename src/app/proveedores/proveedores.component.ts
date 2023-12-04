@@ -10,6 +10,9 @@ export class ProveedoresComponent implements OnInit {
 
   rutaActual!: string;
   proveedores: any;
+  selectedProveedorIndex: number | null = null;
+   show: boolean = false;
+  indx: number = -1;
 
   constructor(
     private proveedorSvc: ProveedoresService
@@ -17,6 +20,13 @@ export class ProveedoresComponent implements OnInit {
     this.proveedorSvc.getProveedores().subscribe(proveedores => {
       this.proveedores = proveedores;
     });
+   }
+
+   
+   
+   mostrarProveedor(index: number) {
+       this.selectedProveedorIndex = index;
+       this.show = !this.show;
    }
 
   ngOnInit(): void {

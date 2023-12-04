@@ -17,7 +17,7 @@
                     <select id="producto" class="form-select" (change)="productoSelected($event)">
                         <option *ngFor="let producto of prodsFiltrados" value="{{producto?.nombre}}" id="{{ producto?.id }}">
                             {{ producto?.nombre }}
-                        </option>
+                        </option> 
                     </select>
                 </div>  
             </div>        
@@ -28,8 +28,8 @@
                     <label for="talla">Talla</label>
                     <select id="talla" class="form-select" (change)="tallaSelected($event)">
                         <option *ngFor="let talla of tallas" id="{{ talla?.id }}">
-                            <span class="talla">Talla {{ talla?.n_talla }}: </span> 
-                            <span class="unidades">{{ talla?.cantidad }} unidades</span>
+                            <div class="text-danger">{{ talla?.n_talla }} </div> 
+                            <div class="unidades"> ({{ talla?.cantidad }} unidades)</div>                
                         </option>
                     </select>
                 </div>
@@ -39,21 +39,22 @@
                     <input id="cantidad" class="form-control" type="number" value="1" min="1" [(ngModel)]="cantidad" name="cantidad" >
                 </div>
 
-
             </div>
         </div>
 
         <div class="container mb-3">
             <div class="row">
-                <div class="col-md-6 col-sm-12 d-grid gap-2 mb-2">
+                <div *ngIf="productos.length > 0" class="col-md-6 col-sm-12 d-grid gap-2 mb-2">
                     <button type="submit" class="btn btn-success">Agregar</button>
-                </div>    
+                </div>
+                <div *ngIf="productos.length == 0" class="col-md-6 col-sm-12 d-grid gap-2 mb-2">
+                    <button type="submit" disabled class="btn btn-success">Agregar</button>
+                </div>        
                 <div class="col-md-6 col-sm-12 d-grid gap-2 mb-2">
                     <button type="button" class="btn btn-outline-success" (click)="reboot()">Reiniciar</button>
                 </div>
             </div>         
         </div>
     </form>
-
     <app-resumen-venta></app-resumen-venta>
 </body>

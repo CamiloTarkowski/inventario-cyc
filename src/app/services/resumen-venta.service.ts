@@ -9,6 +9,7 @@ export class ResumenVentaService {
 
   resumen: any[] = [];
 
+
   isTheSame(nuevo: any, cantidad: number){
     if(this.resumen.length > 0){
       for (let producto of this.resumen){
@@ -24,7 +25,6 @@ export class ResumenVentaService {
     }
     else{
       nuevo.talla.cantVenta = cantidad;
-      nuevo.talla.total = cantidad * nuevo.talla.precio;
       this.resumen.push(nuevo);
       return;
     }

@@ -40,3 +40,14 @@
   .pointer{
     cursor: pointer;
   }
+
+  .total{
+    margin-inline: 50px;
+    margin: auto;
+    margin-bottom: 74px;
+    max-width: 324px;
+  }
+
+  .productos{
+    margin-bottom: 130px;
+  }

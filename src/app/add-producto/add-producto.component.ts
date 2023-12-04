@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { ColegiosService } from '../services/colegios.service';
 import { ProductosService } from '../services/productos.service';
 
+
 @Component({
   selector: 'app-add-producto',
   templateUrl: './add-producto.component.html',
@@ -122,7 +123,8 @@ export class AddProductoComponent {
 
   onSubmit(){
     if(this.uploaded){
-      const imgRef = ref(this.storage, `${this.producto.colegio.nombre}/${this.file.name}`);
+
+      const imgRef = ref(this.storage, `colegios/${this.producto.colegio.nombre}/${this.file.name}`);
       uploadBytes(imgRef, this.file)
       .then((snapshot) => {
         return getDownloadURL(imgRef);

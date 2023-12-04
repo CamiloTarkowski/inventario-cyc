@@ -27,26 +27,12 @@ export class AddMaterialComponent implements OnInit {
     proveedor: {
       nombre: '',
       fono: '',
-      direccion: ''
+      direccion: '',
+      email: ''
     }
   }
+  proveedores: any = [];
 
-  proveedores = [{
-      nombre: "AProveedor 1",
-      fono: "+56912345678",
-      direccion: "Calle Bonita 59, Independencia."
-    },
-    {
-      nombre: "CProveedor 2",
-      telefono: "+56912345678",
-      direccion: "Calle Bonita 59, Independencia."
-    },
-    {
-      nombre: "BProveedor 3",
-      telefono: "+56912345678",
-      direccion: "Calle Bonita 59, Independencia."
-    }
-  ]
   
   constructor(
     private storage: Storage,

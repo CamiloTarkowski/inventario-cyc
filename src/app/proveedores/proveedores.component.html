@@ -1,22 +1,37 @@
 <app-navbar></app-navbar>
-<body>
+<body class="px-2">
     <table class="table">
         <thead>
             <tr>
-                <th>Proveedor</th>
-                <th>Dirección</th>
-                <th>Teléfono</th>
-                <th>Email</th>
+                <th>Nombre</th>
+                <th><i class="fa-solid fa-phone"></i></th>
+                <th>Acción</th>
+                <!-- <th><i class="fa-solid fa-location-dot"></i></th>
+                <th><i class="fa-solid fa-envelope"></i></th> -->
             </tr>
             
         </thead>
         <tbody>
-            <tr *ngFor="let p of proveedores">
-                <td>{{ p.nombre }}</td>
-                <td>{{ p.telefono}}</td>
-                <td>{{ p.direccion }}</td>
-                <td>{{ p.email }}</td>
+            <tr *ngFor="let p of proveedores; let i = index;">
+                <td>
+                    <a (click)="mostrarProveedor(i)" class="text-primary pointer">{{ p.nombre }}</a>
+                    <div class="oculto text-center mt-3" *ngIf="show && selectedProveedorIndex === i">
+                        <i class="fa-solid fa-location-dot"></i><p>{{ p.direccion }}</p>
+                    </div>
+                </td>
+                <td>
+                    <p>{{ p.telefono }}</p>
+                    <div class="oculto text-center" *ngIf="show && selectedProveedorIndex === i">
+                        <i class="fa-solid fa-envelope"></i><p>{{ p.email }}</p>
+                    </div>
+                </td>
+                <td class="fs-5">
+                    <i class="fa-solid fa-pen-to-square text-success pointer me-3"></i>
+                    <i class="fa-solid fa-trash text-danger pointer"></i>
+                </td>
             </tr>
+
+
         </tbody>
     </table>    
     <app-add-proveedor></app-add-proveedor>

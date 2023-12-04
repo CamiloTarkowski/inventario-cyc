@@ -5,14 +5,14 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-md-6 col-sm-12">
+          <div class="col-12">
             <div class="form-floating mb-3">
               <input [(ngModel)]="colegio.nombre" name="nombre" type="text" class="form-control" id="floatingInput" >
               <label for="floatingInput">Nombre</label>
             </div>
           </div>
 
-          <div class="col-md-6 col-sm-12">
+          <div class="col-12">
             <div class="form-floating mb-3">
               <input [(ngModel)]="colegio.fullname" name="fullname" type="text" class="form-control" id="floatingInput">
               <label for="floatingInput">Nombre completo</label>
@@ -22,16 +22,16 @@
       </div>
 
 
-      <div class="container-fluid">
+      <div class="container">
         <div class="row">
-          <div class="col-md-6 col-sm-12">
+          <div class="col-12">
             <select class="form-select mb-3 me-2"  id="region" (change)="cargarComunas($event)">
               <option value="0">Seleccione una región</option>
               <option *ngFor="let r of regiones"> {{r.region}} </option>
             </select>
           </div>
 
-          <div class="col-md-6 col-sm-12">
+          <div class="col-12">
             <select class="form-select mb-3" id="comuna" (change)="asignarComuna($event)">
               <option value="0">Seleccione una comuna</option>
               <option *ngFor="let c of comunas"> {{c}} </option>  
