@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { MaterialesService } from '../services/materiales.service';
 import { ProveedoresService } from '../services/proveedores.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-material',
@@ -9,6 +10,8 @@ import { ProveedoresService } from '../services/proveedores.service';
   styleUrls: ['./add-material.component.css']
 })
 export class AddMaterialComponent implements OnInit {
+
+  form: FormGroup;
 
   file: File = {} as File;
   uploaded = false;
@@ -37,7 +40,8 @@ export class AddMaterialComponent implements OnInit {
   constructor(
     private storage: Storage,
     private materialesSvc: MaterialesService,
-    private proveedorSvc: ProveedoresService
+    private proveedorSvc: ProveedoresService,
+    private formBuilder: FormBuilder
     ){
 
   }
