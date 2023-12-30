@@ -44,6 +44,19 @@ export class AddMaterialComponent implements OnInit {
     private formBuilder: FormBuilder
     ){
 
+      this.form = this.formBuilder.group({
+        nombre: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        categoria: ['', Validators.required],
+        cantidad: ['', Validators.required],
+        unidadMedida: ['', Validators.required],
+        ubicacion: ['', Validators.required],
+        img_url: ['', Validators.required],
+        precio: ['', Validators.required],
+        fechaAdquisicion: ['', Validators.required],
+        proveedor: ['', Validators.required]
+      });
+
   }
 
   detectFile(event: any){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ColegiosService } from '../services/colegios.service';
 import { ProductosService } from '../services/productos.service';
 
@@ -9,6 +10,7 @@ import { ProductosService } from '../services/productos.service';
   styleUrls: ['./add-product-noschool.component.css']
 })
 export class AddProductNoschoolComponent implements OnInit{
+
   url_img: string = '';
   colegios: any;
   uploaded = false;  

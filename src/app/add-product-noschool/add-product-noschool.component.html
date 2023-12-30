@@ -2,27 +2,26 @@
 <body>
     <div class="main">
         <form (ngSubmit)="onSubmit()">
+            <h3 class="text-center my-4">Agrega un producto</h3>
 
-            <div class="input-group mb-3">
-                <span class="input-group-text">Nombre de producto: </span>
+            <div class="form-floating mb-3">
                 <input type="text" class="form-control" placeholder="Polera polo roja" aria-label="Nombre" [(ngModel)]="producto.nombre" name="nombre" required>
+                <label class="text-secondary container-fluid d-flex" for="nombre">Nombre <span class="container fluid text-danger d-flex justify-content-end">*</span></label>
             </div>  
               
-            <div class="input-group mb-3">
-                <span class="input-group-text">Descripción: </span>
+            <div class="form-floating mb-3">
                 <input type="text" class="form-control" placeholder="Polera polo roja de algodón del colegio Alcántara."  [(ngModel)]="producto.descripcion" name="descripcion" required>
+                <label for="descripcion">Descripción</label>
             </div>
 
             <div class="d-flex mb-3">
-                <div class="input-group-text">Colegio: </div>
-                <span>
-                    <select id="colegio" class="form-select" (change)="colegioSelected($event)" name="colegio">
+                <label for="colegio" class="input-group-text">Colegio: </label>
+                <select id="colegio" class="form-select" (change)="colegioSelected($event)" name="colegio">
 
-                        <option *ngFor="let colegio of colegios" value="{{colegio?.nombre}}" id="{{colegio?.id}}">
-                            {{ colegio?.nombre }}
-                        </option>
-                    </select>
-                </span>
+                    <option *ngFor="let colegio of colegios" value="{{colegio?.nombre}}" id="{{colegio?.id}}">
+                        {{ colegio?.nombre }}
+                    </option>
+                </select>
             </div>
             
             <div>
@@ -31,25 +30,30 @@
                 <input (change)="detectFile($event)" class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" >
                 </div>
             </div>
-            <br>
-            <div class="d-flex">
-                <span style="width: 200px;">Talla</span>
-                <span style="width: 200px;">Cantidad</span>
-                <span style="width: 200px;">Precio</span>
-                <span style="width: 200px;">Ubicación</span>
-            </div>
-            <div class="d-flex text-center" *ngFor="let talla of producto.talla; let i = index;">
-
-                <span style="width: 200px;" class="input-group-text">{{talla.n_talla}}</span>
-              
-                <input style="margin-left: auto; width: 200px;" type="number" min="0" class="form-control" name="cantidad{{i}}" [(ngModel)]="producto.talla[i].cantidad" value="">
-
-                <input style="margin-left: auto; " type="number" min="0" class="form-control" name="precio{{i}}" [(ngModel)]="producto.talla[i].precio" value="">
-
-                <input style="margin-left: auto; " type="text"class="form-control" name="ubicacion{{i}}" [(ngModel)]="producto.talla[i].ubicacion" value="">
-              
-            </div>
             
+            
+            
+            
+
+            <table class="table mt-3">
+                <thead>
+                    <tr class="text-center">
+                        <th>Talla</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Ubicación</th>
+                    </tr>           
+                </thead>
+                <tbody>
+                    <tr *ngFor="let talla of producto.talla; let i = index;">
+                        <td class="text-center "> {{talla.n_talla}} </td>
+                        <td class=""><input type="number" min="0" class="form-control text-center mx-auto" name="cantidad{{i}}" [(ngModel)]="producto.talla[i].cantidad" value=""></td>
+                        <td class=""><input type="number" min="0" class="form-control text-center mx-auto" name="precio{{i}}" [(ngModel)]="producto.talla[i].precio"></td>
+                        <td class=""><input type="text"class="form-control text-center mx-auto" name="ubicacion{{i}}" [(ngModel)]="producto.talla[i].ubicacion" value=""></td>
+                    </tr>
+                </tbody>
+            </table>
+
             <div class="d-flex justify-content-center pt-2" >
                 <button type="submit" class="btn btn-success">Agregar producto</button>
             </div>
@@ -57,3 +61,24 @@
         </form>
     </div>
 </body>
+
+
+<!-- <div class="d-flex">
+    <span style="width: 200px;">Talla</span>
+    <span style="width: 200px;">Cantidad</span>
+    <span style="width: 200px;">Precio</span>
+    <span style="width: 200px;">Ubicación</span>
+</div>
+
+
+<div class="d-flex text-center" *ngFor="let talla of producto.talla; let i = index;">
+
+    <span style="width: 200px;" class="input-group-text">{{talla.n_talla}}</span>
+  
+    <input style="margin-left: auto; width: 200px;" type="number" min="0" class="form-control" name="cantidad{{i}}" [(ngModel)]="producto.talla[i].cantidad" value="">
+
+    <input style="margin-left: auto; " type="number" min="0" class="form-control" name="precio{{i}}" [(ngModel)]="producto.talla[i].precio" value="">
+
+    <input style="margin-left: auto; " type="text"class="form-control" name="ubicacion{{i}}" [(ngModel)]="producto.talla[i].ubicacion" value="">
+  
+</div>  -->

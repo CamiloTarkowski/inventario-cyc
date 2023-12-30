@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResumenVentaService } from '../services/resumen-venta.service';
 import { ColegiosService } from '../services/colegios.service';
 import { ProductosService } from '../services/productos.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vender',
   templateUrl: './vender.component.html',
   styleUrls: ['./vender.component.css']
 })
-export class VenderComponent implements OnInit {
+export class VenderComponent implements OnInit{
 
   colegios: any[] = [];
   productos: any[] = [];
@@ -186,14 +187,11 @@ agregar(){
   }
 }
 
-
-
-
 ngOnInit(): void {
-
   this.getData();
-
 }
+
+
 
 reboot(){
   window.location.reload();
