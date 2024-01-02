@@ -1,0 +1,43 @@
+body{
+    margin-top: 10px;
+}
+
+.colegios{
+    max-width: 1324px;
+    margin: auto;
+    text-align: center;
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+}
+
+.nom-colegio{
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.texto{
+    color: #268116;
+    text-decoration: none;
+}
+
+.texto:hover{
+    opacity: 0.7;
+}
+
+.main{
+    margin-bottom: 30px;
+}
+
+.titulo{
+    background-color: rgb(212, 246, 226);
+    color: #268116;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 8px 8px 0px 0px;
+ 
+}

@@ -87,7 +87,6 @@ export class AddMaterialComponent implements OnInit {
       .then(value => {
         alert("Material agregado con éxito");
         if(this.existencia === 2){
-          console.log("ESTOY DENTRO DEL IF EXISTENCIA")
           this.proveedorSvc.addProveedor(this.material.proveedor);
         }        
       })

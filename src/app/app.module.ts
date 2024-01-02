@@ -35,6 +35,7 @@ import { AddMaterialComponent } from './add-material/add-material.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { AddProveedorComponent } from './add-proveedor/add-proveedor.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ColegiosInicioComponent } from './colegios-inicio/colegios-inicio.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AddMaterialComponent,
     ProveedoresComponent,
     AddProveedorComponent,
+    ColegiosInicioComponent,
   ],
   imports: [
     BrowserModule,

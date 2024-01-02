@@ -1,24 +1,62 @@
 <app-navbar *ngIf="rutaActual == '/colegios'"></app-navbar>
 <body>
-       
     <div class="main">
-        <div *ngIf="rutaActual == '/colegios'">
-            <br>
-        </div>
-        <div class="colegios rounded bg-light shadow-sm">
-            <h2 class="titulo">Colegios</h2>
-            <div class="container py-3">
-                <div class="row px-3">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-12  text-start pb-3" *ngFor="let colegio of colegios$ | async">
-                        <a href="/productos/{{ colegio.id }}" class ="nom-colegio link-offset-2 texto">{{colegio.nombre}}</a>
-                    </div>
-                </div>
-            </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Nombre completo</th>
+                    <th>Región</th>
+                    <th>Comuna</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let colegio of colegios; let i = index ">
+                  <td>
+                    <ng-container *ngIf="!editMode[i]; else editModeNombre">
+                        {{ colegio.nombre }}
+                    </ng-container>
+                    <ng-template #editModeNombre>
+                        <input [(ngModel)]="colegioEnEdicion.nombre" />
+                    </ng-template>
+                  </td>
+                  <td>
+
+                    <ng-container *ngIf="!editMode[i]; else editModeFullname">
+                      {{ colegio.fullname }}
+                    </ng-container>
+                    <ng-template #editModeFullname>
+                      <input [(ngModel)]="colegioEnEdicion.fullname" />
+                    </ng-template>
+                  </td>
+
+                  <td>
+                    <ng-container *ngIf="!editMode[i]; else editModeRegion">{{ colegio.region}}</ng-container>
+                    <ng-template #editModeRegion><input [(ngModel)]="colegioEnEdicion.region" /></ng-template>
+                  </td>
+
+                  <td>
+                    <ng-container  *ngIf="!editMode[i]; else editModeComuna">{{ colegio.comuna}}
+                    </ng-container>
+                    <ng-template #editModeComuna><input [(ngModel)]="colegioEnEdicion.comuna" /></ng-template>
+                  </td>
             
-            <div *ngIf="rutaActual != '/colegios'" class="agrega pt-3 pb-4">
-                <button type="button" class="btn btn-outline-success" routerLink="/colegios">+ Agrega un nuevo colegio</button>
-            </div>           
-        </div>
+                  <td>
+                    <ng-container *ngIf="!editMode[i]; else editActionsTemplate">
+                      <i class="fa-solid fa-eye text-primary pointer"></i>
+                      <i class="fa-solid fa-pen-to-square text-success pointer" (click)="editarColegio(i, colegio)"></i>
+                      <i class="fa-solid fa-trash text-danger pointer"></i>
+                    </ng-container>
+                    <ng-template #editActionsTemplate>
+                      <i class="fa-solid fa-check text-success pointer" (click)="guardarEdicion(i)"></i>
+                      <i class="fa-solid fa-times text-danger pointer" (click)="cancelarEdicion(i)"></i>
+                    </ng-template>
+                  </td>
+                </tr>
+              </tbody>
+        </table>
+
     </div>
 </body>
 <app-add-colegio *ngIf="rutaActual == '/colegios'"></app-add-colegio>

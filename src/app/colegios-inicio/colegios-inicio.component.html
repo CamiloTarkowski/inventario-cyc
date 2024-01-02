@@ -1,0 +1,23 @@
+<app-navbar *ngIf="rutaActual == '/colegios-inicio'"></app-navbar>
+<body>
+       
+    <div class="main">
+        <div *ngIf="rutaActual == '/colegios-inicio'">
+            <br>
+        </div>
+        <div class="colegios rounded bg-light shadow-sm">
+            <h2 class="titulo">Colegios</h2>
+            <div class="container py-3">
+                <div class="row px-3">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12  text-start pb-3" *ngFor="let colegio of colegios$ | async">
+                        <a href="/productos/{{ colegio.id }}" class ="nom-colegio link-offset-2 texto">{{colegio.nombre}}</a>
+                    </div>
+                </div>
+            </div>
+                       
+        </div>
+    </div>
+</body>
+
+
+<app-add-colegio *ngIf="rutaActual == '/colegios-inicio'"></app-add-colegio>
