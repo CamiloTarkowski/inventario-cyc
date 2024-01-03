@@ -1,6 +1,6 @@
 body{
     margin: auto;
-    max-width: 660px;
+    max-width: 1324px;
 }
 
 .form-floating input:focus {
@@ -20,7 +20,6 @@ body{
     margin-top: 20px;
     padding: 40px;
     background-color: #ffffff;
-    font-family: 'Nunito Sans', sans-serif;
     border: 3px solid;
     border-color: #268116;
     border-style: solid;

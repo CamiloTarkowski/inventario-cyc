@@ -12,3 +12,29 @@ body{
     cursor: pointer;
     padding-inline: 3px;
 }
+
+.table{
+    table-layout: fixed;
+    width: 100%;
+}
+
+.nombre{
+    width: 150px;
+}
+
+.fullname{
+    width: 350px;
+}
+
+.region{
+    width: 250px;
+}
+
+.comuna{
+    width: 150px;
+}
+
+.accion{
+    width: 80px;
+}
+

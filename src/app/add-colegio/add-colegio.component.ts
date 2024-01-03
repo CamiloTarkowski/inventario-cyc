@@ -21,6 +21,7 @@ export class AddColegioComponent {
         region: '',
         comuna: ''
     }
+    showFormulario = false;
 
     ciudadesFiltradas: any[] = [];
 
@@ -37,6 +38,10 @@ export class AddColegioComponent {
 
    asignarComuna(event: any){
     this.colegio.comuna = event.target.value;
+   }
+
+   mostrarFormulario(){
+    this.showFormulario = true;
    }
 
 

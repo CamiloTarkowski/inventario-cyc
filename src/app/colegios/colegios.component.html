@@ -4,54 +4,63 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Nombre completo</th>
-                    <th>Región</th>
-                    <th>Comuna</th>
-                    <th>Acción</th>
+                    <th class="nombre">Nombre</th>
+                    <th class="fullname">Nombre completo</th>
+                    <th class="region">Región</th>
+                    <th class="comuna">Comuna</th>
+                    <th class="accion">Acción</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let colegio of colegios; let i = index ">
-                  <td>
+                  <td class="nombre">
                     <ng-container *ngIf="!editMode[i]; else editModeNombre">
-                        {{ colegio.nombre }}
+                        <a href="/productos/{{colegio.id}}">{{ colegio.nombre }}</a>
                     </ng-container>
                     <ng-template #editModeNombre>
-                        <input [(ngModel)]="colegioEnEdicion.nombre" />
+                        <input class="form-control" [(ngModel)]="colegioEnEdicion.nombre" />
                     </ng-template>
                   </td>
-                  <td>
 
+                  <td class="fullname">
                     <ng-container *ngIf="!editMode[i]; else editModeFullname">
                       {{ colegio.fullname }}
                     </ng-container>
                     <ng-template #editModeFullname>
-                      <input [(ngModel)]="colegioEnEdicion.fullname" />
+                      <input class="form-control" [(ngModel)]="colegioEnEdicion.fullname" />
                     </ng-template>
                   </td>
 
-                  <td>
+                  <td class="region">
                     <ng-container *ngIf="!editMode[i]; else editModeRegion">{{ colegio.region}}</ng-container>
-                    <ng-template #editModeRegion><input [(ngModel)]="colegioEnEdicion.region" /></ng-template>
+                    <ng-template #editModeRegion>
+                        <select class="form-select mb-3 me-2"  id="region" (change)="cargarComunas($event)">
+                        <option value="0">Seleccione una región</option>
+                        <option *ngFor="let r of regiones"> {{r.region}} </option>
+                      </select>
+                    </ng-template>
                   </td>
 
-                  <td>
+                  <td class="comuna">
                     <ng-container  *ngIf="!editMode[i]; else editModeComuna">{{ colegio.comuna}}
                     </ng-container>
-                    <ng-template #editModeComuna><input [(ngModel)]="colegioEnEdicion.comuna" /></ng-template>
+                    <ng-template #editModeComuna>
+                        <select class="form-select mb-3" id="comuna" (change)="asignarComuna($event)">
+                        <option value="0">Seleccione comuna</option>
+                        <option *ngFor="let c of comunas"> {{c}} </option>  
+                      </select></ng-template>
                   </td>
             
-                  <td>
-                    <ng-container *ngIf="!editMode[i]; else editActionsTemplate">
+                  <td class="accion">
+                    <ng-container *ngIf="!editMode[i] && !alMenosUnoTrue">
                       <i class="fa-solid fa-eye text-primary pointer"></i>
                       <i class="fa-solid fa-pen-to-square text-success pointer" (click)="editarColegio(i, colegio)"></i>
                       <i class="fa-solid fa-trash text-danger pointer"></i>
                     </ng-container>
-                    <ng-template #editActionsTemplate>
+                    <ng-container *ngIf="editMode[i]">
                       <i class="fa-solid fa-check text-success pointer" (click)="guardarEdicion(i)"></i>
                       <i class="fa-solid fa-times text-danger pointer" (click)="cancelarEdicion(i)"></i>
-                    </ng-template>
+                    </ng-container>
                   </td>
                 </tr>
               </tbody>
