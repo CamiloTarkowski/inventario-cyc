@@ -1,21 +1,22 @@
-<body>
+<body class="bg-light">
         
     <div class="rounded productos" *ngIf="resumen.length > 0">
-        <h1 class="text-center">Resumen de venta</h1>
-        <div class="d-flex border border-success bg-light rounded p-3 mb-3" *ngFor="let r of resumen; let i = index">
-            <div class="me-auto">
-                <h3>{{ r?.nombre }}</h3>
-                <p>Colegio: {{ r?.colegio.nombre }}</p>
-                <p>Talla: {{ r?.talla.n_talla }}</p>
-                <p>Precio: {{ r?.talla.precio | pesoChileno }}</p>
-                <p>Unidades: {{ r?.talla.cantVenta }}</p>
-                <p>Subtotal: {{ r?.talla.total | pesoChileno }}</p>
-                <a (click)="deleteProduct(i)" class="pointer text-danger text-decoration-none">Eliminar</a>            
+        <h3 class="text-center">Resumen de venta</h3>
+        <div class="producto-container d-flex border border-success bg-light rounded p-3 mb-3" *ngFor="let r of resumen; let i = index">
+            <div class="producto-info me-auto">
+              <h3>{{ r?.nombre }}</h3>
+              <p>Colegio: {{ r?.colegio.nombre }}</p>
+              <p>Talla: {{ r?.talla.n_talla }}</p>
+              <p>Precio: {{ r?.talla.precio | pesoChileno }}</p>
+              <p>Unidades: {{ r?.talla.cantVenta }}</p>
+              <p>Subtotal: {{ r?.talla.total | pesoChileno }}</p>
+              <a (click)="deleteProduct(i)" class="pointer text-danger text-decoration-none">Eliminar</a>            
             </div>
-            <div class="img d-flex justify-content-start">
-                <img src="{{ r?.img_url}}.jpg" alt="Producto para la venta" width="150px">                  
+            <div class="producto-img d-flex justify-content-start">
+              <img src="{{ r?.img_url }}.jpg" alt="Producto para la venta" width="150px">                  
             </div>
-        </div>
+          </div>
+          
     </div>
     <div *ngIf="resumen.length > 0" class="bg-light shadow-sm total container-fluid fixed-bottom border rounded p-3">
         <div class="d-flex">

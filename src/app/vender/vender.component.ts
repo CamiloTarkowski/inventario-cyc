@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ResumenVentaService } from '../services/resumen-venta.service';
 import { ColegiosService } from '../services/colegios.service';
 import { ProductosService } from '../services/productos.service';
-import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vender',
@@ -49,7 +49,8 @@ export class VenderComponent implements OnInit{
 constructor(
   private colegiosSvc: ColegiosService,
   private productosSvc: ProductosService,
-  private res: ResumenVentaService
+  private res: ResumenVentaService,
+  private toastr: ToastrService
    ) { }
 
 
@@ -178,12 +179,29 @@ filtrar(id_colegio: string) { //filtrar por colegio
 
 
 agregar(){
-  if(this.cantidad >= 1){
-    const pushProducto = {...this.agregando_prod};
-    this.res.isTheSame(pushProducto, this.cantidad);
-    this.bool_colegio = false;
-  } else{
-    alert("La cantidad no puede ser 0");
+  console.log(this.agregando_prod.talla.cantidad)
+  console.log(this.cantidad)
+  if(this.agregando_prod.talla.cantidad >= this.cantidad){
+    if(this.cantidad >= 1){
+      const pushProducto = {...this.agregando_prod};
+      this.res.isTheSame(pushProducto, this.cantidad);
+      this.bool_colegio = false;
+    } else{
+      this.toastr.warning('La cantidad a vender no puede ser 0');
+    }
+  }else{
+    const confirmacion = window.confirm(`La cantidad a vender supera el stock disponible. ¿Deseas continuar de todas formas?`);
+    if(confirmacion){
+      if(this.cantidad >= 1){
+        const pushProducto = {...this.agregando_prod};
+        this.res.isTheSame(pushProducto, this.cantidad);
+        this.bool_colegio = false;
+      } else{
+        this.toastr.warning('La cantidad a vender no puede ser 0');
+      }
+    }else{
+      this.toastr.info('Operación cancelada.')
+    }
   }
 }
 

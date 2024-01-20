@@ -1,71 +1,105 @@
 <app-navbar *ngIf="rutaActual == '/colegios'"></app-navbar>
 <body>
-    <div class="main">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="nombre">Nombre</th>
-                    <th class="fullname">Nombre completo</th>
-                    <th class="region">Región</th>
-                    <th class="comuna">Comuna</th>
-                    <th class="accion">Acción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let colegio of colegios; let i = index ">
-                  <td class="nombre">
-                    <ng-container *ngIf="!editMode[i]; else editModeNombre">
-                        <a href="/productos/{{colegio.id}}">{{ colegio.nombre }}</a>
-                    </ng-container>
-                    <ng-template #editModeNombre>
-                        <input class="form-control" [(ngModel)]="colegioEnEdicion.nombre" />
-                    </ng-template>
-                  </td>
-
-                  <td class="fullname">
-                    <ng-container *ngIf="!editMode[i]; else editModeFullname">
-                      {{ colegio.fullname }}
-                    </ng-container>
-                    <ng-template #editModeFullname>
-                      <input class="form-control" [(ngModel)]="colegioEnEdicion.fullname" />
-                    </ng-template>
-                  </td>
-
-                  <td class="region">
-                    <ng-container *ngIf="!editMode[i]; else editModeRegion">{{ colegio.region}}</ng-container>
-                    <ng-template #editModeRegion>
-                        <select class="form-select mb-3 me-2"  id="region" (change)="cargarComunas($event)">
-                        <option value="0">Seleccione una región</option>
-                        <option *ngFor="let r of regiones"> {{r.region}} </option>
-                      </select>
-                    </ng-template>
-                  </td>
-
-                  <td class="comuna">
-                    <ng-container  *ngIf="!editMode[i]; else editModeComuna">{{ colegio.comuna}}
-                    </ng-container>
-                    <ng-template #editModeComuna>
-                        <select class="form-select mb-3" id="comuna" (change)="asignarComuna($event)">
-                        <option value="0">Seleccione comuna</option>
-                        <option *ngFor="let c of comunas"> {{c}} </option>  
-                      </select></ng-template>
-                  </td>
-            
-                  <td class="accion">
-                    <ng-container *ngIf="!editMode[i] && !alMenosUnoTrue">
-                      <i class="fa-solid fa-eye text-primary pointer"></i>
-                      <i class="fa-solid fa-pen-to-square text-success pointer" (click)="editarColegio(i, colegio)"></i>
-                      <i class="fa-solid fa-trash text-danger pointer"></i>
-                    </ng-container>
-                    <ng-container *ngIf="editMode[i]">
-                      <i class="fa-solid fa-check text-success pointer" (click)="guardarEdicion(i)"></i>
-                      <i class="fa-solid fa-times text-danger pointer" (click)="cancelarEdicion(i)"></i>
-                    </ng-container>
-                  </td>
-                </tr>
-              </tbody>
-        </table>
-
+  <div class="main table-responsive">
+    <h3 class="text-center py-3 title">Colegios</h3>
+    <div *ngIf="paginaActual==1" class="p-2 bg-light"> 
+      <input type="text" class="form-control buscador" [(ngModel)]="filtro" #inputFiltro
+      autofocus placeholder="Búsqueda por nombre, región o comuna.">
     </div>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th class="nombre">Nombre</th>
+                  <th class="fullname">Nombre completo</th>
+                  <th class="region">Región</th>
+                  <th class="comuna">Comuna</th>
+                  <th class="accion">Acción</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let colegio of aplicarFiltro(colegios).slice((paginaActual-1) * colegiosPorPagina, paginaActual * colegiosPorPagina); let i = index">
+                <td class="nombre">
+                  <ng-container *ngIf="!editMode[i]; else editModeNombre">
+                      <a href="/productos/{{colegio.id}}">{{ colegio.nombre }}</a>
+                  </ng-container>
+                  <ng-template #editModeNombre>
+                      <input class="form-control" [(ngModel)]="colegioEnEdicion.nombre" />
+                  </ng-template>
+                </td>
+
+                <td class="fullname">
+                  <ng-container *ngIf="!editMode[i]; else editModeFullname">
+                    {{ colegio.fullname }}
+                  </ng-container>
+                  <ng-template #editModeFullname>
+                    <input class="form-control" [(ngModel)]="colegioEnEdicion.fullname" />
+                  </ng-template>
+                </td>
+
+                <td class="region">
+                  <ng-container *ngIf="!editMode[i]; else editModeRegion">{{ colegio.region}}</ng-container>
+                  <ng-template #editModeRegion>
+                      <select class="form-select mb-3 me-2"  id="region" (change)="cargarComunas($event)">
+                      <option value="0">Seleccione una región</option>
+                      <option *ngFor="let r of regiones"> {{r.region}} </option>
+                    </select>
+                  </ng-template>
+                </td>
+
+                <td class="comuna">
+                  <ng-container  *ngIf="!editMode[i]; else editModeComuna">{{ colegio.comuna}}
+                  </ng-container>
+                  <ng-template #editModeComuna>
+                      <select class="form-select mb-3" id="comuna" (change)="asignarComuna($event)">
+                      <option value="0">Seleccione comuna</option>
+                      <option *ngFor="let c of comunas"> {{c}} </option>  
+                    </select></ng-template>
+                </td>
+          
+                <td class="accion">
+                  <ng-container *ngIf="!editMode[i] && !alMenosUnoTrue">
+                    <i class="fa-solid fa-eye text-primary pointer"></i>
+                    <i class="fa-solid fa-pen-to-square text-success pointer" (click)="editarColegio(i, colegio)"></i>
+                    <i class="fa-solid fa-trash text-danger pointer" (click)="eliminarColegio(colegio.id, colegio.nombre)"></i>
+                  </ng-container>
+                  <ng-container *ngIf="editMode[i]">
+                    <i class="fa-solid fa-check text-success pointer" (click)="guardarEdicion(i)"></i>
+                    <i class="fa-solid fa-times text-danger pointer" (click)="cancelarEdicion(i)"></i>
+                  </ng-container>
+                </td>
+              </tr>
+              <tr *ngIf="!agregando">                
+                <td><button (click)="modoAgregar()"class="btn btn-outline-success">Nuevo colegio</button></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td> 
+              </tr>
+              <tr *ngIf="agregando">                
+                <td><input placeholder="Nombre" class="form-control" [(ngModel)]="nuevoColegio.nombre" /></td>
+                <td><input placeholder="Nombre completo" class="form-control" [(ngModel)]="nuevoColegio.fullname" /></td>
+                <td>
+                  <select class="form-select mb-3 me-2"  id="region" (change)="cargarComunasNuevo($event)">
+                    <option value="0">Seleccione una región</option>
+                    <option *ngFor="let r of regiones"> {{r.region}} </option>
+                  </select>
+                </td>
+                <td>
+                  <select class="form-select mb-3" id="comuna" (change)="asignarComunaNuevo($event)">
+                    <option value="0">Seleccione una comuna</option>
+                    <option *ngFor="let c of comunas"> {{c}} </option>  
+                  </select>
+                </td>
+                <td>
+                  <button class="btn btn-success" (click)="agregarColegio()">Agregar</button>
+                </td> 
+              </tr>
+              
+            </tbody>
+      </table>
+      <div class="pagination">
+        <button class="btn btn-success me-1" (click)="paginaActual = paginaActual - 1" [disabled]="paginaActual === 1"><</button>
+        <button class="btn btn-success" (click)="paginaActual = paginaActual + 1" [disabled]="(paginaActual * colegiosPorPagina) >= colegios.length">></button>
+    </div>
+  </div>
 </body>
-<app-add-colegio *ngIf="rutaActual == '/colegios'"></app-add-colegio>

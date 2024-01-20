@@ -1,0 +1,27 @@
+Colegios:
+
+    Colocar placeholder en los inputs para agregar un colegio nuevo.    
+
+    agregar búsqueda por palabra para filtrar el colegio.
+
+Proveedores:
+
+    Agregar filtro por atributo.
+
+    Agregar formulario a la tabla directamente para ahorrar espacio.
+
+    Desarrollar los botones de eliminar, editar y agregar 'ver'.
+
+
+Agregar Producto sin colegio: 
+
+    Cuando se cliquee sobre un input que tenga valor '0', el input debería quedar vacío.
+
+Vender:
+
+    Vender Servicio: Depurar el agoritmo para que cuando la cantidad a vender sea mayor al stock del producto, la venta se haga de todas formas, pero el stock quede en 0 y no en número negativo.
+
+
+
+
+

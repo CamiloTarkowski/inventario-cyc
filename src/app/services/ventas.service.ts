@@ -44,10 +44,13 @@ export class VentasService {
   getVentas(): Observable<any[]> {
     return this.db.list('ventas').snapshotChanges().pipe(
       map(changes =>
-        changes.map((v:any) => ({
+        changes.map((v: any) => ({
           id: v.payload.key,
           ...v.payload.val()
         }))
+      ),
+      map(ventas =>
+        ventas.sort((a, b) => b.idVenta - a.idVenta)
       )
     );
   }

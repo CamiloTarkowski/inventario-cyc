@@ -36,6 +36,9 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { AddProveedorComponent } from './add-proveedor/add-proveedor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ColegiosInicioComponent } from './colegios-inicio/colegios-inicio.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -77,7 +80,10 @@ import { ColegiosInicioComponent } from './colegios-inicio/colegios-inicio.compo
     AngularFireDatabaseModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

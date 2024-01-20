@@ -47,9 +47,9 @@
                 <tbody>
                     <tr *ngFor="let talla of producto.talla; let i = index;">
                         <td class="text-center "> {{talla.n_talla}} </td>
-                        <td class=""><input type="number" min="0" class="form-control text-center mx-auto" name="cantidad{{i}}" [(ngModel)]="producto.talla[i].cantidad" value=""></td>
-                        <td class=""><input type="number" min="0" class="form-control text-center mx-auto" name="precio{{i}}" [(ngModel)]="producto.talla[i].precio"></td>
-                        <td class=""><input type="text"class="form-control text-center mx-auto" name="ubicacion{{i}}" [(ngModel)]="producto.talla[i].ubicacion" value=""></td>
+                        <td class=""><input id="inputElement" type="number" min="0" class="form-control text-center mx-auto" name="cantidad{{i}}" [(ngModel)]="producto.talla[i].cantidad" value="0" (click)="limpiarCantidad(i)"></td>
+                        <td class=""><input type="number" min="0" class="form-control text-center mx-auto" name="precio{{i}}" [(ngModel)]="producto.talla[i].precio" value="0" (click)="limpiarPrecio(i)"></td>
+                        <td class=""><input type="text"class="form-control text-center mx-auto" name="ubicacion{{i}}" [(ngModel)]="producto.talla[i].ubicacion" value="0"></td>
                     </tr>
                 </tbody>
             </table>
@@ -58,27 +58,8 @@
                 <button type="submit" class="btn btn-success">Agregar producto</button>
             </div>
 
+            <input type="number" value="">
+
         </form>
     </div>
 </body>
-
-
-<!-- <div class="d-flex">
-    <span style="width: 200px;">Talla</span>
-    <span style="width: 200px;">Cantidad</span>
-    <span style="width: 200px;">Precio</span>
-    <span style="width: 200px;">Ubicación</span>
-</div>
-
-
-<div class="d-flex text-center" *ngFor="let talla of producto.talla; let i = index;">
-
-    <span style="width: 200px;" class="input-group-text">{{talla.n_talla}}</span>
-  
-    <input style="margin-left: auto; width: 200px;" type="number" min="0" class="form-control" name="cantidad{{i}}" [(ngModel)]="producto.talla[i].cantidad" value="">
-
-    <input style="margin-left: auto; " type="number" min="0" class="form-control" name="precio{{i}}" [(ngModel)]="producto.talla[i].precio" value="">
-
-    <input style="margin-left: auto; " type="text"class="form-control" name="ubicacion{{i}}" [(ngModel)]="producto.talla[i].ubicacion" value="">
-  
-</div>  -->

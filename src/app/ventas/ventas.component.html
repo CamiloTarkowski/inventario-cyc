@@ -39,8 +39,8 @@
         </tbody>
     </table>
     <div *ngIf="ruta == '/ventas'" class="pagination">
-        <button class="btn btn-link" (click)="paginaActual = paginaActual - 1" [disabled]="paginaActual === 1">Anterior</button>
-  <button class="btn btn-link" (click)="paginaActual = paginaActual + 1" [disabled]="(paginaActual * ventasPorPagina) >= ventas.length">Siguiente</button>
-      </div>
+        <button class="btn btn-success me-1" (click)="paginaActual = paginaActual - 1" [disabled]="paginaActual === 1"><</button>
+        <button class="btn btn-success" (click)="paginaActual = paginaActual + 1" [disabled]="(paginaActual * ventasPorPagina) >= ventas.length">></button>
+    </div>
       
 </body>

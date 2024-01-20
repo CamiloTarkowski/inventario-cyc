@@ -1,3 +1,7 @@
+@import 'ngx-toastr/toastr';
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
 body{
     background-color: rgb(236, 236, 236);
+    font-family: 'Rubik', sans-serif;
 }

@@ -3,36 +3,29 @@ body{
     max-width: 1324px;
 }
 
-.form-floating input:focus {
-    border-color: #268116; /* Cambia "red" al color deseado */
-    box-shadow: 0 0 0 0.25rem #268116; /* Cambia "red" al color deseado */
-    opacity: 50%;
-}
-
-.form-select:focus {
-    border-color: #268116; /* Cambia "red" al color deseado */
-    opacity: 50%;
-}
-
 .main{
     max-width: 1324px;
     margin: auto;
-    margin-top: 20px;
-    padding: 40px;
-    background-color: #ffffff;
-    border: 3px solid;
-    border-color: #268116;
-    border-style: solid;
-    border-radius: 8px; 
+    background-color: #ffffff; 
 }
 
-h2{
-    color: #268116;
-    font-weight: 600;
-    margin-block: 20px;
+
+.nombre{
+    width: 150px;
 }
 
-.color-boton{
-    background-color: #268116;
-    color: white;
+.fullname{
+    width: 350px;
+}
+
+.region{
+    width: 250px;
+}
+
+.comuna{
+    width: 150px;
+}
+
+.accion{
+    width: 80px;
 }

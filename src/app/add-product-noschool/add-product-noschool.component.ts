@@ -112,6 +112,17 @@ export class AddProductNoschoolComponent implements OnInit{
     }
   }
 
+  limpiarCantidad(i:number ) {
+    /* if (this.producto.talla[i].cantidad === 0) {
+      this.producto.talla[i].cantidad = null; // O puedes asignar un valor diferente según tus necesidades
+    } */
+  }
+  limpiarPrecio(i: number) {
+    /* if (this.miValor === 0) {
+      this.miValor = null; // O puedes asignar un valor diferente según tus necesidades
+    } */
+  }
+
   colegioSelected(event: any): void {
     const selectedOption = event.target.options[event.target.selectedIndex];
     const id_colegio = selectedOption.getAttribute('id');

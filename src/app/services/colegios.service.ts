@@ -61,4 +61,8 @@ export class ColegiosService {
     this.router.navigate(['/colegios']);
     return this.db.object(`colegios/${id}`).update(updatedColegio);
   }
+
+  deleteColegio(id: string){
+    return this.db.object(`colegios/${id}`).remove();
+  }
 }
