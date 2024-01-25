@@ -22,3 +22,9 @@ table{
     font-family: 'Nunito sans', sans-serif;
 
 }
+
+img{
+    width: 500px;
+    height: 700px;
+    object-fit: cover;
+}

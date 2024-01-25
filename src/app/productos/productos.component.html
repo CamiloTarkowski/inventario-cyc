@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <body>    
     <div class="main">
-        <h1 class="text-center">{{colegio?.fullname}}</h1>
+        <h1 class="text-center my-3">{{colegio?.fullname}}</h1>
 
         <div class="container-xxl">
             <div class="row">
@@ -34,7 +34,7 @@
                 (Aún no hay productos).          
             </div>
             <div class = "justify-content-center pb-2">
-                <button type="button" class="btn btn-outline-success" routerLink="/add-producto/{{ colegio?.id }}">Agrega un producto para este colegio</button>
+                <button type="button" class="btn btn-outline-success" routerLink="/add-product-noschool/">Agrega un nuevo producto</button>
             </div>
           </div>
         

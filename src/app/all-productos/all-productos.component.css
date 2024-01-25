@@ -6,6 +6,7 @@
 .img_producto{
     cursor: pointer;
     width: 300px;
+    object-fit: cover;
 }
 
 .nombre{
