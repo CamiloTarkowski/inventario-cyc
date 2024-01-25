@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ColegiosService } from '../services/colegios.service';
 import { ProductosService } from '../services/productos.service';
 
@@ -106,21 +105,11 @@ export class AddProductNoschoolComponent implements OnInit{
   file: File = {} as File;
 
   detectFile(event: any){
-    if (event && event.files && event.files.length > 0){
+    console.log("hola antes del if");
+    if (event.target.files && event.target.files.length > 0){
       this.file = event.target.files[0];
       this.uploaded = true;
     }
-  }
-
-  limpiarCantidad(i:number ) {
-    /* if (this.producto.talla[i].cantidad === 0) {
-      this.producto.talla[i].cantidad = null; // O puedes asignar un valor diferente según tus necesidades
-    } */
-  }
-  limpiarPrecio(i: number) {
-    /* if (this.miValor === 0) {
-      this.miValor = null; // O puedes asignar un valor diferente según tus necesidades
-    } */
   }
 
   colegioSelected(event: any): void {
@@ -133,28 +122,28 @@ export class AddProductNoschoolComponent implements OnInit{
 
   onSubmit(){
     if(this.uploaded){
-      const imgRef = ref(this.storage, `${this.producto.colegio.nombre}/${this.file.name}`);
+      const colegioSinTildes = this.producto.colegio.nombre.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      const imgRef = ref(this.storage, `colegios/${colegioSinTildes}/${this.file.name}`);
       uploadBytes(imgRef, this.file)
       .then((snapshot) => {
         return getDownloadURL(imgRef);
       })
       .then((downloadURL) => {
-        this.producto.img_url = downloadURL;       
+        this.producto.img_url = downloadURL;
+        if(this.producto.nombre != "" && this.producto.descripcion != ""){
+          this.productosSvc.addProducto(this.producto)
+          .then(value => alert("Producto agregado con éxito"))
+          .catch(err => console.error("Error ",err));
+        }else{
+          alert("Debe agregar nombre y/o descripción del producto.")
+        }             
         
       })
       .catch(err => {console.error('Error al cargar la imagen: ',err)})
 
     }else{
       console.log("Producto ingresado sin imagen.");
-    }
-    if(this.producto.nombre != "" && this.producto.descripcion != ""){
-      this.productosSvc.addProducto(this.producto)
-      .then(value => alert("Producto agregado con éxito"))
-      .catch(err => console.error("Error ",err));
-    }else{
-      alert("Debe agregar nombre y/o descripción del producto.")
-    }
-    
+    }    
   }  
 
   ngOnInit(): void{

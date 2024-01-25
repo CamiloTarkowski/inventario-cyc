@@ -8,7 +8,6 @@ import { ColegiosComponent } from './colegios/colegios.component';
 import { VenderComponent } from './vender/vender.component';
 import { AddProductoComponent } from './add-producto/add-producto.component';
 import { EditProductoComponent } from './edit-producto/edit-producto.component';
-import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
 import { ColegioComponent } from './colegio/colegio.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { VentaComponent } from './venta/venta.component';
@@ -61,11 +60,6 @@ const routes: Routes = [
   {
     path: 'edit-producto/:id',
     component: EditProductoComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'edit-colegio/:id',
-    component: EditColegioComponent,
     canActivate: [authGuard]
   },
   {

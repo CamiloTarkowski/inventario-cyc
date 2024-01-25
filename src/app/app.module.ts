@@ -22,7 +22,6 @@ import { AddProductoComponent } from './add-producto/add-producto.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { EditProductoComponent } from './edit-producto/edit-producto.component';
-import { EditColegioComponent } from './edit-colegio/edit-colegio.component';
 import { ResumenVentaComponent } from './resumen-venta/resumen-venta.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { PesoChilenoPipe } from './pipes/peso-chileno.pipe';
@@ -56,7 +55,6 @@ import { CommonModule } from '@angular/common';
     AddColegioComponent,
     AddProductoComponent,
     EditProductoComponent,
-    EditColegioComponent,
     ResumenVentaComponent,
     VentasComponent,
     PesoChilenoPipe,
