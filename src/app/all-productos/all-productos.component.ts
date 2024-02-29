@@ -53,10 +53,6 @@ export class AllProductosComponent implements OnInit {
       this.productos = data;
     })
 
-    this.ruta = window.location.pathname;
-
-    
+    this.ruta = window.location.pathname; 
   }
-
-
 }

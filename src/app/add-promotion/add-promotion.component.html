@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<body>
+    <form (ngSubmit)="onSubmit()"></form>
+    <h3 class="text-center my-4">Agrega una promoción</h3>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Polera polo roja" aria-label="Nombre" [(ngModel)]="promocion.nombre" name="nombre" required>
+                <label class="text-secondary container-fluid d-flex" for="nombre">Nombre <span class="container fluid text-danger d-flex justify-content-end">*</span></label>
+            </div>  
+              
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" placeholder="Polera polo roja de algodón del colegio Alcántara."  [(ngModel)]="promocion.descripcion" name="descripcion" required>
+                <label for="descripcion">Descripción</label>
+            </div>
+            <div class="d-flex mb-3">
+                <label for="colegio" class="input-group-text">Colegio: </label>
+                <select id="colegio" class="form-select" (change)="colegioSelected($event)" name="colegio">
+                    <option *ngFor="let colegio of colegios" value="{{colegio?.nombre}}" id="{{colegio?.id}}">
+                        {{ colegio?.nombre }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="d-flex mb-3">
+                <label for="colegio" class="input-group-text">Producto 1: </label>
+                <select id="colegio" class="form-select" [(ngModel)]="promocion.idProduct1" name="colegio">
+                    <option *ngFor="let producto of productos" value="{{producto?.id}}" id="{{producto?.id}}">
+                        {{ producto?.nombre }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="d-flex mb-3">
+                <label for="colegio" class="input-group-text">Producto 2: </label>
+                <select id="colegio" class="form-select" [(ngModel)]="promocion.idProduct2" name="colegio">
+                    <option *ngFor="let producto of productos" value="{{producto?.id}}" id="{{producto?.id}}">
+                        {{ producto?.nombre }}
+                    </option>
+                </select>
+            </div>
+            
+            <div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Sube una foto:</label>                
+                <input (change)="detectFile($event)" class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" >
+                </div>
+            </div>
+
+            <table class="table mt-3">
+                <thead>
+                    <tr class="text-center">
+                        <th>Talla</th>
+                        <th>Precio</th>
+                    </tr>           
+                </thead>
+                <tbody>
+                    <tr *ngFor="let talla of promocion.talla; let i = index;">
+                        <td class="text-center "> {{talla.n_talla}} </td>
+                        <td class=""><input type="number" min="0" class="form-control text-center mx-auto" name="precio{{i}}" [(ngModel)]="promocion.talla[i].precio" value="0"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center pt-2" >
+                <button type="submit" class="btn btn-success">Agregar promoción</button>
+            </div>
+</body>

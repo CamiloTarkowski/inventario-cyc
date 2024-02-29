@@ -18,7 +18,6 @@ import { ColegioComponent } from './colegio/colegio.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AddColegioComponent } from './add-colegio/add-colegio.component';
-import { AddProductoComponent } from './add-producto/add-producto.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { EditProductoComponent } from './edit-producto/edit-producto.component';
@@ -38,6 +37,7 @@ import { ColegiosInicioComponent } from './colegios-inicio/colegios-inicio.compo
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
+import { AddPromotionComponent } from './add-promotion/add-promotion.component';
 
 
 @NgModule({
@@ -53,7 +53,6 @@ import { CommonModule } from '@angular/common';
     ColegioComponent,
     LoginComponent,
     AddColegioComponent,
-    AddProductoComponent,
     EditProductoComponent,
     ResumenVentaComponent,
     VentasComponent,
@@ -67,6 +66,7 @@ import { CommonModule } from '@angular/common';
     ProveedoresComponent,
     AddProveedorComponent,
     ColegiosInicioComponent,
+    AddPromotionComponent,
   ],
   imports: [
     BrowserModule,

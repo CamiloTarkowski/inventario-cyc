@@ -6,7 +6,6 @@ import { ProductoComponent } from './producto/producto.component';
 import { ProductosComponent } from './productos/productos.component';
 import { ColegiosComponent } from './colegios/colegios.component';
 import { VenderComponent } from './vender/vender.component';
-import { AddProductoComponent } from './add-producto/add-producto.component';
 import { EditProductoComponent } from './edit-producto/edit-producto.component';
 import { ColegioComponent } from './colegio/colegio.component';
 import { VentasComponent } from './ventas/ventas.component';
@@ -18,6 +17,7 @@ import { authGuard } from './guards/auth.guard';
 import { noAuthGuard } from './guards/no-auth.guard';
 import { MaterialComponent } from './material/material.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
+import { AddPromotionComponent } from './add-promotion/add-promotion.component';
 
 
 
@@ -50,11 +50,6 @@ const routes: Routes = [
   {
     path: 'vender',
     component: VenderComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'add-producto/:id',
-    component: AddProductoComponent,
     canActivate: [authGuard]
   },
   {
@@ -98,11 +93,16 @@ const routes: Routes = [
     canActivate: [authGuard] 
   },
   {
+    path: 'add-promotion',
+    component: AddPromotionComponent,
+    canActivate: [authGuard]
+  },
+  {
     path: 'login',
     component: LoginComponent,
     canActivate: [noAuthGuard]
 
-  },
+  },  
   {
     path: '**',
     redirectTo: 'login',
