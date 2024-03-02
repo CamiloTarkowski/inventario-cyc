@@ -21,17 +21,18 @@
             </div>
 
             <div class="d-flex mb-3">
-                <label for="colegio" class="input-group-text">Producto 1: </label>
-                <select id="colegio" class="form-select" [(ngModel)]="promocion.idProduct1" name="colegio">
-                    <option *ngFor="let producto of productos" value="{{producto?.id}}" id="{{producto?.id}}">
+                <label for="producto1" class="input-group-text">Producto 1 </label>
+                <select id="producto1" class="form-select" [(ngModel)]="promocion.idProduct1" name="producto1">
+                    <option *ngFor="let producto of productos" [value]="producto?.id" [id]="producto?.id">
                         {{ producto?.nombre }}
                     </option>
                 </select>
             </div>
+            
 
             <div class="d-flex mb-3">
-                <label for="colegio" class="input-group-text">Producto 2: </label>
-                <select id="colegio" class="form-select" [(ngModel)]="promocion.idProduct2" name="colegio">
+                <label for="producto2" class="input-group-text">Producto 2 </label>
+                <select id="producto2" class="form-select" [(ngModel)]="promocion.idProduct2" name="producto2">
                     <option *ngFor="let producto of productos" value="{{producto?.id}}" id="{{producto?.id}}">
                         {{ producto?.nombre }}
                     </option>

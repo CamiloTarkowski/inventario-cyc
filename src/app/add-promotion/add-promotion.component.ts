@@ -11,6 +11,8 @@ import { Subscription, switchMap } from 'rxjs';
   styleUrls: ['./add-promotion.component.css']
 })
 export class AddPromotionComponent implements OnInit {
+  producto1: any;
+  producto2: any;
   suscription = new Subscription;
   url_img: string = '';
   colegios: any;
@@ -138,9 +140,7 @@ export class AddPromotionComponent implements OnInit {
     }    
   }
 
-
   ngOnInit(): void{
-
     this.suscription = this.colegiosSvc.getColegios().pipe(
       switchMap(colegios => {
         this.colegios = colegios;
@@ -148,10 +148,15 @@ export class AddPromotionComponent implements OnInit {
       })
     ).subscribe(productos => {
       this.productos = productos;
+      this.promocion.idProduct1 = this.productos[0].id;
+      this.promocion.idProduct2 = this.productos[0].id;
     });
+  }
 
-    
-
+  ngOnDestroy(): void {
+    if(this.suscription){
+      this.suscription.unsubscribe();
+    }
   }
 
 }
