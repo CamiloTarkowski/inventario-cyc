@@ -158,5 +158,4 @@ export class AddPromotionComponent implements OnInit {
       this.suscription.unsubscribe();
     }
   }
-
 }
