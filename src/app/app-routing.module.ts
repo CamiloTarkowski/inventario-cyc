@@ -18,6 +18,7 @@ import { noAuthGuard } from './guards/no-auth.guard';
 import { MaterialComponent } from './material/material.component';
 import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { AddPromotionComponent } from './add-promotion/add-promotion.component';
+import { EmisionComponent } from './emision/emision.component';
 
 
 
@@ -102,6 +103,11 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [noAuthGuard]
 
+  },
+  {
+    path: 'emision',
+    component: EmisionComponent,
+    canActivate: [authGuard]
   },  
   {
     path: '**',

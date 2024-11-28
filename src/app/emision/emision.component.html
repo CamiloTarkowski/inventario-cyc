@@ -1,0 +1,205 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <div class="row" style="padding: 1rem">
+          <div class="col-md-2">
+            <img src="" alt="logo" class="margin"
+              style="width:100%;height:100%;object-fit:contain;max-height:150px">
+          </div>
+          <div class="col-md-7">
+            <h3>CyC Confecciones</h3>
+            Giro: Fabricación de prendas y textiles
+            <address>
+              E-Mail: cycconfecciones@hotmail.com
+            </address>
+          </div>
+          <div class="col-md-3 text-center pull-right" style="font-weight:bold">
+            <div style="border:2px solid black;padding:1rem">
+              R.U.T.: 11.362.778-6
+              <select class="form-control combo" name="tipodte" id="tipodte">
+                <option value=""></option>';
+              </select>
+              N&deg; <span style="font-weight:normal">
+                1234
+              </span>
+            </div>
+            <div>S.I.I. - Santiago</div>
+          </div>
+        </div>
+        <div class="nav-tabs-custom">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#receptor" data-toggle="tab">Datos Receptor</a></li>
+            <li><a href="#comercial" data-toggle="tab">Comercial</a></li>
+            <li><a href="#referencia" data-toggle="tab">Referencia</a>
+            </li>
+            <li class="pull-right header" style="padding-left: 0px;padding-right: 0px;"><i role="button"
+                class="fa fa-images text-grey" title="Modo Productos Con Imagen"></i></li>
+            <li class="pull-right header" style="padding-left: 0px;padding-right: 0px;"><i role="button"
+                class="fa fa-ticket-alt text-green" title="Ingresar Vale de Venta"></i></li>
+            <li class="pull-right header" id="fecha"></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="receptor">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Cliente</label>
+                    <select class="form-control combo" name="idrut" id="idrut"></select>
+                    <input type="hidden" id="iddireccion" name="iddireccion">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Contacto</label>
+                    <input type="text" class="form-control" id="contacto" name="contacto" placeholder="Contacto">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Código de Cliente</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código de Cliente"
+                      placeholder="Teléfono">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="comercial">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label>Vendedor</label>
+                    <select class="form-control combo" name="idvendedor" id="idvendedor">
+                      <option></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Forma de Pago</label>
+                    <select class="form-control combo" name="idfmapago" id="idfmapago">
+                      <option></option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="referencia">
+              <div class="row">
+                <div class="col-md-12 table-editable table-responsive">
+                  <table class="table table-hover table-bordered text-center">
+                    <thead>
+                      <tr style="background-color: #f9f9f9;">
+                        <th width="4%">#</th>
+                        <th width="35%">Tipo de Documento</th>
+                        <th width="12%">Folio / Número</th>
+                        <th width="10%">Fecha</th>
+                        <th width="10%">Código</th>
+                        <th width="25%">Razón de Referencia</th>
+                        <th>&nbsp;</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ref">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12 table-editable table-responsive">
+            <table class="table table-hover table-bordered text-right tblGeneral">
+              <thead>
+                <tr style="background-color:#f9f9f9;">
+                  <th width="4%">#</th>
+                  <th nowrap="nowrap">Código</th>
+                  <th width="40%">Descripción</th>
+                  <th width="10%">Cantidad</th>
+                  <th width="10%">Precio</th>
+                  <th width="10%">Descuento</th>
+                  <th width="10%">Valor</th>
+                  <th><i class="borrarFilas icono fa fa-tasks" title="Eliminar Líneas"></i> <i
+                      class="cancelarBorrar icono fa fa-reply text-muted hidden"
+                      title="Cancelar Eliminación de Líneas"></i></th>
+                </tr>
+              </thead>
+              <tbody id="detalle">
+                <tr>
+                  <td class="text-center">1</td>
+                  <td class="text-left"></td>
+                  <td class="text-left"></td>
+                  <td class="cantidad" contenteditable="true"></td>
+                  <td class="precio">0</td>
+                  <td class="descuento">0</td>
+                  <td nowrap>$ 0</td>
+                  <td class="text-center linea"><a href="#"><i class="fa fa-plus text-green"></i></a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <div class="row">
+          <div class="col-md-5 col-xs-12">
+            <div class="form-group">
+              <label>Observación</label>
+              <textarea class="form-control" name="obs" id="obs" placeholder="Observación" style="height:100px"
+                maxlength="1000"></textarea>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-12 table-responsive pull-right">
+            <table id="totales" class="table table-hover text-right">
+              <tr class="hide">
+                <th class="text-left" style="width:40%">Sub Total:</th>
+                <td>$ 0</td>
+              </tr>
+              <tr class="hide">
+                <th class="text-left">Descuento:</th>
+                <td class="text-red">($ 0)</td>
+              </tr>
+              <tr>
+                <th class="text-left">Neto:</th>
+                <td>$ 0</td>
+              </tr>
+              <tr style="display:none">
+                <th class="text-left">Impuestos:</th>
+                <td>$ 0</td>
+              </tr>
+              <tr>
+                <th class="text-left">19% IVA:</th>
+                <td>$ 0</td>
+              </tr>
+              <tr>
+                <th class="lead text-left"><b>Total Venta:</b></th>
+                <td class="lead total" style="font-weight:bold">$ 0</td>
+              </tr>
+              <tr>
+                <th class="text-left">Efectivo</th>
+                <td style="padding-right: 0px;"><input class="form-control" type="text" id="efectivo" name="efectivo"
+                    placeholder="0" style="text-align: right;padding-right: 8px;"></td>
+              </tr>
+              <tr>
+                <th class="text-left">Vuelto</th>
+                <td>$ 0</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <a data-toggle="modal" data-target="#modalAncho" data-from="preview" href="#" class="btn btn-default">
+              <i class="fa fa-print"></i> Vista Previa
+            </a>
+            <button type="button" class="btn btn-success pull-right guardar" style="margin-right: 5px;">
+              <i class="fa fa-file-invoice"></i> Emitir
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

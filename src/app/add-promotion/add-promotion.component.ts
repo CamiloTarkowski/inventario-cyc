@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { getDownloadURL, Storage, ref, uploadBytes } from '@angular/fire/storage';
 import { ProductosService } from '../services/productos.service';
 import { ColegiosService } from '../services/colegios.service';
-import { Subscription, switchMap } from 'rxjs';
 
 
 @Component({
@@ -11,14 +10,13 @@ import { Subscription, switchMap } from 'rxjs';
   styleUrls: ['./add-promotion.component.css']
 })
 export class AddPromotionComponent implements OnInit {
-  producto1: any;
-  producto2: any;
-  suscription = new Subscription;
+  producto1: any
+  producto2: any
   url_img: string = '';
   colegios: any;
   uploaded = false;
   productos!: any;
-
+  file: File = {} as File;
   promocion = {
     nombre: '',
     descripcion: '',
@@ -83,20 +81,19 @@ export class AddPromotionComponent implements OnInit {
     }]
   }
 
-  file: File = {} as File;
-
   detectFile(event: any){
     if (event.target.files && event.target.files.length > 0){
       this.file = event.target.files[0];
       this.uploaded = true;
     }
   }
-  colegioSelected(event: any): void {
+  colegioSelected(event: any, /* colegio: any */): void {
     const selectedOption = event.target.options[event.target.selectedIndex];
     const id_colegio = selectedOption.getAttribute('id');
-    this.colegiosSvc.getColegioPorId(id_colegio).subscribe(
-      data => { this.promocion.colegio = data }
-    )
+    this.promocion.idProduct1 = "";
+    this.promocion.idProduct2 = "";
+
+    this.promocion.colegio /* = colegio */;
     this.productosSvc.getProductosByColegio(id_colegio).subscribe( data => {
       this.productos = data }
     );
@@ -106,11 +103,6 @@ export class AddPromotionComponent implements OnInit {
     private storage: Storage,
     private productosSvc: ProductosService,
     private colegiosSvc: ColegiosService){
-
-      this.colegiosSvc.getColegios().subscribe(data => {
-        this.colegios = data;
-      })
-
   }
 
   onSubmit(){
@@ -119,17 +111,18 @@ export class AddPromotionComponent implements OnInit {
       const imgRef = ref(this.storage, `colegios/${colegioSinTildes}/${this.file.name}`);
       uploadBytes(imgRef, this.file)
       .then((snapshot) => {
+        console.log({snapshot});
         return getDownloadURL(imgRef);
       })
       .then((downloadURL) => {
         this.promocion.img_url = downloadURL;
-        if(this.promocion.nombre != "" && this.promocion.descripcion != "" && this.promocion.idProduct1 != this.promocion.idProduct2){
+        if(this.promocion.nombre != "" && this.promocion.descripcion != "" && this.promocion.idProduct1 != this.promocion.idProduct2 && this.promocion.idProduct1 != "" && this.promocion.idProduct2 != ""){
           this.productosSvc.addProducto(this.promocion)
-          .then(value => alert("Promoción agregada con éxito"))
+          .then(value => alert("Promoción agregada con éxito" + value))
           .catch(err => console.error("Error ",err));
         }
         else{
-          alert("Nombre vacío, descripción vacía o los productos dentro de la promoción son idénticos.")
+          alert("Error en el formulario. Debe llenar todos los campos y el 'producto 1' con el 'producto 2' deben ser distintos");
         }             
         
       })
@@ -140,22 +133,19 @@ export class AddPromotionComponent implements OnInit {
     }    
   }
 
-  ngOnInit(): void{
-    this.suscription = this.colegiosSvc.getColegios().pipe(
-      switchMap(colegios => {
-        this.colegios = colegios;
-        return this.productosSvc.getProductosByColegio(this.colegios[0].id);
-      })
-    ).subscribe(productos => {
-      this.productos = productos;
-      this.promocion.idProduct1 = this.productos[0].id;
-      this.promocion.idProduct2 = this.productos[0].id;
-    });
+  console(){
+    console.log("Dato del select: "+ this.promocion.idProduct1);
+    console.log("Dato del segundo select: "+ this.promocion.idProduct2);
   }
 
+  ngOnInit(): void{
+    this.colegiosSvc.getColegios().subscribe(colegios => {
+      this.colegios = colegios;
+    })
+  }
+
+  
+
   ngOnDestroy(): void {
-    if(this.suscription){
-      this.suscription.unsubscribe();
-    }
   }
 }

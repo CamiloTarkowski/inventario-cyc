@@ -38,6 +38,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { AddPromotionComponent } from './add-promotion/add-promotion.component';
+import { EmisionComponent } from './emision/emision.component';
+
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { AddPromotionComponent } from './add-promotion/add-promotion.component';
     AddProveedorComponent,
     ColegiosInicioComponent,
     AddPromotionComponent,
+    EmisionComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,7 @@ import { AddPromotionComponent } from './add-promotion/add-promotion.component';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

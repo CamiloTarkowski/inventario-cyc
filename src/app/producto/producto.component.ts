@@ -24,15 +24,13 @@ export class ProductoComponent implements OnInit {
   }
   
   getId(){
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-    });
+    
   }
 
   ngOnInit(): void {
 
-    this.getId();
-    this.getProducto(this.id);
+    this.route.params.subscribe(params => { this.id = params['id'] });
+    this.productosSvc.getProductoPorId(this.id).subscribe((producto) =>{ this.producto = producto });
 
   }
 
