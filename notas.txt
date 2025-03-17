@@ -19,7 +19,7 @@ Agregar Producto sin colegio:
 
 Vender:
 
-    Vender Servicio: Depurar el agoritmo para que cuando la cantidad a vender sea mayor al stock del producto, la venta se haga de todas formas, pero el stock quede en 0 y no en número negativo.
+    Vender Servicio: Depurar el algoritmo para que cuando la cantidad a vender sea mayor al stock del producto, la venta se haga de todas formas, pero el stock quede en 0 y no en número negativo.
 
 Manejar la desuscripción a todos los componentes!! IMPORTANTE
 
